@@ -1,7 +1,7 @@
 # Linkt Python API library
 
 <!-- prettier-ignore -->
-[![PyPI version](https://img.shields.io/pypi/v/linkt.svg?label=pypi%20(stable))](https://pypi.org/project/linkt/)
+[![PyPI version](https://img.shields.io/pypi/v/linkt-sdk.svg?label=pypi%20(stable))](https://pypi.org/project/linkt-sdk/)
 
 The Linkt Python library provides convenient access to the Linkt REST API from any Python 3.9+
 application. The library includes type definitions for all request params and response fields,
@@ -21,7 +21,7 @@ pip install git+ssh://git@github.com/linkt-ai/linkt-python-sdk.git
 ```
 
 > [!NOTE]
-> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install linkt`
+> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install linkt-sdk`
 
 ## Usage
 
@@ -98,7 +98,7 @@ You can enable this by installing `aiohttp`:
 
 ```sh
 # install from the production repo
-pip install 'linkt[aiohttp] @ git+ssh://git@github.com/linkt-ai/linkt-python-sdk.git'
+pip install 'linkt-sdk[aiohttp] @ git+ssh://git@github.com/linkt-ai/linkt-python-sdk.git'
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
