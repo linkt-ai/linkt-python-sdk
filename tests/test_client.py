@@ -572,6 +572,16 @@ class TestLinkt:
             client = Linkt(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
+        # explicit environment arg requires explicitness
+        with update_env(LINKT_BASE_URL="http://localhost:5000/from/env"):
+            with pytest.raises(ValueError, match=r"you must pass base_url=None"):
+                Linkt(api_key=api_key, _strict_response_validation=True, environment="staging")
+
+            client = Linkt(base_url=None, api_key=api_key, _strict_response_validation=True, environment="staging")
+            assert str(client.base_url).startswith("https://api-staging.linkt.ai")
+
+            client.close()
+
     @pytest.mark.parametrize(
         "client",
         [
@@ -1437,6 +1447,16 @@ class TestAsyncLinkt:
         with update_env(LINKT_BASE_URL="http://localhost:5000/from/env"):
             client = AsyncLinkt(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
+
+        # explicit environment arg requires explicitness
+        with update_env(LINKT_BASE_URL="http://localhost:5000/from/env"):
+            with pytest.raises(ValueError, match=r"you must pass base_url=None"):
+                AsyncLinkt(api_key=api_key, _strict_response_validation=True, environment="staging")
+
+            client = AsyncLinkt(base_url=None, api_key=api_key, _strict_response_validation=True, environment="staging")
+            assert str(client.base_url).startswith("https://api-staging.linkt.ai")
+
+            await client.close()
 
     @pytest.mark.parametrize(
         "client",
