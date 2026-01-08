@@ -30,7 +30,7 @@ class EntityResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/linkt-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/linkt-ai/linkt-python-sdk#accessing-raw-response-data-eg-headers
         """
         return EntityResourceWithRawResponse(self)
 
@@ -39,7 +39,7 @@ class EntityResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/linkt-python#with_streaming_response
+        For more information, see https://www.github.com/linkt-ai/linkt-python-sdk#with_streaming_response
         """
         return EntityResourceWithStreamingResponse(self)
 
@@ -172,7 +172,7 @@ class AsyncEntityResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/linkt-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/linkt-ai/linkt-python-sdk#accessing-raw-response-data-eg-headers
         """
         return AsyncEntityResourceWithRawResponse(self)
 
@@ -181,7 +181,7 @@ class AsyncEntityResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/linkt-python#with_streaming_response
+        For more information, see https://www.github.com/linkt-ai/linkt-python-sdk#with_streaming_response
         """
         return AsyncEntityResourceWithStreamingResponse(self)
 
