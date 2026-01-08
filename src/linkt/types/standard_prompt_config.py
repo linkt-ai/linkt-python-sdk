@@ -24,3 +24,6 @@ class StandardPromptConfig(BaseModel):
     """Jinja2 template for task instructions"""
 
     version: Optional[Literal["v1.0"]] = None
+
+    webhook_url: Optional[str] = None
+    """Optional webhook URL to notify when workflow run completes"""

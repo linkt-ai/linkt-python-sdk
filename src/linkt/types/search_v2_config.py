@@ -21,3 +21,6 @@ class SearchV2Config(BaseModel):
     """Config type (search-prompt for legacy, search-task for normalized)"""
 
     version: Optional[Literal["v2.0"]] = None
+
+    webhook_url: Optional[str] = None
+    """Optional webhook URL to notify when workflow run completes"""

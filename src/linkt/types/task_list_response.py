@@ -26,6 +26,18 @@ class TaskTaskConfigSignalTopicConfigOutput(BaseModel):
     """Topic-based signal monitoring configuration.
 
     Monitors signals based on criteria without requiring pre-existing entities.
+
+    Attributes:
+        version: Config version (always "v2.0")
+        config_type: Config type discriminator (always "signal-topic")
+        entity_type: Type of entity being monitored (company, person, etc.)
+        topic_criteria: Natural language description of what to monitor
+        signal_types: Types of signals to monitor for this topic
+        monitoring_frequency: How often to check for signals (daily/weekly/monthly)
+        geographic_filters: Optional geographic regions to focus on
+        industry_filters: Optional industries to focus on
+        company_size_filters: Optional company size criteria
+        webhook_url: Optional webhook URL to notify when signal run completes
     """
 
     signal_types: List[SignalTypeConfig]
@@ -55,11 +67,24 @@ class TaskTaskConfigSignalTopicConfigOutput(BaseModel):
     version: Optional[Literal["v2.0"]] = None
     """Config version"""
 
+    webhook_url: Optional[str] = None
+    """Optional webhook URL to notify when signal run completes"""
+
 
 class TaskTaskConfigSignalCsvConfigOutput(BaseModel):
     """CSV-based signal monitoring configuration.
 
     Monitors signals for companies/people uploaded via CSV file.
+
+    Attributes:
+        version: Config version (always "v2.0")
+        config_type: Config type discriminator (always "signal-csv")
+        entity_type: Type of entity being monitored (company, person, etc.)
+        file_id: ID of the uploaded CSV file
+        primary_column: Column containing entity names (defaults to "name")
+        signal_types: Types of signals to monitor for these entities
+        monitoring_frequency: How often to check for signals (daily/weekly/monthly)
+        webhook_url: Optional webhook URL to notify when signal run completes
     """
 
     file_id: str
@@ -87,6 +112,9 @@ class TaskTaskConfigSignalCsvConfigOutput(BaseModel):
     version: Optional[Literal["v2.0"]] = None
     """Config version"""
 
+    webhook_url: Optional[str] = None
+    """Optional webhook URL to notify when signal run completes"""
+
 
 class TaskTaskConfigSignalSheetConfigOutput(BaseModel):
     """Sheet-based signal monitoring configuration.
@@ -105,6 +133,7 @@ class TaskTaskConfigSignalSheetConfigOutput(BaseModel):
         entity_filters: Optional MongoDB query to filter entities
         signal_types: Types of signals to monitor
         monitoring_frequency: How often to check for signals
+        webhook_url: Optional webhook URL to notify when signal run completes
     """
 
     signal_types: List[SignalTypeConfig]
@@ -127,6 +156,9 @@ class TaskTaskConfigSignalSheetConfigOutput(BaseModel):
 
     version: Optional[Literal["v2.0"]] = None
     """Config version"""
+
+    webhook_url: Optional[str] = None
+    """Optional webhook URL to notify when signal run completes"""
 
 
 TaskTaskConfig: TypeAlias = Union[
