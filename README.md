@@ -16,12 +16,9 @@ The REST API documentation can be found on [linkt.ai](https://linkt.ai/support).
 ## Installation
 
 ```sh
-# install from the production repo
-pip install git+ssh://git@github.com/linkt-ai/linkt-python-sdk.git
+# install from PyPI
+pip install linkt-sdk
 ```
-
-> [!NOTE]
-> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install linkt-sdk`
 
 ## Usage
 
@@ -97,8 +94,8 @@ By default, the async client uses `httpx` for HTTP requests. However, for improv
 You can enable this by installing `aiohttp`:
 
 ```sh
-# install from the production repo
-pip install 'linkt-sdk[aiohttp] @ git+ssh://git@github.com/linkt-ai/linkt-python-sdk.git'
+# install from PyPI
+pip install linkt-sdk[aiohttp]
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
