@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["SearchV2ConfigParam"]
@@ -20,3 +21,6 @@ class SearchV2ConfigParam(TypedDict, total=False):
     """Config type (search-prompt for legacy, search-task for normalized)"""
 
     version: Literal["v2.0"]
+
+    webhook_url: Optional[str]
+    """Optional webhook URL to notify when workflow run completes"""

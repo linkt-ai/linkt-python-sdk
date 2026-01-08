@@ -27,3 +27,6 @@ class SearchV3Config(BaseModel):
     """Accumulated user feedback (append-only)"""
 
     version: Optional[Literal["v3.0"]] = None
+
+    webhook_url: Optional[str] = None
+    """Optional webhook URL to notify when workflow run completes"""

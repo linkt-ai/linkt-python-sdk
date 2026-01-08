@@ -28,6 +28,7 @@ class SignalSheetConfigInputParam(TypedDict, total=False):
         entity_filters: Optional MongoDB query to filter entities
         signal_types: Types of signals to monitor
         monitoring_frequency: How often to check for signals
+        webhook_url: Optional webhook URL to notify when signal run completes
     """
 
     signal_types: Required[Iterable[SignalTypeConfigParam]]
@@ -50,3 +51,6 @@ class SignalSheetConfigInputParam(TypedDict, total=False):
 
     version: Literal["v2.0"]
     """Config version"""
+
+    webhook_url: Optional[str]
+    """Optional webhook URL to notify when signal run completes"""

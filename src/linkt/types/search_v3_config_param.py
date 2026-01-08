@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal, TypedDict
 
 __all__ = ["SearchV3ConfigParam"]
@@ -26,3 +27,6 @@ class SearchV3ConfigParam(TypedDict, total=False):
     """Accumulated user feedback (append-only)"""
 
     version: Literal["v3.0"]
+
+    webhook_url: Optional[str]
+    """Optional webhook URL to notify when workflow run completes"""
