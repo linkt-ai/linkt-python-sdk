@@ -33,6 +33,8 @@ from linkt import Linkt
 
 client = Linkt(
     api_key=os.environ.get("LINKT_API_KEY"),  # This is the default and can be omitted
+    # defaults to "staging".
+    environment="production",
 )
 
 icp_response = client.icp.create(
@@ -64,6 +66,8 @@ from linkt import AsyncLinkt
 
 client = AsyncLinkt(
     api_key=os.environ.get("LINKT_API_KEY"),  # This is the default and can be omitted
+    # defaults to "staging".
+    environment="production",
 )
 
 
