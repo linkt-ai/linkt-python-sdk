@@ -52,8 +52,8 @@ __all__ = [
 ]
 
 ENVIRONMENTS: Dict[str, str] = {
-    "staging": "https://api-staging.linkt.ai",
     "production": "https://api.linkt.ai",
+    "staging": "https://api-staging.linkt.ai",
 }
 
 
@@ -61,13 +61,13 @@ class Linkt(SyncAPIClient):
     # client options
     api_key: str
 
-    _environment: Literal["staging", "production"] | NotGiven
+    _environment: Literal["production", "staging"] | NotGiven
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
-        environment: Literal["staging", "production"] | NotGiven = not_given,
+        environment: Literal["production", "staging"] | NotGiven = not_given,
         base_url: str | httpx.URL | None | NotGiven = not_given,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -118,7 +118,7 @@ class Linkt(SyncAPIClient):
         elif base_url_env is not None:
             base_url = base_url_env
         else:
-            self._environment = environment = "staging"
+            self._environment = environment = "production"
 
             try:
                 base_url = ENVIRONMENTS[environment]
@@ -204,7 +204,7 @@ class Linkt(SyncAPIClient):
         self,
         *,
         api_key: str | None = None,
-        environment: Literal["staging", "production"] | None = None,
+        environment: Literal["production", "staging"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
@@ -291,13 +291,13 @@ class AsyncLinkt(AsyncAPIClient):
     # client options
     api_key: str
 
-    _environment: Literal["staging", "production"] | NotGiven
+    _environment: Literal["production", "staging"] | NotGiven
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
-        environment: Literal["staging", "production"] | NotGiven = not_given,
+        environment: Literal["production", "staging"] | NotGiven = not_given,
         base_url: str | httpx.URL | None | NotGiven = not_given,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -348,7 +348,7 @@ class AsyncLinkt(AsyncAPIClient):
         elif base_url_env is not None:
             base_url = base_url_env
         else:
-            self._environment = environment = "staging"
+            self._environment = environment = "production"
 
             try:
                 base_url = ENVIRONMENTS[environment]
@@ -434,7 +434,7 @@ class AsyncLinkt(AsyncAPIClient):
         self,
         *,
         api_key: str | None = None,
-        environment: Literal["staging", "production"] | None = None,
+        environment: Literal["production", "staging"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
