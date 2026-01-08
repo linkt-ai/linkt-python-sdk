@@ -16,6 +16,18 @@ class SignalTopicConfigInputParam(TypedDict, total=False):
     """Topic-based signal monitoring configuration.
 
     Monitors signals based on criteria without requiring pre-existing entities.
+
+    Attributes:
+        version: Config version (always "v2.0")
+        config_type: Config type discriminator (always "signal-topic")
+        entity_type: Type of entity being monitored (company, person, etc.)
+        topic_criteria: Natural language description of what to monitor
+        signal_types: Types of signals to monitor for this topic
+        monitoring_frequency: How often to check for signals (daily/weekly/monthly)
+        geographic_filters: Optional geographic regions to focus on
+        industry_filters: Optional industries to focus on
+        company_size_filters: Optional company size criteria
+        webhook_url: Optional webhook URL to notify when signal run completes
     """
 
     signal_types: Required[Iterable[SignalTypeConfigParam]]
@@ -44,3 +56,6 @@ class SignalTopicConfigInputParam(TypedDict, total=False):
 
     version: Literal["v2.0"]
     """Config version"""
+
+    webhook_url: Optional[str]
+    """Optional webhook URL to notify when signal run completes"""

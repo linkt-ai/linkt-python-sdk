@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from .entity_type import EntityType
@@ -15,6 +15,16 @@ class SignalCsvConfigInputParam(TypedDict, total=False):
     """CSV-based signal monitoring configuration.
 
     Monitors signals for companies/people uploaded via CSV file.
+
+    Attributes:
+        version: Config version (always "v2.0")
+        config_type: Config type discriminator (always "signal-csv")
+        entity_type: Type of entity being monitored (company, person, etc.)
+        file_id: ID of the uploaded CSV file
+        primary_column: Column containing entity names (defaults to "name")
+        signal_types: Types of signals to monitor for these entities
+        monitoring_frequency: How often to check for signals (daily/weekly/monthly)
+        webhook_url: Optional webhook URL to notify when signal run completes
     """
 
     file_id: Required[str]
@@ -41,3 +51,6 @@ class SignalCsvConfigInputParam(TypedDict, total=False):
 
     version: Literal["v2.0"]
     """Config version"""
+
+    webhook_url: Optional[str]
+    """Optional webhook URL to notify when signal run completes"""

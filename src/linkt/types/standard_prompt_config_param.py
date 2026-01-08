@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["StandardPromptConfigParam"]
@@ -23,3 +24,6 @@ class StandardPromptConfigParam(TypedDict, total=False):
     """Jinja2 template for task instructions"""
 
     version: Literal["v1.0"]
+
+    webhook_url: Optional[str]
+    """Optional webhook URL to notify when workflow run completes"""

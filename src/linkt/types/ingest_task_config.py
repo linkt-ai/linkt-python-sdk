@@ -34,3 +34,6 @@ class IngestTaskConfig(BaseModel):
     """Config type for ingest tasks"""
 
     version: Optional[Literal["v1.0"]] = None
+
+    webhook_url: Optional[str] = None
+    """Optional webhook URL to notify when workflow run completes"""
