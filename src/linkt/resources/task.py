@@ -82,7 +82,7 @@ class TaskResource(SyncAPIResource):
 
           prompt: Template prompt for the task. Can include placeholders for runtime parameters.
 
-          task_config: Flow-specific task configuration with versioning
+          task_config: Flow-specific task configuration with type discriminator
 
           extra_headers: Send extra headers
 
@@ -179,7 +179,7 @@ class TaskResource(SyncAPIResource):
 
           prompt: Updated task prompt template
 
-          task_config: Updated flow-specific task configuration with versioning
+          task_config: Updated flow-specific task configuration with type discriminator
 
           extra_headers: Send extra headers
 
@@ -417,7 +417,7 @@ class AsyncTaskResource(AsyncAPIResource):
 
           prompt: Template prompt for the task. Can include placeholders for runtime parameters.
 
-          task_config: Flow-specific task configuration with versioning
+          task_config: Flow-specific task configuration with type discriminator
 
           extra_headers: Send extra headers
 
@@ -514,7 +514,7 @@ class AsyncTaskResource(AsyncAPIResource):
 
           prompt: Updated task prompt template
 
-          task_config: Updated flow-specific task configuration with versioning
+          task_config: Updated flow-specific task configuration with type discriminator
 
           extra_headers: Send extra headers
 
