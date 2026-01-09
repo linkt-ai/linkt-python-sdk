@@ -2,180 +2,249 @@
 
 from typing import Dict, List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal, Annotated, TypeAlias
 
+from .._utils import PropertyInfo
 from .._models import BaseModel
 from .entity_type import EntityType
-from .search_v2_config import SearchV2Config
-from .search_v3_config import SearchV3Config
-from .ingest_task_config import IngestTaskConfig
 from .signal_type_config import SignalTypeConfig
-from .standard_prompt_config import StandardPromptConfig
 
 __all__ = [
     "TaskListResponse",
     "Task",
     "TaskTaskConfig",
-    "TaskTaskConfigSignalTopicConfigOutput",
-    "TaskTaskConfigSignalCsvConfigOutput",
-    "TaskTaskConfigSignalSheetConfigOutput",
+    "TaskTaskConfigSearchTaskConfigResponse",
+    "TaskTaskConfigIngestTaskConfigResponse",
+    "TaskTaskConfigProfilePromptConfigResponse",
+    "TaskTaskConfigSignalTopicConfigResponse",
+    "TaskTaskConfigSignalCsvConfigResponse",
+    "TaskTaskConfigSignalSheetConfigResponse",
 ]
 
 
-class TaskTaskConfigSignalTopicConfigOutput(BaseModel):
-    """Topic-based signal monitoring configuration.
+class TaskTaskConfigSearchTaskConfigResponse(BaseModel):
+    """Search task configuration in API responses.
 
-    Monitors signals based on criteria without requiring pre-existing entities.
+    Response model for search task configs that excludes backend-managed fields
+    (version, config_type) from the API surface.
 
     Attributes:
-        version: Config version (always "v2.0")
-        config_type: Config type discriminator (always "signal-topic")
-        entity_type: Type of entity being monitored (company, person, etc.)
-        topic_criteria: Natural language description of what to monitor
-        signal_types: Types of signals to monitor for this topic
-        monitoring_frequency: How often to check for signals (daily/weekly/monthly)
-        geographic_filters: Optional geographic regions to focus on
-        industry_filters: Optional industries to focus on
-        company_size_filters: Optional company size criteria
-        webhook_url: Optional webhook URL to notify when signal run completes
+        type: Config type discriminator (always "search").
+        desired_contact_count: Number of contacts to find per company.
+        user_feedback: Feedback to refine search behavior.
+        webhook_url: Webhook URL for completion notification.
     """
 
-    signal_types: List[SignalTypeConfig]
-    """Types of signals to monitor for this topic"""
+    desired_contact_count: int
+    """Number of contacts to find per company"""
 
-    topic_criteria: str
-    """Natural language description of what to monitor"""
+    user_feedback: str
+    """Feedback to refine search behavior"""
 
-    company_size_filters: Optional[List[str]] = None
-    """Company size criteria (e.g., employee count ranges)"""
-
-    config_type: Optional[Literal["signal-topic"]] = None
-    """Config type discriminator"""
-
-    entity_type: Optional[EntityType] = None
-    """Type of entity being monitored (company, school district, person, etc.)"""
-
-    geographic_filters: Optional[List[str]] = None
-    """Geographic regions to focus on"""
-
-    industry_filters: Optional[List[str]] = None
-    """Industries to focus on"""
-
-    monitoring_frequency: Optional[Literal["daily", "weekly", "monthly"]] = None
-    """How often to check for new signals (daily, weekly, monthly)"""
-
-    version: Optional[Literal["v2.0"]] = None
-    """Config version"""
+    type: Optional[Literal["search"]] = None
 
     webhook_url: Optional[str] = None
-    """Optional webhook URL to notify when signal run completes"""
+    """Webhook URL for completion notification"""
 
 
-class TaskTaskConfigSignalCsvConfigOutput(BaseModel):
-    """CSV-based signal monitoring configuration.
+class TaskTaskConfigIngestTaskConfigResponse(BaseModel):
+    """Ingest task configuration in API responses.
 
-    Monitors signals for companies/people uploaded via CSV file.
+    Response model for CSV enrichment task configs that excludes backend-managed
+    fields from the API surface.
 
     Attributes:
-        version: Config version (always "v2.0")
-        config_type: Config type discriminator (always "signal-csv")
-        entity_type: Type of entity being monitored (company, person, etc.)
-        file_id: ID of the uploaded CSV file
-        primary_column: Column containing entity names (defaults to "name")
-        signal_types: Types of signals to monitor for these entities
-        monitoring_frequency: How often to check for signals (daily/weekly/monthly)
-        webhook_url: Optional webhook URL to notify when signal run completes
+        type: Config type discriminator (always "ingest").
+        file_id: ID of the CSV file.
+        primary_column: Column containing entity names.
+        csv_entity_type: Entity type in CSV.
+        webhook_url: Webhook URL for completion notification.
     """
+
+    csv_entity_type: str
+    """Entity type in CSV"""
 
     file_id: str
-    """ID of the uploaded CSV file"""
+    """ID of the CSV file"""
 
-    signal_types: List[SignalTypeConfig]
-    """Types of signals to monitor for these entities"""
+    primary_column: str
+    """Column containing entity names"""
 
-    config_type: Optional[Literal["signal-csv"]] = None
-    """Config type discriminator"""
-
-    entity_type: Optional[EntityType] = None
-    """Type of entity being monitored (company, school district, person, etc.)"""
-
-    monitoring_frequency: Optional[Literal["daily", "weekly", "monthly"]] = None
-    """How often to check for new signals (daily, weekly, monthly)"""
-
-    primary_column: Optional[str] = None
-    """Column containing entity names.
-
-    Defaults to 'name'. Used to extract entity names from CSV rows during signal
-    workflow.
-    """
-
-    version: Optional[Literal["v2.0"]] = None
-    """Config version"""
+    type: Optional[Literal["ingest"]] = None
 
     webhook_url: Optional[str] = None
-    """Optional webhook URL to notify when signal run completes"""
+    """Webhook URL for completion notification"""
 
 
-class TaskTaskConfigSignalSheetConfigOutput(BaseModel):
-    """Sheet-based signal monitoring configuration.
+class TaskTaskConfigProfilePromptConfigResponse(BaseModel):
+    """Profile prompt configuration in API responses.
 
-    Monitors signals for entities from an existing discovery ICP's sheet.
-    Unlike CSV mode, signals are deterministically linked to source entities
-    without requiring analyst agent processing.
-
-    UPDATED 2025-12-29: Removed source_sheet_id field.
-    Sheets are uniquely identified by (source_icp_id, entity_type),
-    so source_sheet_id was redundant and never used at runtime.
+    Response model for profile prompt task configs that excludes backend-managed
+    fields from the API surface.
 
     Attributes:
-        source_icp_id: ID of the discovery ICP containing entities to monitor
-        entity_type: Type of entity being monitored (selects which sheet)
-        entity_filters: Optional MongoDB query to filter entities
-        signal_types: Types of signals to monitor
-        monitoring_frequency: How often to check for signals
-        webhook_url: Optional webhook URL to notify when signal run completes
+        type: Config type discriminator (always "profile").
+        prompt: Task prompt template.
+        webhook_url: Webhook URL for completion notification.
     """
 
-    signal_types: List[SignalTypeConfig]
-    """Types of signals to monitor"""
+    prompt: str
+    """Task prompt template"""
 
-    source_icp_id: str
-    """ID of the discovery ICP containing entities to monitor"""
-
-    config_type: Optional[Literal["signal-sheet"]] = None
-    """Config type discriminator"""
-
-    entity_filters: Optional[Dict[str, object]] = None
-    """Optional MongoDB query to filter entities within the sheet"""
-
-    entity_type: Optional[EntityType] = None
-    """Type of entity being monitored (company, person, school_district, etc.)"""
-
-    monitoring_frequency: Optional[Literal["daily", "weekly", "monthly"]] = None
-    """How often to check for new signals"""
-
-    version: Optional[Literal["v2.0"]] = None
-    """Config version"""
+    type: Optional[Literal["profile"]] = None
 
     webhook_url: Optional[str] = None
-    """Optional webhook URL to notify when signal run completes"""
+    """Webhook URL for completion notification"""
 
 
-TaskTaskConfig: TypeAlias = Union[
-    Dict[str, object],
-    StandardPromptConfig,
-    SearchV2Config,
-    SearchV3Config,
-    IngestTaskConfig,
-    TaskTaskConfigSignalTopicConfigOutput,
-    TaskTaskConfigSignalCsvConfigOutput,
-    TaskTaskConfigSignalSheetConfigOutput,
-    None,
+class TaskTaskConfigSignalTopicConfigResponse(BaseModel):
+    """Signal topic configuration in API responses.
+
+    Response model for topic-based signal monitoring configs.
+
+    Attributes:
+        type: Config type discriminator (always "signal-topic").
+        topic_criteria: Topic criteria for monitoring.
+        signal_types: Types of signals to monitor.
+        entity_type: Type of entity being monitored.
+        monitoring_frequency: How often to check for signals.
+        geographic_filters: Geographic regions to focus on.
+        industry_filters: Industries to focus on.
+        company_size_filters: Company size criteria.
+        webhook_url: Webhook URL for completion notification.
+    """
+
+    entity_type: EntityType
+    """Entity type"""
+
+    monitoring_frequency: Literal["daily", "weekly", "monthly"]
+    """Monitoring frequency"""
+
+    signal_types: List[SignalTypeConfig]
+    """Signal types"""
+
+    topic_criteria: str
+    """Topic criteria"""
+
+    company_size_filters: Optional[List[str]] = None
+    """Size filters"""
+
+    geographic_filters: Optional[List[str]] = None
+    """Geographic filters"""
+
+    industry_filters: Optional[List[str]] = None
+    """Industry filters"""
+
+    type: Optional[Literal["signal-topic"]] = None
+
+    webhook_url: Optional[str] = None
+    """Webhook URL for completion notification"""
+
+
+class TaskTaskConfigSignalCsvConfigResponse(BaseModel):
+    """Signal CSV configuration in API responses.
+
+    Response model for CSV-based signal monitoring configs.
+
+    Attributes:
+        type: Config type discriminator (always "signal-csv").
+        file_id: CSV file ID.
+        signal_types: Types of signals to monitor.
+        entity_type: Type of entity being monitored.
+        primary_column: Primary column for entity names.
+        monitoring_frequency: How often to check for signals.
+        webhook_url: Webhook URL for completion notification.
+    """
+
+    entity_type: EntityType
+    """Entity type"""
+
+    file_id: str
+    """CSV file ID"""
+
+    monitoring_frequency: Literal["daily", "weekly", "monthly"]
+    """Monitoring frequency"""
+
+    primary_column: str
+    """Primary column"""
+
+    signal_types: List[SignalTypeConfig]
+    """Signal types"""
+
+    type: Optional[Literal["signal-csv"]] = None
+
+    webhook_url: Optional[str] = None
+    """Webhook URL for completion notification"""
+
+
+class TaskTaskConfigSignalSheetConfigResponse(BaseModel):
+    """Signal sheet configuration in API responses.
+
+    Response model for sheet-based signal monitoring configs.
+
+    Attributes:
+        type: Config type discriminator (always "signal-sheet").
+        source_icp_id: Source ICP ID containing entities to monitor.
+        signal_types: Types of signals to monitor.
+        entity_type: Type of entity being monitored.
+        entity_filters: Optional MongoDB query to filter entities.
+        monitoring_frequency: How often to check for signals.
+        webhook_url: Webhook URL for completion notification.
+    """
+
+    entity_type: EntityType
+    """Entity type"""
+
+    monitoring_frequency: Literal["daily", "weekly", "monthly"]
+    """Monitoring frequency"""
+
+    signal_types: List[SignalTypeConfig]
+    """Signal types"""
+
+    source_icp_id: str
+    """Source ICP ID"""
+
+    entity_filters: Optional[Dict[str, object]] = None
+    """Entity filters"""
+
+    type: Optional[Literal["signal-sheet"]] = None
+
+    webhook_url: Optional[str] = None
+    """Webhook URL for completion notification"""
+
+
+TaskTaskConfig: TypeAlias = Annotated[
+    Union[
+        TaskTaskConfigSearchTaskConfigResponse,
+        TaskTaskConfigIngestTaskConfigResponse,
+        TaskTaskConfigProfilePromptConfigResponse,
+        TaskTaskConfigSignalTopicConfigResponse,
+        TaskTaskConfigSignalCsvConfigResponse,
+        TaskTaskConfigSignalSheetConfigResponse,
+        None,
+    ],
+    PropertyInfo(discriminator="type"),
 ]
 
 
 class Task(BaseModel):
-    """Response model for task data."""
+    """Response model for task data.
+
+    Uses TaskConfigResponse discriminated union for proper OpenAPI schema
+    generation with type-based discrimination.
+
+    Attributes:
+        id: Task ID.
+        name: Task name.
+        description: Task description.
+        icp_id: Task ICP ID.
+        flow_name: Prefect flow name.
+        deployment_name: Prefect deployment name.
+        prompt: Template prompt for the task.
+        task_config: Flow-specific task configuration.
+        created_at: Creation timestamp.
+        updated_at: Last update timestamp.
+    """
 
     id: str
     """Task ID"""
@@ -205,11 +274,18 @@ class Task(BaseModel):
     """Template prompt for the task. Can include placeholders for runtime parameters."""
 
     task_config: Optional[TaskTaskConfig] = None
-    """Flow-specific task configuration with versioning"""
+    """Flow-specific task configuration"""
 
 
 class TaskListResponse(BaseModel):
-    """Response model for paginated task list."""
+    """Response model for paginated task list.
+
+    Attributes:
+        tasks: List of tasks.
+        total: Total number of tasks matching filters.
+        page: Current page number (1-based).
+        page_size: Number of items per page.
+    """
 
     page: int
     """Current page number (1-based)"""

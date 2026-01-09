@@ -15,7 +15,7 @@ class RunListResponse(BaseModel):
     - ICPListResponse (src/api/schema/icp.py)
 
     Attributes:
-        runs: List of AgentRun objects for the current page
+        runs: List of AgentRun objects for the current page (metadata excluded)
         total: Total number of runs matching the filter criteria
         page: Current page number (1-based)
         page_size: Number of items per page
