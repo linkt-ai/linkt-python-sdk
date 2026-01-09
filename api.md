@@ -73,11 +73,7 @@ Types:
 
 ```python
 from linkt.types import (
-    IngestTaskConfig,
-    SearchV2Config,
-    SearchV3Config,
     SignalTypeConfig,
-    StandardPromptConfig,
     TaskCreateResponse,
     TaskRetrieveResponse,
     TaskListResponse,
