@@ -2,16 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import Union, Optional
 from typing_extensions import Required, TypeAlias, TypedDict
 
-from .search_v2_config_param import SearchV2ConfigParam
-from .search_v3_config_param import SearchV3ConfigParam
+from .signal_csv_config_param import SignalCsvConfigParam
 from .ingest_task_config_param import IngestTaskConfigParam
-from .standard_prompt_config_param import StandardPromptConfigParam
-from .signal_csv_config_input_param import SignalCsvConfigInputParam
-from .signal_sheet_config_input_param import SignalSheetConfigInputParam
-from .signal_topic_config_input_param import SignalTopicConfigInputParam
+from .search_task_config_param import SearchTaskConfigParam
+from .signal_sheet_config_param import SignalSheetConfigParam
+from .signal_topic_config_param import SignalTopicConfigParam
+from .profile_prompt_config_param import ProfilePromptConfigParam
 
 __all__ = ["TaskCreateParams", "TaskConfig"]
 
@@ -36,16 +35,14 @@ class TaskCreateParams(TypedDict, total=False):
     """Template prompt for the task. Can include placeholders for runtime parameters."""
 
     task_config: Optional[TaskConfig]
-    """Flow-specific task configuration with versioning"""
+    """Flow-specific task configuration with type discriminator"""
 
 
 TaskConfig: TypeAlias = Union[
-    Dict[str, object],
-    StandardPromptConfigParam,
-    SearchV2ConfigParam,
-    SearchV3ConfigParam,
+    SearchTaskConfigParam,
     IngestTaskConfigParam,
-    SignalTopicConfigInputParam,
-    SignalCsvConfigInputParam,
-    SignalSheetConfigInputParam,
+    ProfilePromptConfigParam,
+    SignalTopicConfigParam,
+    SignalCsvConfigParam,
+    SignalSheetConfigParam,
 ]

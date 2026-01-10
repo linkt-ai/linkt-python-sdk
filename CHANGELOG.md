@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.3.0 (2026-01-09)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.2.0...v0.3.0)
+
+### Features
+
+* **api:** api update ([79a8673](https://github.com/linkt-ai/linkt-python-sdk/commit/79a8673aebcc7ce5a01e0b2e82001daf1d775632))
+* **api:** api update ([ecf9563](https://github.com/linkt-ai/linkt-python-sdk/commit/ecf9563fed6dcb1a99bd0e5b84b2d5f7bc677b58))
+
+
+### Chores
+
+* update yaml config task model reference ([1d8f3c1](https://github.com/linkt-ai/linkt-python-sdk/commit/1d8f3c147e781163cf47b9b91ed51b20b329461a))
+
 ## 0.2.0 (2026-01-08)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.1.0...v0.2.0)

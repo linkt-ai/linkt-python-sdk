@@ -74,13 +74,12 @@ Types:
 ```python
 from linkt.types import (
     IngestTaskConfig,
-    SearchV2Config,
-    SearchV3Config,
-    SignalCsvConfigInput,
-    SignalSheetConfigInput,
-    SignalTopicConfigInput,
+    ProfilePromptConfig,
+    SearchTaskConfig,
+    SignalCsvConfig,
+    SignalSheetConfig,
+    SignalTopicConfig,
     SignalTypeConfig,
-    StandardPromptConfig,
     TaskCreateResponse,
     TaskRetrieveResponse,
     TaskListResponse,

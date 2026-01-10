@@ -136,7 +136,9 @@ class TestIcp:
                 {
                     "description": "description",
                     "entity_type": "entity_type",
+                    "desired_count": 1,
                     "filters": ["string"],
+                    "root": True,
                 }
             ],
             name="x",
@@ -422,7 +424,9 @@ class TestAsyncIcp:
                 {
                     "description": "description",
                     "entity_type": "entity_type",
+                    "desired_count": 1,
                     "filters": ["string"],
+                    "root": True,
                 }
             ],
             name="x",

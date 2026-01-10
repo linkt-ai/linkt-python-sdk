@@ -9,31 +9,33 @@ __all__ = ["IngestTaskConfigParam"]
 
 
 class IngestTaskConfigParam(TypedDict, total=False):
-    """Configuration for one-time CSV enrichment tasks.
+    """CSV enrichment task configuration.
 
-    Used by ingest_csv workflows to enrich entities from uploaded CSV files.
-    The csv_entity_type tracks the entity type of rows IN THE CSV, which may
-    differ from the ICP hierarchy (e.g., CSV has people, but ICP has company→person).
+    Enriches entities from an uploaded CSV file with additional
+    data discovered by AI agents.
 
     Attributes:
-        file_id: Reference to uploaded CSV file in S3 (via File document)
-        primary_column: Column containing entity names for matching
-        csv_entity_type: Entity type of rows in CSV (may differ from ICP hierarchy)
+        type: Config type discriminator (always "ingest").
+        file_id: ID of the uploaded CSV file to process.
+        primary_column: Column containing entity names for matching.
+        csv_entity_type: Entity type in the CSV (e.g., 'person', 'company').
+        webhook_url: Optional webhook URL for completion notification.
+
+    Example:
+        >>> config = IngestTaskConfigRequest(file_id="abc123", primary_column="company_name", csv_entity_type="company")
     """
 
     csv_entity_type: Required[str]
     """Entity type in the CSV (e.g., 'person', 'company')"""
 
     file_id: Required[str]
-    """File ID referencing uploaded CSV in MongoDB"""
+    """ID of the uploaded CSV file to process"""
 
     primary_column: Required[str]
-    """Column containing entity names"""
+    """Column containing entity names for matching"""
 
-    config_type: Literal["ingest-task"]
-    """Config type for ingest tasks"""
-
-    version: Literal["v1.0"]
+    type: Literal["ingest"]
+    """Config type discriminator"""
 
     webhook_url: Optional[str]
-    """Optional webhook URL to notify when workflow run completes"""
+    """Optional webhook URL to notify when workflow completes"""

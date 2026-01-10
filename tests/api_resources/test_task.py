@@ -43,7 +43,12 @@ class TestTask:
             name="x",
             icp_id="5eb7cf5a86d9755df3a6c593",
             prompt="prompt",
-            task_config={"foo": "bar"},
+            task_config={
+                "desired_contact_count": 1,
+                "type": "search",
+                "user_feedback": "user_feedback",
+                "webhook_url": "webhook_url",
+            },
         )
         assert_matches_type(TaskCreateResponse, task, path=["response"])
 
@@ -139,7 +144,12 @@ class TestTask:
             icp_id="5eb7cf5a86d9755df3a6c593",
             name="x",
             prompt="prompt",
-            task_config={"foo": "bar"},
+            task_config={
+                "desired_contact_count": 1,
+                "type": "search",
+                "user_feedback": "user_feedback",
+                "webhook_url": "webhook_url",
+            },
         )
         assert task is None
 
@@ -338,7 +348,12 @@ class TestAsyncTask:
             name="x",
             icp_id="5eb7cf5a86d9755df3a6c593",
             prompt="prompt",
-            task_config={"foo": "bar"},
+            task_config={
+                "desired_contact_count": 1,
+                "type": "search",
+                "user_feedback": "user_feedback",
+                "webhook_url": "webhook_url",
+            },
         )
         assert_matches_type(TaskCreateResponse, task, path=["response"])
 
@@ -434,7 +449,12 @@ class TestAsyncTask:
             icp_id="5eb7cf5a86d9755df3a6c593",
             name="x",
             prompt="prompt",
-            task_config={"foo": "bar"},
+            task_config={
+                "desired_contact_count": 1,
+                "type": "search",
+                "user_feedback": "user_feedback",
+                "webhook_url": "webhook_url",
+            },
         )
         assert task is None
 
