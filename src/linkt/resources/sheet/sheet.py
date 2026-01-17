@@ -2,19 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
-from datetime import datetime
+from typing import Optional
 
 import httpx
 
-from .entity import (
-    EntityResource,
-    AsyncEntityResource,
-    EntityResourceWithRawResponse,
-    AsyncEntityResourceWithRawResponse,
-    EntityResourceWithStreamingResponse,
-    AsyncEntityResourceWithStreamingResponse,
-)
 from .schema import (
     SchemaResource,
     AsyncSchemaResource,
@@ -23,15 +14,8 @@ from .schema import (
     SchemaResourceWithStreamingResponse,
     AsyncSchemaResourceWithStreamingResponse,
 )
-from ...types import (
-    EntityType,
-    sheet_list_params,
-    sheet_create_params,
-    sheet_update_params,
-    sheet_export_csv_params,
-    sheet_get_entities_params,
-)
-from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
+from ...types import EntityType, sheet_list_params, sheet_create_params, sheet_update_params
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -45,16 +29,11 @@ from ..._base_client import make_request_options
 from ...types.entity_type import EntityType
 from ...types.sheet.sheet import Sheet
 from ...types.sheet_list_response import SheetListResponse
-from ...types.sheet_get_entities_response import SheetGetEntitiesResponse
 
 __all__ = ["SheetResource", "AsyncSheetResource"]
 
 
 class SheetResource(SyncAPIResource):
-    @cached_property
-    def entity(self) -> EntityResource:
-        return EntityResource(self._client)
-
     @cached_property
     def schema(self) -> SchemaResource:
         return SchemaResource(self._client)
@@ -303,143 +282,8 @@ class SheetResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
-    def export_csv(
-        self,
-        sheet_id: str,
-        *,
-        entity_ids: Optional[SequenceNotStr[str]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
-        """
-        Export sheet entities as a CSV file.
-
-        Exports entities with proper field formatting based on the sheet's schema. Pass
-        specific entity_ids to export a subset, or omit to export all entities.
-
-        Args:
-          entity_ids: Optional list of entity IDs to export. If not provided, exports all entities.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not sheet_id:
-            raise ValueError(f"Expected a non-empty value for `sheet_id` but received {sheet_id!r}")
-        return self._get(
-            f"/v1/sheet/{sheet_id}/export-csv",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"entity_ids": entity_ids}, sheet_export_csv_params.SheetExportCsvParams),
-            ),
-            cast_to=object,
-        )
-
-    def get_entities(
-        self,
-        sheet_id: str,
-        *,
-        created_after: Union[str, datetime, None] | Omit = omit,
-        created_before: Union[str, datetime, None] | Omit = omit,
-        has_comments: Optional[bool] | Omit = omit,
-        order: Optional[int] | Omit = omit,
-        page: int | Omit = omit,
-        page_size: int | Omit = omit,
-        search: Optional[str] | Omit = omit,
-        sort_by: Optional[str] | Omit = omit,
-        status: Optional[bool] | Omit = omit,
-        updated_after: Union[str, datetime, None] | Omit = omit,
-        updated_before: Union[str, datetime, None] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SheetGetEntitiesResponse:
-        """
-        List all entities in a sheet.
-
-        Supports text search across name/company fields and comprehensive filtering by
-        status, comments, and date ranges.
-
-        Args:
-          created_after: Filter entities created after this date (ISO 8601 format: 2024-01-15T10:30:00Z)
-
-          created_before: Filter entities created before this date (ISO 8601 format)
-
-          has_comments: Filter entities with or without user comments
-
-          order: Sort order: -1 for descending, 1 for ascending
-
-          page: Page number (1-based)
-
-          page_size: Items per page (max 100, default 50)
-
-          search: Search entities by name or company
-
-          sort_by: Field to sort by (e.g., 'created_at', 'updated_at', 'status')
-
-          status: Filter by entity status (true=active, false=inactive)
-
-          updated_after: Filter entities updated after this date (ISO 8601 format)
-
-          updated_before: Filter entities updated before this date (ISO 8601 format)
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not sheet_id:
-            raise ValueError(f"Expected a non-empty value for `sheet_id` but received {sheet_id!r}")
-        return self._get(
-            f"/v1/sheet/{sheet_id}/entities",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "created_after": created_after,
-                        "created_before": created_before,
-                        "has_comments": has_comments,
-                        "order": order,
-                        "page": page,
-                        "page_size": page_size,
-                        "search": search,
-                        "sort_by": sort_by,
-                        "status": status,
-                        "updated_after": updated_after,
-                        "updated_before": updated_before,
-                    },
-                    sheet_get_entities_params.SheetGetEntitiesParams,
-                ),
-            ),
-            cast_to=SheetGetEntitiesResponse,
-        )
-
 
 class AsyncSheetResource(AsyncAPIResource):
-    @cached_property
-    def entity(self) -> AsyncEntityResource:
-        return AsyncEntityResource(self._client)
-
     @cached_property
     def schema(self) -> AsyncSchemaResource:
         return AsyncSchemaResource(self._client)
@@ -688,139 +532,6 @@ class AsyncSheetResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def export_csv(
-        self,
-        sheet_id: str,
-        *,
-        entity_ids: Optional[SequenceNotStr[str]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
-        """
-        Export sheet entities as a CSV file.
-
-        Exports entities with proper field formatting based on the sheet's schema. Pass
-        specific entity_ids to export a subset, or omit to export all entities.
-
-        Args:
-          entity_ids: Optional list of entity IDs to export. If not provided, exports all entities.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not sheet_id:
-            raise ValueError(f"Expected a non-empty value for `sheet_id` but received {sheet_id!r}")
-        return await self._get(
-            f"/v1/sheet/{sheet_id}/export-csv",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"entity_ids": entity_ids}, sheet_export_csv_params.SheetExportCsvParams
-                ),
-            ),
-            cast_to=object,
-        )
-
-    async def get_entities(
-        self,
-        sheet_id: str,
-        *,
-        created_after: Union[str, datetime, None] | Omit = omit,
-        created_before: Union[str, datetime, None] | Omit = omit,
-        has_comments: Optional[bool] | Omit = omit,
-        order: Optional[int] | Omit = omit,
-        page: int | Omit = omit,
-        page_size: int | Omit = omit,
-        search: Optional[str] | Omit = omit,
-        sort_by: Optional[str] | Omit = omit,
-        status: Optional[bool] | Omit = omit,
-        updated_after: Union[str, datetime, None] | Omit = omit,
-        updated_before: Union[str, datetime, None] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SheetGetEntitiesResponse:
-        """
-        List all entities in a sheet.
-
-        Supports text search across name/company fields and comprehensive filtering by
-        status, comments, and date ranges.
-
-        Args:
-          created_after: Filter entities created after this date (ISO 8601 format: 2024-01-15T10:30:00Z)
-
-          created_before: Filter entities created before this date (ISO 8601 format)
-
-          has_comments: Filter entities with or without user comments
-
-          order: Sort order: -1 for descending, 1 for ascending
-
-          page: Page number (1-based)
-
-          page_size: Items per page (max 100, default 50)
-
-          search: Search entities by name or company
-
-          sort_by: Field to sort by (e.g., 'created_at', 'updated_at', 'status')
-
-          status: Filter by entity status (true=active, false=inactive)
-
-          updated_after: Filter entities updated after this date (ISO 8601 format)
-
-          updated_before: Filter entities updated before this date (ISO 8601 format)
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not sheet_id:
-            raise ValueError(f"Expected a non-empty value for `sheet_id` but received {sheet_id!r}")
-        return await self._get(
-            f"/v1/sheet/{sheet_id}/entities",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "created_after": created_after,
-                        "created_before": created_before,
-                        "has_comments": has_comments,
-                        "order": order,
-                        "page": page,
-                        "page_size": page_size,
-                        "search": search,
-                        "sort_by": sort_by,
-                        "status": status,
-                        "updated_after": updated_after,
-                        "updated_before": updated_before,
-                    },
-                    sheet_get_entities_params.SheetGetEntitiesParams,
-                ),
-            ),
-            cast_to=SheetGetEntitiesResponse,
-        )
-
 
 class SheetResourceWithRawResponse:
     def __init__(self, sheet: SheetResource) -> None:
@@ -841,16 +552,6 @@ class SheetResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             sheet.delete,
         )
-        self.export_csv = to_raw_response_wrapper(
-            sheet.export_csv,
-        )
-        self.get_entities = to_raw_response_wrapper(
-            sheet.get_entities,
-        )
-
-    @cached_property
-    def entity(self) -> EntityResourceWithRawResponse:
-        return EntityResourceWithRawResponse(self._sheet.entity)
 
     @cached_property
     def schema(self) -> SchemaResourceWithRawResponse:
@@ -876,16 +577,6 @@ class AsyncSheetResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             sheet.delete,
         )
-        self.export_csv = async_to_raw_response_wrapper(
-            sheet.export_csv,
-        )
-        self.get_entities = async_to_raw_response_wrapper(
-            sheet.get_entities,
-        )
-
-    @cached_property
-    def entity(self) -> AsyncEntityResourceWithRawResponse:
-        return AsyncEntityResourceWithRawResponse(self._sheet.entity)
 
     @cached_property
     def schema(self) -> AsyncSchemaResourceWithRawResponse:
@@ -911,16 +602,6 @@ class SheetResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             sheet.delete,
         )
-        self.export_csv = to_streamed_response_wrapper(
-            sheet.export_csv,
-        )
-        self.get_entities = to_streamed_response_wrapper(
-            sheet.get_entities,
-        )
-
-    @cached_property
-    def entity(self) -> EntityResourceWithStreamingResponse:
-        return EntityResourceWithStreamingResponse(self._sheet.entity)
 
     @cached_property
     def schema(self) -> SchemaResourceWithStreamingResponse:
@@ -946,16 +627,6 @@ class AsyncSheetResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             sheet.delete,
         )
-        self.export_csv = async_to_streamed_response_wrapper(
-            sheet.export_csv,
-        )
-        self.get_entities = async_to_streamed_response_wrapper(
-            sheet.get_entities,
-        )
-
-    @cached_property
-    def entity(self) -> AsyncEntityResourceWithStreamingResponse:
-        return AsyncEntityResourceWithStreamingResponse(self._sheet.entity)
 
     @cached_property
     def schema(self) -> AsyncSchemaResourceWithStreamingResponse:

@@ -20,7 +20,7 @@ Methods:
 Types:
 
 ```python
-from linkt.types import EntityType, Sheet, SheetListResponse, SheetGetEntitiesResponse
+from linkt.types import EntityType, Sheet, SheetListResponse
 ```
 
 Methods:
@@ -30,22 +30,6 @@ Methods:
 - <code title="put /v1/sheet/{sheet_id}">client.sheet.<a href="./src/linkt/resources/sheet/sheet.py">update</a>(sheet_id, \*\*<a href="src/linkt/types/sheet_update_params.py">params</a>) -> None</code>
 - <code title="get /v1/sheet">client.sheet.<a href="./src/linkt/resources/sheet/sheet.py">list</a>(\*\*<a href="src/linkt/types/sheet_list_params.py">params</a>) -> <a href="./src/linkt/types/sheet_list_response.py">SheetListResponse</a></code>
 - <code title="delete /v1/sheet/{sheet_id}">client.sheet.<a href="./src/linkt/resources/sheet/sheet.py">delete</a>(sheet_id) -> None</code>
-- <code title="get /v1/sheet/{sheet_id}/export-csv">client.sheet.<a href="./src/linkt/resources/sheet/sheet.py">export_csv</a>(sheet_id, \*\*<a href="src/linkt/types/sheet_export_csv_params.py">params</a>) -> object</code>
-- <code title="get /v1/sheet/{sheet_id}/entities">client.sheet.<a href="./src/linkt/resources/sheet/sheet.py">get_entities</a>(sheet_id, \*\*<a href="src/linkt/types/sheet_get_entities_params.py">params</a>) -> <a href="./src/linkt/types/sheet_get_entities_response.py">SheetGetEntitiesResponse</a></code>
-
-## Entity
-
-Types:
-
-```python
-from linkt.types.sheet import EntityRetrieveResponse
-```
-
-Methods:
-
-- <code title="get /v1/sheet/{sheet_id}/entity/{entity_id}">client.sheet.entity.<a href="./src/linkt/resources/sheet/entity.py">retrieve</a>(entity_id, \*, sheet_id) -> <a href="./src/linkt/types/sheet/entity_retrieve_response.py">EntityRetrieveResponse</a></code>
-- <code title="put /v1/sheet/{sheet_id}/entity/{entity_id}/comments">client.sheet.entity.<a href="./src/linkt/resources/sheet/entity.py">update_comments</a>(entity_id, \*, sheet_id, \*\*<a href="src/linkt/types/sheet/entity_update_comments_params.py">params</a>) -> None</code>
-- <code title="put /v1/sheet/{sheet_id}/entity/{entity_id}/status">client.sheet.entity.<a href="./src/linkt/resources/sheet/entity.py">update_status</a>(entity_id, \*, sheet_id, \*\*<a href="src/linkt/types/sheet/entity_update_status_params.py">params</a>) -> None</code>
 
 ## Schema
 

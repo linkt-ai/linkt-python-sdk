@@ -8,14 +8,6 @@ from .sheet import (
     SheetResourceWithStreamingResponse,
     AsyncSheetResourceWithStreamingResponse,
 )
-from .entity import (
-    EntityResource,
-    AsyncEntityResource,
-    EntityResourceWithRawResponse,
-    AsyncEntityResourceWithRawResponse,
-    EntityResourceWithStreamingResponse,
-    AsyncEntityResourceWithStreamingResponse,
-)
 from .schema import (
     SchemaResource,
     AsyncSchemaResource,
@@ -26,12 +18,6 @@ from .schema import (
 )
 
 __all__ = [
-    "EntityResource",
-    "AsyncEntityResource",
-    "EntityResourceWithRawResponse",
-    "AsyncEntityResourceWithRawResponse",
-    "EntityResourceWithStreamingResponse",
-    "AsyncEntityResourceWithStreamingResponse",
     "SchemaResource",
     "AsyncSchemaResource",
     "SchemaResourceWithRawResponse",
