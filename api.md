@@ -58,7 +58,6 @@ Types:
 ```python
 from linkt.types import (
     EntityResponse,
-    EntityType,
     EntityListResponse,
     EntityBulkUpdateStatusResponse,
     EntityGetCountsResponse,
@@ -83,12 +82,19 @@ Types:
 
 ```python
 from linkt.types import (
+    IngestPromptConfigResponse,
     IngestTaskConfig,
+    IngestTaskConfigResponse,
     ProfilePromptConfig,
+    ProfilePromptConfigResponse,
     SearchTaskConfig,
+    SearchTaskConfigResponse,
     SignalCsvConfig,
+    SignalCsvConfigResponse,
     SignalSheetConfig,
+    SignalSheetConfigResponse,
     SignalTopicConfig,
+    SignalTopicConfigResponse,
     SignalTypeConfig,
     TaskCreateResponse,
     TaskRetrieveResponse,
