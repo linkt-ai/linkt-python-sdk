@@ -20,7 +20,7 @@ Methods:
 Types:
 
 ```python
-from linkt.types import EntityType, Sheet, SheetListResponse, SheetGetEntitiesResponse
+from linkt.types import EntityType, Sheet, SheetListResponse
 ```
 
 Methods:
@@ -30,22 +30,6 @@ Methods:
 - <code title="put /v1/sheet/{sheet_id}">client.sheet.<a href="./src/linkt/resources/sheet/sheet.py">update</a>(sheet_id, \*\*<a href="src/linkt/types/sheet_update_params.py">params</a>) -> None</code>
 - <code title="get /v1/sheet">client.sheet.<a href="./src/linkt/resources/sheet/sheet.py">list</a>(\*\*<a href="src/linkt/types/sheet_list_params.py">params</a>) -> <a href="./src/linkt/types/sheet_list_response.py">SheetListResponse</a></code>
 - <code title="delete /v1/sheet/{sheet_id}">client.sheet.<a href="./src/linkt/resources/sheet/sheet.py">delete</a>(sheet_id) -> None</code>
-- <code title="get /v1/sheet/{sheet_id}/export-csv">client.sheet.<a href="./src/linkt/resources/sheet/sheet.py">export_csv</a>(sheet_id, \*\*<a href="src/linkt/types/sheet_export_csv_params.py">params</a>) -> object</code>
-- <code title="get /v1/sheet/{sheet_id}/entities">client.sheet.<a href="./src/linkt/resources/sheet/sheet.py">get_entities</a>(sheet_id, \*\*<a href="src/linkt/types/sheet_get_entities_params.py">params</a>) -> <a href="./src/linkt/types/sheet_get_entities_response.py">SheetGetEntitiesResponse</a></code>
-
-## Entity
-
-Types:
-
-```python
-from linkt.types.sheet import EntityRetrieveResponse
-```
-
-Methods:
-
-- <code title="get /v1/sheet/{sheet_id}/entity/{entity_id}">client.sheet.entity.<a href="./src/linkt/resources/sheet/entity.py">retrieve</a>(entity_id, \*, sheet_id) -> <a href="./src/linkt/types/sheet/entity_retrieve_response.py">EntityRetrieveResponse</a></code>
-- <code title="put /v1/sheet/{sheet_id}/entity/{entity_id}/comments">client.sheet.entity.<a href="./src/linkt/resources/sheet/entity.py">update_comments</a>(entity_id, \*, sheet_id, \*\*<a href="src/linkt/types/sheet/entity_update_comments_params.py">params</a>) -> None</code>
-- <code title="put /v1/sheet/{sheet_id}/entity/{entity_id}/status">client.sheet.entity.<a href="./src/linkt/resources/sheet/entity.py">update_status</a>(entity_id, \*, sheet_id, \*\*<a href="src/linkt/types/sheet/entity_update_status_params.py">params</a>) -> None</code>
 
 ## Schema
 
@@ -67,18 +51,50 @@ Methods:
 - <code title="get /v1/sheet/schema/default">client.sheet.schema.<a href="./src/linkt/resources/sheet/schema.py">get_default</a>() -> <a href="./src/linkt/types/sheet/schema_get_default_response.py">SchemaGetDefaultResponse</a></code>
 - <code title="get /v1/sheet/schema/field">client.sheet.schema.<a href="./src/linkt/resources/sheet/schema.py">get_field_definitions</a>() -> <a href="./src/linkt/types/sheet/schema_get_field_definitions_response.py">SchemaGetFieldDefinitionsResponse</a></code>
 
+# Entity
+
+Types:
+
+```python
+from linkt.types import (
+    EntityResponse,
+    EntityListResponse,
+    EntityBulkUpdateStatusResponse,
+    EntityGetCountsResponse,
+    EntitySearchResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v1/entity/{entity_id}">client.entity.<a href="./src/linkt/resources/entity.py">retrieve</a>(entity_id) -> <a href="./src/linkt/types/entity_response.py">EntityResponse</a></code>
+- <code title="put /v1/entity/{entity_id}">client.entity.<a href="./src/linkt/resources/entity.py">update</a>(entity_id, \*\*<a href="src/linkt/types/entity_update_params.py">params</a>) -> <a href="./src/linkt/types/entity_response.py">EntityResponse</a></code>
+- <code title="get /v1/entity">client.entity.<a href="./src/linkt/resources/entity.py">list</a>(\*\*<a href="src/linkt/types/entity_list_params.py">params</a>) -> <a href="./src/linkt/types/entity_list_response.py">EntityListResponse</a></code>
+- <code title="delete /v1/entity/{entity_id}">client.entity.<a href="./src/linkt/resources/entity.py">delete</a>(entity_id) -> None</code>
+- <code title="patch /v1/entity/status/bulk">client.entity.<a href="./src/linkt/resources/entity.py">bulk_update_status</a>(\*\*<a href="src/linkt/types/entity_bulk_update_status_params.py">params</a>) -> <a href="./src/linkt/types/entity_bulk_update_status_response.py">EntityBulkUpdateStatusResponse</a></code>
+- <code title="get /v1/entity/export">client.entity.<a href="./src/linkt/resources/entity.py">export</a>(\*\*<a href="src/linkt/types/entity_export_params.py">params</a>) -> object</code>
+- <code title="get /v1/entity/counts">client.entity.<a href="./src/linkt/resources/entity.py">get_counts</a>(\*\*<a href="src/linkt/types/entity_get_counts_params.py">params</a>) -> <a href="./src/linkt/types/entity_get_counts_response.py">EntityGetCountsResponse</a></code>
+- <code title="get /v1/entity/search">client.entity.<a href="./src/linkt/resources/entity.py">search</a>(\*\*<a href="src/linkt/types/entity_search_params.py">params</a>) -> <a href="./src/linkt/types/entity_search_response.py">EntitySearchResponse</a></code>
+
 # Task
 
 Types:
 
 ```python
 from linkt.types import (
+    IngestPromptConfigResponse,
     IngestTaskConfig,
+    IngestTaskConfigResponse,
     ProfilePromptConfig,
+    ProfilePromptConfigResponse,
     SearchTaskConfig,
+    SearchTaskConfigResponse,
     SignalCsvConfig,
+    SignalCsvConfigResponse,
     SignalSheetConfig,
+    SignalSheetConfigResponse,
     SignalTopicConfig,
+    SignalTopicConfigResponse,
     SignalTypeConfig,
     TaskCreateResponse,
     TaskRetrieveResponse,

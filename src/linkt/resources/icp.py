@@ -247,8 +247,8 @@ class IcpResource(SyncAPIResource):
         Delete an ICP and all related resources.
 
         **Cascade delete**: This permanently removes the ICP along with all associated
-        sheets, entities, schedules, tasks, and signals. This operation cannot be
-        undone.
+        sheets, entities, schedules, tasks, signals, and actions. This operation cannot
+        be undone.
 
         Args:
           extra_headers: Send extra headers
@@ -527,8 +527,8 @@ class AsyncIcpResource(AsyncAPIResource):
         Delete an ICP and all related resources.
 
         **Cascade delete**: This permanently removes the ICP along with all associated
-        sheets, entities, schedules, tasks, and signals. This operation cannot be
-        undone.
+        sheets, entities, schedules, tasks, signals, and actions. This operation cannot
+        be undone.
 
         Args:
           extra_headers: Send extra headers

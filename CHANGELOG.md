@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.4.0 (2026-01-22)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* **api:** api update ([62abd11](https://github.com/linkt-ai/linkt-python-sdk/commit/62abd116eeb33f1cfbed7f168b7ff1dbf9692ada))
+* **api:** api update ([bcf385a](https://github.com/linkt-ai/linkt-python-sdk/commit/bcf385acb484fbdb0433ef169f28c566577d9d5e))
+* **api:** api update ([661e5df](https://github.com/linkt-ai/linkt-python-sdk/commit/661e5df21b88701dcda66f9938eae433f4205e5a))
+* **api:** clear entity model ([04de84b](https://github.com/linkt-ai/linkt-python-sdk/commit/04de84b8fc139b98c65fcf1d099f3cd115cf11bc))
+* **api:** manual update ([f2276cd](https://github.com/linkt-ai/linkt-python-sdk/commit/f2276cd9fad98f973d9b380718cc778dfdadc08d))
+* **client:** add support for binary request streaming ([6a566cc](https://github.com/linkt-ai/linkt-python-sdk/commit/6a566cc8d61d3a263f20429041548d0b4335ad29))
+
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([a060ed3](https://github.com/linkt-ai/linkt-python-sdk/commit/a060ed32a132835b44884a22ffb1f0680e2ddeb9))
+
 ## 0.3.0 (2026-01-09)
 
 Full Changelog: [v0.2.0...v0.3.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.2.0...v0.3.0)

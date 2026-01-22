@@ -40,6 +40,14 @@ from .sheet import (
     SheetResourceWithStreamingResponse,
     AsyncSheetResourceWithStreamingResponse,
 )
+from .entity import (
+    EntityResource,
+    AsyncEntityResource,
+    EntityResourceWithRawResponse,
+    AsyncEntityResourceWithRawResponse,
+    EntityResourceWithStreamingResponse,
+    AsyncEntityResourceWithStreamingResponse,
+)
 from .signal import (
     SignalResource,
     AsyncSignalResource,
@@ -62,6 +70,12 @@ __all__ = [
     "AsyncSheetResourceWithRawResponse",
     "SheetResourceWithStreamingResponse",
     "AsyncSheetResourceWithStreamingResponse",
+    "EntityResource",
+    "AsyncEntityResource",
+    "EntityResourceWithRawResponse",
+    "AsyncEntityResourceWithRawResponse",
+    "EntityResourceWithStreamingResponse",
+    "AsyncEntityResourceWithStreamingResponse",
     "TaskResource",
     "AsyncTaskResource",
     "TaskResourceWithRawResponse",
