@@ -31,11 +31,12 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import icp, run, task, files, sheet, signal
+    from .resources import icp, run, task, files, sheet, entity, signal
     from .resources.icp import IcpResource, AsyncIcpResource
     from .resources.run import RunResource, AsyncRunResource
     from .resources.task import TaskResource, AsyncTaskResource
     from .resources.files import FilesResource, AsyncFilesResource
+    from .resources.entity import EntityResource, AsyncEntityResource
     from .resources.signal import SignalResource, AsyncSignalResource
     from .resources.sheet.sheet import SheetResource, AsyncSheetResource
 
@@ -147,6 +148,12 @@ class Linkt(SyncAPIClient):
         from .resources.sheet import SheetResource
 
         return SheetResource(self)
+
+    @cached_property
+    def entity(self) -> EntityResource:
+        from .resources.entity import EntityResource
+
+        return EntityResource(self)
 
     @cached_property
     def task(self) -> TaskResource:
@@ -379,6 +386,12 @@ class AsyncLinkt(AsyncAPIClient):
         return AsyncSheetResource(self)
 
     @cached_property
+    def entity(self) -> AsyncEntityResource:
+        from .resources.entity import AsyncEntityResource
+
+        return AsyncEntityResource(self)
+
+    @cached_property
     def task(self) -> AsyncTaskResource:
         from .resources.task import AsyncTaskResource
 
@@ -536,6 +549,12 @@ class LinktWithRawResponse:
         return SheetResourceWithRawResponse(self._client.sheet)
 
     @cached_property
+    def entity(self) -> entity.EntityResourceWithRawResponse:
+        from .resources.entity import EntityResourceWithRawResponse
+
+        return EntityResourceWithRawResponse(self._client.entity)
+
+    @cached_property
     def task(self) -> task.TaskResourceWithRawResponse:
         from .resources.task import TaskResourceWithRawResponse
 
@@ -577,6 +596,12 @@ class AsyncLinktWithRawResponse:
         from .resources.sheet import AsyncSheetResourceWithRawResponse
 
         return AsyncSheetResourceWithRawResponse(self._client.sheet)
+
+    @cached_property
+    def entity(self) -> entity.AsyncEntityResourceWithRawResponse:
+        from .resources.entity import AsyncEntityResourceWithRawResponse
+
+        return AsyncEntityResourceWithRawResponse(self._client.entity)
 
     @cached_property
     def task(self) -> task.AsyncTaskResourceWithRawResponse:
@@ -622,6 +647,12 @@ class LinktWithStreamedResponse:
         return SheetResourceWithStreamingResponse(self._client.sheet)
 
     @cached_property
+    def entity(self) -> entity.EntityResourceWithStreamingResponse:
+        from .resources.entity import EntityResourceWithStreamingResponse
+
+        return EntityResourceWithStreamingResponse(self._client.entity)
+
+    @cached_property
     def task(self) -> task.TaskResourceWithStreamingResponse:
         from .resources.task import TaskResourceWithStreamingResponse
 
@@ -663,6 +694,12 @@ class AsyncLinktWithStreamedResponse:
         from .resources.sheet import AsyncSheetResourceWithStreamingResponse
 
         return AsyncSheetResourceWithStreamingResponse(self._client.sheet)
+
+    @cached_property
+    def entity(self) -> entity.AsyncEntityResourceWithStreamingResponse:
+        from .resources.entity import AsyncEntityResourceWithStreamingResponse
+
+        return AsyncEntityResourceWithStreamingResponse(self._client.entity)
 
     @cached_property
     def task(self) -> task.AsyncTaskResourceWithStreamingResponse:
