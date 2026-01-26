@@ -18,6 +18,9 @@ class EntitySearchParams(TypedDict, total=False):
     entity_type: Optional[EntityType]
     """Valid entity types for sheets."""
 
+    hide_duplicates: bool
+    """Hide duplicate entities (show only primaries)"""
+
     icp_id: Optional[str]
     """Filter by ICP ID"""
 
