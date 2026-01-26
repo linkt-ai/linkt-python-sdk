@@ -108,4 +108,12 @@ class EntityResponse(BaseModel):
     """Parent entity ID (for hierarchical entities)"""
 
     status: Optional[Literal["new", "reviewed", "passed", "contacted"]] = None
-    """Workflow status (new, reviewed, passed, contacted)"""
+    """Status values for entity workflow tracking.
+
+    Transitions are user-driven (not automatic state machine):
+
+    - new: Default for all newly created entities
+    - reviewed: User has examined the entity
+    - passed: Entity has been approved/qualified
+    - contacted: Outreach has been initiated
+    """

@@ -117,7 +117,14 @@ class EntityResource(SyncAPIResource):
         Args:
           comments: Update comments (null to clear)
 
-          status: Update workflow status (new, reviewed, passed, contacted)
+          status: Status values for entity workflow tracking.
+
+              Transitions are user-driven (not automatic state machine):
+
+              - new: Default for all newly created entities
+              - reviewed: User has examined the entity
+              - passed: Entity has been approved/qualified
+              - contacted: Outreach has been initiated
 
           extra_headers: Send extra headers
 
@@ -642,7 +649,14 @@ class AsyncEntityResource(AsyncAPIResource):
         Args:
           comments: Update comments (null to clear)
 
-          status: Update workflow status (new, reviewed, passed, contacted)
+          status: Status values for entity workflow tracking.
+
+              Transitions are user-driven (not automatic state machine):
+
+              - new: Default for all newly created entities
+              - reviewed: User has examined the entity
+              - passed: Entity has been approved/qualified
+              - contacted: Outreach has been initiated
 
           extra_headers: Send extra headers
 
