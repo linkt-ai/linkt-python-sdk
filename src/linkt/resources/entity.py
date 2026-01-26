@@ -71,8 +71,8 @@ class EntityResource(SyncAPIResource):
         """
         Get a single entity by ID with enrichment.
 
-        Returns the entity with sheet_name, entity_type, and icp_id populated from the
-        parent sheet.
+        Returns the entity with sheet_name, entity_type, icp_id, and duplicate_info
+        populated. duplicate_info is null if the entity has no duplicates across ICPs.
 
         Args:
           extra_headers: Send extra headers
@@ -98,7 +98,7 @@ class EntityResource(SyncAPIResource):
         entity_id: str,
         *,
         comments: Optional[str] | Omit = omit,
-        status: Optional[str] | Omit = omit,
+        status: Optional[Literal["new", "reviewed", "passed", "contacted"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -117,8 +117,7 @@ class EntityResource(SyncAPIResource):
         Args:
           comments: Update comments (null to clear)
 
-          status: Update workflow status: new, reviewed, passed, contacted, or null. Use explicit
-              null to clear status.
+          status: Update workflow status (new, reviewed, passed, contacted)
 
           extra_headers: Send extra headers
 
@@ -149,6 +148,7 @@ class EntityResource(SyncAPIResource):
         self,
         *,
         entity_type: Optional[EntityType] | Omit = omit,
+        hide_duplicates: bool | Omit = omit,
         icp_id: Optional[str] | Omit = omit,
         page: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -172,11 +172,14 @@ class EntityResource(SyncAPIResource):
         - status: Filter by workflow status (supports multiple:
           ?status=new&status=reviewed) Valid values: new, reviewed, passed, contacted,
           null
+        - hide_duplicates: When true, only show primary entities (filter out duplicates)
 
         All results include enrichment fields for UI annotations.
 
         Args:
           entity_type: Valid entity types for sheets.
+
+          hide_duplicates: Hide duplicate entities (show only primaries)
 
           icp_id: Filter by ICP ID
 
@@ -206,6 +209,7 @@ class EntityResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "entity_type": entity_type,
+                        "hide_duplicates": hide_duplicates,
                         "icp_id": icp_id,
                         "page": page,
                         "page_size": page_size,
@@ -476,6 +480,7 @@ class EntityResource(SyncAPIResource):
         *,
         q: str,
         entity_type: Optional[EntityType] | Omit = omit,
+        hide_duplicates: bool | Omit = omit,
         icp_id: Optional[str] | Omit = omit,
         page: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -505,11 +510,14 @@ class EntityResource(SyncAPIResource):
         - status: Filter by workflow status (supports multiple:
           ?status=new&status=reviewed) Valid values: new, reviewed, passed, contacted,
           null
+        - hide_duplicates: When true, only show primary entities
 
         Args:
           q: Search query
 
           entity_type: Valid entity types for sheets.
+
+          hide_duplicates: Hide duplicate entities (show only primaries)
 
           icp_id: Filter by ICP ID
 
@@ -540,6 +548,7 @@ class EntityResource(SyncAPIResource):
                     {
                         "q": q,
                         "entity_type": entity_type,
+                        "hide_duplicates": hide_duplicates,
                         "icp_id": icp_id,
                         "page": page,
                         "page_size": page_size,
@@ -587,8 +596,8 @@ class AsyncEntityResource(AsyncAPIResource):
         """
         Get a single entity by ID with enrichment.
 
-        Returns the entity with sheet_name, entity_type, and icp_id populated from the
-        parent sheet.
+        Returns the entity with sheet_name, entity_type, icp_id, and duplicate_info
+        populated. duplicate_info is null if the entity has no duplicates across ICPs.
 
         Args:
           extra_headers: Send extra headers
@@ -614,7 +623,7 @@ class AsyncEntityResource(AsyncAPIResource):
         entity_id: str,
         *,
         comments: Optional[str] | Omit = omit,
-        status: Optional[str] | Omit = omit,
+        status: Optional[Literal["new", "reviewed", "passed", "contacted"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -633,8 +642,7 @@ class AsyncEntityResource(AsyncAPIResource):
         Args:
           comments: Update comments (null to clear)
 
-          status: Update workflow status: new, reviewed, passed, contacted, or null. Use explicit
-              null to clear status.
+          status: Update workflow status (new, reviewed, passed, contacted)
 
           extra_headers: Send extra headers
 
@@ -665,6 +673,7 @@ class AsyncEntityResource(AsyncAPIResource):
         self,
         *,
         entity_type: Optional[EntityType] | Omit = omit,
+        hide_duplicates: bool | Omit = omit,
         icp_id: Optional[str] | Omit = omit,
         page: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -688,11 +697,14 @@ class AsyncEntityResource(AsyncAPIResource):
         - status: Filter by workflow status (supports multiple:
           ?status=new&status=reviewed) Valid values: new, reviewed, passed, contacted,
           null
+        - hide_duplicates: When true, only show primary entities (filter out duplicates)
 
         All results include enrichment fields for UI annotations.
 
         Args:
           entity_type: Valid entity types for sheets.
+
+          hide_duplicates: Hide duplicate entities (show only primaries)
 
           icp_id: Filter by ICP ID
 
@@ -722,6 +734,7 @@ class AsyncEntityResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "entity_type": entity_type,
+                        "hide_duplicates": hide_duplicates,
                         "icp_id": icp_id,
                         "page": page,
                         "page_size": page_size,
@@ -992,6 +1005,7 @@ class AsyncEntityResource(AsyncAPIResource):
         *,
         q: str,
         entity_type: Optional[EntityType] | Omit = omit,
+        hide_duplicates: bool | Omit = omit,
         icp_id: Optional[str] | Omit = omit,
         page: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -1021,11 +1035,14 @@ class AsyncEntityResource(AsyncAPIResource):
         - status: Filter by workflow status (supports multiple:
           ?status=new&status=reviewed) Valid values: new, reviewed, passed, contacted,
           null
+        - hide_duplicates: When true, only show primary entities
 
         Args:
           q: Search query
 
           entity_type: Valid entity types for sheets.
+
+          hide_duplicates: Hide duplicate entities (show only primaries)
 
           icp_id: Filter by ICP ID
 
@@ -1056,6 +1073,7 @@ class AsyncEntityResource(AsyncAPIResource):
                     {
                         "q": q,
                         "entity_type": entity_type,
+                        "hide_duplicates": hide_duplicates,
                         "icp_id": icp_id,
                         "page": page,
                         "page_size": page_size,
