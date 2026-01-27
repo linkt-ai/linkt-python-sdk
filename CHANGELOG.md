@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.5.0 (2026-01-27)
+
+Full Changelog: [v0.4.0...v0.5.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.4.0...v0.5.0)
+
+### Features
+
+* **api:** api update ([ada2d6b](https://github.com/linkt-ai/linkt-python-sdk/commit/ada2d6bfac570f2e150d357d84b0c50e4a915908))
+* **api:** api update ([1f4a701](https://github.com/linkt-ai/linkt-python-sdk/commit/1f4a7016a2daba5cb49d1cead52065b8e5511ec5))
+* **api:** api update ([47addbc](https://github.com/linkt-ai/linkt-python-sdk/commit/47addbc0539accf083a9322b0ca60f8b1eb05b07))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([a65d1c0](https://github.com/linkt-ai/linkt-python-sdk/commit/a65d1c0e13a0e1ad1896bc433dd13590cfd07e21))
+
 ## 0.4.0 (2026-01-22)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.3.0...v0.4.0)
