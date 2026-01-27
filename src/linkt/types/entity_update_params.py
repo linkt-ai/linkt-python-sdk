@@ -12,6 +12,12 @@ class EntityUpdateParams(TypedDict, total=False):
     comments: Optional[str]
     """Update comments (null to clear)"""
 
+    propagate_to_duplicates: bool
+    """Reflect updates to duplicate entities across ICPs (default: True)"""
+
+    propagate_to_family: bool
+    """Reflect updates to parent/child entities (default: True)"""
+
     status: Optional[Literal["new", "reviewed", "passed", "contacted"]]
     """Status values for entity workflow tracking.
 
