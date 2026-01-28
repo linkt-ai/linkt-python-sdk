@@ -16,3 +16,9 @@ class EntityBulkUpdateStatusParams(TypedDict, total=False):
 
     status: Required[Optional[str]]
     """New status value: new, reviewed, passed, contacted, or null to clear"""
+
+    propagate_to_duplicates: bool
+    """Reflect status to duplicate entities across ICPs (default: True)"""
+
+    propagate_to_family: bool
+    """Reflect status to parent/child of each entity (default: True)"""

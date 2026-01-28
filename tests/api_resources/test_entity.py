@@ -79,7 +79,9 @@ class TestEntity:
         entity = client.entity.update(
             entity_id="entity_id",
             comments="comments",
-            status="status",
+            propagate_to_duplicates=True,
+            propagate_to_family=True,
+            status="new",
         )
         assert_matches_type(EntityResponse, entity, path=["response"])
 
@@ -128,6 +130,7 @@ class TestEntity:
     def test_method_list_with_all_params(self, client: Linkt) -> None:
         entity = client.entity.list(
             entity_type="company",
+            hide_duplicates=True,
             icp_id="icp_id",
             page=1,
             page_size=1,
@@ -206,6 +209,17 @@ class TestEntity:
         entity = client.entity.bulk_update_status(
             entity_ids=["string"],
             status="status",
+        )
+        assert_matches_type(EntityBulkUpdateStatusResponse, entity, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_bulk_update_status_with_all_params(self, client: Linkt) -> None:
+        entity = client.entity.bulk_update_status(
+            entity_ids=["string"],
+            status="status",
+            propagate_to_duplicates=True,
+            propagate_to_family=True,
         )
         assert_matches_type(EntityBulkUpdateStatusResponse, entity, path=["response"])
 
@@ -329,6 +343,7 @@ class TestEntity:
         entity = client.entity.search(
             q="x",
             entity_type="company",
+            hide_duplicates=True,
             icp_id="icp_id",
             page=1,
             page_size=1,
@@ -425,7 +440,9 @@ class TestAsyncEntity:
         entity = await async_client.entity.update(
             entity_id="entity_id",
             comments="comments",
-            status="status",
+            propagate_to_duplicates=True,
+            propagate_to_family=True,
+            status="new",
         )
         assert_matches_type(EntityResponse, entity, path=["response"])
 
@@ -474,6 +491,7 @@ class TestAsyncEntity:
     async def test_method_list_with_all_params(self, async_client: AsyncLinkt) -> None:
         entity = await async_client.entity.list(
             entity_type="company",
+            hide_duplicates=True,
             icp_id="icp_id",
             page=1,
             page_size=1,
@@ -552,6 +570,17 @@ class TestAsyncEntity:
         entity = await async_client.entity.bulk_update_status(
             entity_ids=["string"],
             status="status",
+        )
+        assert_matches_type(EntityBulkUpdateStatusResponse, entity, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_bulk_update_status_with_all_params(self, async_client: AsyncLinkt) -> None:
+        entity = await async_client.entity.bulk_update_status(
+            entity_ids=["string"],
+            status="status",
+            propagate_to_duplicates=True,
+            propagate_to_family=True,
         )
         assert_matches_type(EntityBulkUpdateStatusResponse, entity, path=["response"])
 
@@ -675,6 +704,7 @@ class TestAsyncEntity:
         entity = await async_client.entity.search(
             q="x",
             entity_type="company",
+            hide_duplicates=True,
             icp_id="icp_id",
             page=1,
             page_size=1,

@@ -71,8 +71,8 @@ class EntityResource(SyncAPIResource):
         """
         Get a single entity by ID with enrichment.
 
-        Returns the entity with sheet_name, entity_type, and icp_id populated from the
-        parent sheet.
+        Returns the entity with sheet_name, entity_type, icp_id, and duplicate_info
+        populated. duplicate_info is null if the entity has no duplicates across ICPs.
 
         Args:
           extra_headers: Send extra headers
@@ -98,7 +98,9 @@ class EntityResource(SyncAPIResource):
         entity_id: str,
         *,
         comments: Optional[str] | Omit = omit,
-        status: Optional[str] | Omit = omit,
+        propagate_to_duplicates: bool | Omit = omit,
+        propagate_to_family: bool | Omit = omit,
+        status: Optional[Literal["new", "reviewed", "passed", "contacted"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -107,18 +109,33 @@ class EntityResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EntityResponse:
         """
-        Update entity status or comments.
+        Update entity status or comments with optional propagation.
 
         Only status and comments can be updated via this endpoint. Use status=null to
         clear status, comments=null to clear comments.
 
         Status must be one of: new, reviewed, passed, contacted, or null.
 
+        Propagation flags control cascading updates:
+
+        - propagate_to_family: Update parent/child entities (default: True)
+        - propagate_to_duplicates: Update duplicate entities across ICPs (default: True)
+
         Args:
           comments: Update comments (null to clear)
 
-          status: Update workflow status: new, reviewed, passed, contacted, or null. Use explicit
-              null to clear status.
+          propagate_to_duplicates: Reflect updates to duplicate entities across ICPs (default: True)
+
+          propagate_to_family: Reflect updates to parent/child entities (default: True)
+
+          status: Status values for entity workflow tracking.
+
+              Transitions are user-driven (not automatic state machine):
+
+              - new: Default for all newly created entities
+              - reviewed: User has examined the entity
+              - passed: Entity has been approved/qualified
+              - contacted: Outreach has been initiated
 
           extra_headers: Send extra headers
 
@@ -135,6 +152,8 @@ class EntityResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "comments": comments,
+                    "propagate_to_duplicates": propagate_to_duplicates,
+                    "propagate_to_family": propagate_to_family,
                     "status": status,
                 },
                 entity_update_params.EntityUpdateParams,
@@ -149,6 +168,7 @@ class EntityResource(SyncAPIResource):
         self,
         *,
         entity_type: Optional[EntityType] | Omit = omit,
+        hide_duplicates: bool | Omit = omit,
         icp_id: Optional[str] | Omit = omit,
         page: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -172,11 +192,14 @@ class EntityResource(SyncAPIResource):
         - status: Filter by workflow status (supports multiple:
           ?status=new&status=reviewed) Valid values: new, reviewed, passed, contacted,
           null
+        - hide_duplicates: When true, only show primary entities (filter out duplicates)
 
         All results include enrichment fields for UI annotations.
 
         Args:
           entity_type: Valid entity types for sheets.
+
+          hide_duplicates: Hide duplicate entities (show only primaries)
 
           icp_id: Filter by ICP ID
 
@@ -206,6 +229,7 @@ class EntityResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "entity_type": entity_type,
+                        "hide_duplicates": hide_duplicates,
                         "icp_id": icp_id,
                         "page": page,
                         "page_size": page_size,
@@ -259,6 +283,8 @@ class EntityResource(SyncAPIResource):
         *,
         entity_ids: SequenceNotStr[str],
         status: Optional[str],
+        propagate_to_duplicates: bool | Omit = omit,
+        propagate_to_family: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -267,7 +293,7 @@ class EntityResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EntityBulkUpdateStatusResponse:
         """
-        Update status for multiple entities at once.
+        Update status for multiple entities at once with optional propagation.
 
         Accepts a list of entity IDs and a status value. The status can be:
 
@@ -277,15 +303,23 @@ class EntityResource(SyncAPIResource):
         Returns the count of successfully updated entities and any failed IDs. Entities
         may fail to update if they have an invalid ID format or don't exist.
 
+        Propagation flags control cascading updates:
+
+        - propagate_to_family: Update parent/child of each entity (default: True)
+        - propagate_to_duplicates: Update duplicate entities across ICPs (default: True)
+
         WHY: Bulk operations enable users to update status for many entities at once
         (e.g., mark all search results as "reviewed"), improving workflow efficiency
-        versus N individual PUT calls. Uses batch_update_by_filter for single database
-        roundtrip efficiency.
+        versus N individual PUT calls.
 
         Args:
           entity_ids: List of entity IDs to update (1-1000 IDs)
 
           status: New status value: new, reviewed, passed, contacted, or null to clear
+
+          propagate_to_duplicates: Reflect status to duplicate entities across ICPs (default: True)
+
+          propagate_to_family: Reflect status to parent/child of each entity (default: True)
 
           extra_headers: Send extra headers
 
@@ -301,6 +335,8 @@ class EntityResource(SyncAPIResource):
                 {
                     "entity_ids": entity_ids,
                     "status": status,
+                    "propagate_to_duplicates": propagate_to_duplicates,
+                    "propagate_to_family": propagate_to_family,
                 },
                 entity_bulk_update_status_params.EntityBulkUpdateStatusParams,
             ),
@@ -476,6 +512,7 @@ class EntityResource(SyncAPIResource):
         *,
         q: str,
         entity_type: Optional[EntityType] | Omit = omit,
+        hide_duplicates: bool | Omit = omit,
         icp_id: Optional[str] | Omit = omit,
         page: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -505,11 +542,14 @@ class EntityResource(SyncAPIResource):
         - status: Filter by workflow status (supports multiple:
           ?status=new&status=reviewed) Valid values: new, reviewed, passed, contacted,
           null
+        - hide_duplicates: When true, only show primary entities
 
         Args:
           q: Search query
 
           entity_type: Valid entity types for sheets.
+
+          hide_duplicates: Hide duplicate entities (show only primaries)
 
           icp_id: Filter by ICP ID
 
@@ -540,6 +580,7 @@ class EntityResource(SyncAPIResource):
                     {
                         "q": q,
                         "entity_type": entity_type,
+                        "hide_duplicates": hide_duplicates,
                         "icp_id": icp_id,
                         "page": page,
                         "page_size": page_size,
@@ -587,8 +628,8 @@ class AsyncEntityResource(AsyncAPIResource):
         """
         Get a single entity by ID with enrichment.
 
-        Returns the entity with sheet_name, entity_type, and icp_id populated from the
-        parent sheet.
+        Returns the entity with sheet_name, entity_type, icp_id, and duplicate_info
+        populated. duplicate_info is null if the entity has no duplicates across ICPs.
 
         Args:
           extra_headers: Send extra headers
@@ -614,7 +655,9 @@ class AsyncEntityResource(AsyncAPIResource):
         entity_id: str,
         *,
         comments: Optional[str] | Omit = omit,
-        status: Optional[str] | Omit = omit,
+        propagate_to_duplicates: bool | Omit = omit,
+        propagate_to_family: bool | Omit = omit,
+        status: Optional[Literal["new", "reviewed", "passed", "contacted"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -623,18 +666,33 @@ class AsyncEntityResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EntityResponse:
         """
-        Update entity status or comments.
+        Update entity status or comments with optional propagation.
 
         Only status and comments can be updated via this endpoint. Use status=null to
         clear status, comments=null to clear comments.
 
         Status must be one of: new, reviewed, passed, contacted, or null.
 
+        Propagation flags control cascading updates:
+
+        - propagate_to_family: Update parent/child entities (default: True)
+        - propagate_to_duplicates: Update duplicate entities across ICPs (default: True)
+
         Args:
           comments: Update comments (null to clear)
 
-          status: Update workflow status: new, reviewed, passed, contacted, or null. Use explicit
-              null to clear status.
+          propagate_to_duplicates: Reflect updates to duplicate entities across ICPs (default: True)
+
+          propagate_to_family: Reflect updates to parent/child entities (default: True)
+
+          status: Status values for entity workflow tracking.
+
+              Transitions are user-driven (not automatic state machine):
+
+              - new: Default for all newly created entities
+              - reviewed: User has examined the entity
+              - passed: Entity has been approved/qualified
+              - contacted: Outreach has been initiated
 
           extra_headers: Send extra headers
 
@@ -651,6 +709,8 @@ class AsyncEntityResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "comments": comments,
+                    "propagate_to_duplicates": propagate_to_duplicates,
+                    "propagate_to_family": propagate_to_family,
                     "status": status,
                 },
                 entity_update_params.EntityUpdateParams,
@@ -665,6 +725,7 @@ class AsyncEntityResource(AsyncAPIResource):
         self,
         *,
         entity_type: Optional[EntityType] | Omit = omit,
+        hide_duplicates: bool | Omit = omit,
         icp_id: Optional[str] | Omit = omit,
         page: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -688,11 +749,14 @@ class AsyncEntityResource(AsyncAPIResource):
         - status: Filter by workflow status (supports multiple:
           ?status=new&status=reviewed) Valid values: new, reviewed, passed, contacted,
           null
+        - hide_duplicates: When true, only show primary entities (filter out duplicates)
 
         All results include enrichment fields for UI annotations.
 
         Args:
           entity_type: Valid entity types for sheets.
+
+          hide_duplicates: Hide duplicate entities (show only primaries)
 
           icp_id: Filter by ICP ID
 
@@ -722,6 +786,7 @@ class AsyncEntityResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "entity_type": entity_type,
+                        "hide_duplicates": hide_duplicates,
                         "icp_id": icp_id,
                         "page": page,
                         "page_size": page_size,
@@ -775,6 +840,8 @@ class AsyncEntityResource(AsyncAPIResource):
         *,
         entity_ids: SequenceNotStr[str],
         status: Optional[str],
+        propagate_to_duplicates: bool | Omit = omit,
+        propagate_to_family: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -783,7 +850,7 @@ class AsyncEntityResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EntityBulkUpdateStatusResponse:
         """
-        Update status for multiple entities at once.
+        Update status for multiple entities at once with optional propagation.
 
         Accepts a list of entity IDs and a status value. The status can be:
 
@@ -793,15 +860,23 @@ class AsyncEntityResource(AsyncAPIResource):
         Returns the count of successfully updated entities and any failed IDs. Entities
         may fail to update if they have an invalid ID format or don't exist.
 
+        Propagation flags control cascading updates:
+
+        - propagate_to_family: Update parent/child of each entity (default: True)
+        - propagate_to_duplicates: Update duplicate entities across ICPs (default: True)
+
         WHY: Bulk operations enable users to update status for many entities at once
         (e.g., mark all search results as "reviewed"), improving workflow efficiency
-        versus N individual PUT calls. Uses batch_update_by_filter for single database
-        roundtrip efficiency.
+        versus N individual PUT calls.
 
         Args:
           entity_ids: List of entity IDs to update (1-1000 IDs)
 
           status: New status value: new, reviewed, passed, contacted, or null to clear
+
+          propagate_to_duplicates: Reflect status to duplicate entities across ICPs (default: True)
+
+          propagate_to_family: Reflect status to parent/child of each entity (default: True)
 
           extra_headers: Send extra headers
 
@@ -817,6 +892,8 @@ class AsyncEntityResource(AsyncAPIResource):
                 {
                     "entity_ids": entity_ids,
                     "status": status,
+                    "propagate_to_duplicates": propagate_to_duplicates,
+                    "propagate_to_family": propagate_to_family,
                 },
                 entity_bulk_update_status_params.EntityBulkUpdateStatusParams,
             ),
@@ -992,6 +1069,7 @@ class AsyncEntityResource(AsyncAPIResource):
         *,
         q: str,
         entity_type: Optional[EntityType] | Omit = omit,
+        hide_duplicates: bool | Omit = omit,
         icp_id: Optional[str] | Omit = omit,
         page: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -1021,11 +1099,14 @@ class AsyncEntityResource(AsyncAPIResource):
         - status: Filter by workflow status (supports multiple:
           ?status=new&status=reviewed) Valid values: new, reviewed, passed, contacted,
           null
+        - hide_duplicates: When true, only show primary entities
 
         Args:
           q: Search query
 
           entity_type: Valid entity types for sheets.
+
+          hide_duplicates: Hide duplicate entities (show only primaries)
 
           icp_id: Filter by ICP ID
 
@@ -1056,6 +1137,7 @@ class AsyncEntityResource(AsyncAPIResource):
                     {
                         "q": q,
                         "entity_type": entity_type,
+                        "hide_duplicates": hide_duplicates,
                         "icp_id": icp_id,
                         "page": page,
                         "page_size": page_size,
