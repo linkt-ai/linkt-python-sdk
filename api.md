@@ -142,6 +142,27 @@ Methods:
 - <code title="post /v1/run/{run_id}/cancel">client.run.<a href="./src/linkt/resources/run.py">cancel</a>(run_id) -> None</code>
 - <code title="get /v1/run/{run_id}/queue">client.run.<a href="./src/linkt/resources/run.py">get_queue</a>(run_id, \*\*<a href="src/linkt/types/run_get_queue_params.py">params</a>) -> <a href="./src/linkt/types/run_get_queue_response.py">RunGetQueueResponse</a></code>
 
+# Schedule
+
+Types:
+
+```python
+from linkt.types import (
+    CreateScheduleRequest,
+    ScheduleListResponse,
+    ScheduleResponse,
+    UpdateScheduleRequest,
+)
+```
+
+Methods:
+
+- <code title="post /v1/schedule">client.schedule.<a href="./src/linkt/resources/schedule.py">create</a>(\*\*<a href="src/linkt/types/schedule_create_params.py">params</a>) -> <a href="./src/linkt/types/schedule_response.py">ScheduleResponse</a></code>
+- <code title="get /v1/schedule/{schedule_id}">client.schedule.<a href="./src/linkt/resources/schedule.py">retrieve</a>(schedule_id) -> <a href="./src/linkt/types/schedule_response.py">ScheduleResponse</a></code>
+- <code title="patch /v1/schedule/{schedule_id}">client.schedule.<a href="./src/linkt/resources/schedule.py">update</a>(schedule_id, \*\*<a href="src/linkt/types/schedule_update_params.py">params</a>) -> <a href="./src/linkt/types/schedule_response.py">ScheduleResponse</a></code>
+- <code title="get /v1/schedule">client.schedule.<a href="./src/linkt/resources/schedule.py">list</a>(\*\*<a href="src/linkt/types/schedule_list_params.py">params</a>) -> <a href="./src/linkt/types/schedule_list_response.py">ScheduleListResponse</a></code>
+- <code title="delete /v1/schedule/{schedule_id}">client.schedule.<a href="./src/linkt/resources/schedule.py">delete</a>(schedule_id) -> None</code>
+
 # Files
 
 Types:

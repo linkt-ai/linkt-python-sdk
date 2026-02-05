@@ -21,6 +21,8 @@ class SignalResponse(BaseModel):
 
     references: List[str]
 
+    score: Optional[float] = None
+
     signal_type: Optional[str] = None
 
     strength: Optional[str] = None

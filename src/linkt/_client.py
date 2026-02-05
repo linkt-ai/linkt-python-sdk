@@ -31,13 +31,14 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import icp, run, task, files, sheet, entity, signal
+    from .resources import icp, run, task, files, sheet, entity, signal, schedule
     from .resources.icp import IcpResource, AsyncIcpResource
     from .resources.run import RunResource, AsyncRunResource
     from .resources.task import TaskResource, AsyncTaskResource
     from .resources.files import FilesResource, AsyncFilesResource
     from .resources.entity import EntityResource, AsyncEntityResource
     from .resources.signal import SignalResource, AsyncSignalResource
+    from .resources.schedule import ScheduleResource, AsyncScheduleResource
     from .resources.sheet.sheet import SheetResource, AsyncSheetResource
 
 __all__ = [
@@ -172,6 +173,12 @@ class Linkt(SyncAPIClient):
         from .resources.run import RunResource
 
         return RunResource(self)
+
+    @cached_property
+    def schedule(self) -> ScheduleResource:
+        from .resources.schedule import ScheduleResource
+
+        return ScheduleResource(self)
 
     @cached_property
     def files(self) -> FilesResource:
@@ -410,6 +417,12 @@ class AsyncLinkt(AsyncAPIClient):
         return AsyncRunResource(self)
 
     @cached_property
+    def schedule(self) -> AsyncScheduleResource:
+        from .resources.schedule import AsyncScheduleResource
+
+        return AsyncScheduleResource(self)
+
+    @cached_property
     def files(self) -> AsyncFilesResource:
         from .resources.files import AsyncFilesResource
 
@@ -573,6 +586,12 @@ class LinktWithRawResponse:
         return RunResourceWithRawResponse(self._client.run)
 
     @cached_property
+    def schedule(self) -> schedule.ScheduleResourceWithRawResponse:
+        from .resources.schedule import ScheduleResourceWithRawResponse
+
+        return ScheduleResourceWithRawResponse(self._client.schedule)
+
+    @cached_property
     def files(self) -> files.FilesResourceWithRawResponse:
         from .resources.files import FilesResourceWithRawResponse
 
@@ -620,6 +639,12 @@ class AsyncLinktWithRawResponse:
         from .resources.run import AsyncRunResourceWithRawResponse
 
         return AsyncRunResourceWithRawResponse(self._client.run)
+
+    @cached_property
+    def schedule(self) -> schedule.AsyncScheduleResourceWithRawResponse:
+        from .resources.schedule import AsyncScheduleResourceWithRawResponse
+
+        return AsyncScheduleResourceWithRawResponse(self._client.schedule)
 
     @cached_property
     def files(self) -> files.AsyncFilesResourceWithRawResponse:
@@ -671,6 +696,12 @@ class LinktWithStreamedResponse:
         return RunResourceWithStreamingResponse(self._client.run)
 
     @cached_property
+    def schedule(self) -> schedule.ScheduleResourceWithStreamingResponse:
+        from .resources.schedule import ScheduleResourceWithStreamingResponse
+
+        return ScheduleResourceWithStreamingResponse(self._client.schedule)
+
+    @cached_property
     def files(self) -> files.FilesResourceWithStreamingResponse:
         from .resources.files import FilesResourceWithStreamingResponse
 
@@ -718,6 +749,12 @@ class AsyncLinktWithStreamedResponse:
         from .resources.run import AsyncRunResourceWithStreamingResponse
 
         return AsyncRunResourceWithStreamingResponse(self._client.run)
+
+    @cached_property
+    def schedule(self) -> schedule.AsyncScheduleResourceWithStreamingResponse:
+        from .resources.schedule import AsyncScheduleResourceWithStreamingResponse
+
+        return AsyncScheduleResourceWithStreamingResponse(self._client.schedule)
 
     @cached_property
     def files(self) -> files.AsyncFilesResourceWithStreamingResponse:
