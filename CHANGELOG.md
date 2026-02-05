@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.6.0 (2026-02-05)
+
+Full Changelog: [v0.5.0...v0.6.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.5.0...v0.6.0)
+
+### Features
+
+* **api:** api update ([2ec3ca1](https://github.com/linkt-ai/linkt-python-sdk/commit/2ec3ca1d5612c71532e555544c91175d0eda59f3))
+* **api:** api update ([869a502](https://github.com/linkt-ai/linkt-python-sdk/commit/869a5021ea9ece9b3e7fe1caed65fda03dc81d85))
+* **client:** add custom JSON encoder for extended type support ([a5ff81d](https://github.com/linkt-ai/linkt-python-sdk/commit/a5ff81d8764a933a98a8bc7dc0bb151fe2eab2a5))
+
 ## 0.5.0 (2026-01-27)
 
 Full Changelog: [v0.4.0...v0.5.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.4.0...v0.5.0)
