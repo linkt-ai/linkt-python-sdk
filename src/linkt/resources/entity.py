@@ -169,7 +169,7 @@ class EntityResource(SyncAPIResource):
         *,
         entity_type: Optional[EntityType] | Omit = omit,
         hide_duplicates: bool | Omit = omit,
-        icp_id: Optional[str] | Omit = omit,
+        icp_id: Optional[SequenceNotStr[str]] | Omit = omit,
         page: int | Omit = omit,
         page_size: int | Omit = omit,
         sheet_id: Optional[str] | Omit = omit,
@@ -186,7 +186,8 @@ class EntityResource(SyncAPIResource):
 
         Supports filtering by:
 
-        - icp_id: Entities in sheets belonging to an ICP
+        - icp_id: Entities in sheets belonging to ICP(s). Supports multiple values for
+          filtering across ICPs (e.g., ?icp_id=abc&icp_id=def).
         - sheet_id: Entities in a specific sheet
         - entity_type: Entities of a specific type (company, person, etc.)
         - status: Filter by workflow status (supports multiple:
@@ -201,7 +202,7 @@ class EntityResource(SyncAPIResource):
 
           hide_duplicates: Hide duplicate entities (show only primaries)
 
-          icp_id: Filter by ICP ID
+          icp_id: Filter by ICP ID(s) - supports multiple
 
           page: Page number (1-based)
 
@@ -352,7 +353,8 @@ class EntityResource(SyncAPIResource):
         entity_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         entity_type: Optional[EntityType] | Omit = omit,
         format: Literal["separate", "combined"] | Omit = omit,
-        icp_id: Optional[str] | Omit = omit,
+        hide_duplicates: bool | Omit = omit,
+        icp_id: Optional[SequenceNotStr[str]] | Omit = omit,
         sheet_id: Optional[str] | Omit = omit,
         status: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -397,10 +399,12 @@ class EntityResource(SyncAPIResource):
           ?status=new&status=contacted) Valid values: new, reviewed, passed, contacted,
           null
 
-        Args: icp_id: Filter by ICP ID (REQUIRED for format=combined) sheet_id: Filter
-        by sheet ID entity_type: Filter by entity type (ignored for format=combined)
-        entity_ids: Export specific entity IDs status: Filter by status values (multiple
-        allowed) format: Export format - "separate" (default) or "combined"
+        Args: icp_id: Filter by ICP ID(s). Supports multiple values for separate format
+        (e.g., ?icp_id=abc&icp_id=def). Combined format only supports a single ICP.
+        sheet_id: Filter by sheet ID entity_type: Filter by entity type (ignored for
+        format=combined) entity_ids: Export specific entity IDs status: Filter by status
+        values (multiple allowed) hide_duplicates: Exclude duplicate entities from
+        export format: Export format - "separate" (default) or "combined"
 
         Returns: StreamingResponse with CSV content
 
@@ -414,7 +418,9 @@ class EntityResource(SyncAPIResource):
 
           format: Export format: 'separate' (default) or 'combined' (joined parent-child rows)
 
-          icp_id: Filter by ICP ID
+          hide_duplicates: Exclude duplicate entities from export (show only primaries)
+
+          icp_id: Filter by ICP ID(s) - supports multiple
 
           sheet_id: Filter by sheet ID
 
@@ -440,6 +446,7 @@ class EntityResource(SyncAPIResource):
                         "entity_ids": entity_ids,
                         "entity_type": entity_type,
                         "format": format,
+                        "hide_duplicates": hide_duplicates,
                         "icp_id": icp_id,
                         "sheet_id": sheet_id,
                         "status": status,
@@ -453,7 +460,8 @@ class EntityResource(SyncAPIResource):
     def get_counts(
         self,
         *,
-        icp_id: Optional[str] | Omit = omit,
+        hide_duplicates: bool | Omit = omit,
+        icp_id: Optional[SequenceNotStr[str]] | Omit = omit,
         status: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -466,18 +474,23 @@ class EntityResource(SyncAPIResource):
         Get entity counts grouped by entity_type.
 
         Returns the count of entities for each entity_type (company, person, etc.)
-        across the organization. Supports optional filtering by ICP or status.
+        across the organization. Supports optional filtering by ICP(s) or status.
 
-        Additional filtering:
+        Filtering options:
 
+        - icp_id: Filter by ICP ID(s). Supports multiple values for counting across ICPs
+          (e.g., ?icp_id=abc&icp_id=def).
         - status: Filter by workflow status (supports multiple:
           ?status=new&status=reviewed) Valid values: new, reviewed, passed, contacted,
           null
+        - hide_duplicates: When true, excludes duplicate entities from counts
 
         Used by Entity Master List for accurate tab navigation counts.
 
         Args:
-          icp_id: Filter by ICP ID
+          hide_duplicates: Exclude duplicate entities from counts (show only primaries)
+
+          icp_id: Filter by ICP ID(s) - supports multiple
 
           status: Filter by status values (supports multiple: ?status=new&status=passed)
 
@@ -498,6 +511,7 @@ class EntityResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "hide_duplicates": hide_duplicates,
                         "icp_id": icp_id,
                         "status": status,
                     },
@@ -513,7 +527,7 @@ class EntityResource(SyncAPIResource):
         q: str,
         entity_type: Optional[EntityType] | Omit = omit,
         hide_duplicates: bool | Omit = omit,
-        icp_id: Optional[str] | Omit = omit,
+        icp_id: Optional[SequenceNotStr[str]] | Omit = omit,
         page: int | Omit = omit,
         page_size: int | Omit = omit,
         sheet_id: Optional[str] | Omit = omit,
@@ -534,7 +548,8 @@ class EntityResource(SyncAPIResource):
         Scope of search determined by filters:
 
         - sheet_id: Search within specific sheet
-        - icp_id: Search across ICP sheets
+        - icp_id: Search across ICP sheet(s). Supports multiple values for searching
+          across ICPs (e.g., ?icp_id=abc&icp_id=def).
         - No filters: Search org-wide
 
         Additional filtering:
@@ -551,7 +566,7 @@ class EntityResource(SyncAPIResource):
 
           hide_duplicates: Hide duplicate entities (show only primaries)
 
-          icp_id: Filter by ICP ID
+          icp_id: Filter by ICP ID(s) - supports multiple
 
           page: Page number
 
@@ -726,7 +741,7 @@ class AsyncEntityResource(AsyncAPIResource):
         *,
         entity_type: Optional[EntityType] | Omit = omit,
         hide_duplicates: bool | Omit = omit,
-        icp_id: Optional[str] | Omit = omit,
+        icp_id: Optional[SequenceNotStr[str]] | Omit = omit,
         page: int | Omit = omit,
         page_size: int | Omit = omit,
         sheet_id: Optional[str] | Omit = omit,
@@ -743,7 +758,8 @@ class AsyncEntityResource(AsyncAPIResource):
 
         Supports filtering by:
 
-        - icp_id: Entities in sheets belonging to an ICP
+        - icp_id: Entities in sheets belonging to ICP(s). Supports multiple values for
+          filtering across ICPs (e.g., ?icp_id=abc&icp_id=def).
         - sheet_id: Entities in a specific sheet
         - entity_type: Entities of a specific type (company, person, etc.)
         - status: Filter by workflow status (supports multiple:
@@ -758,7 +774,7 @@ class AsyncEntityResource(AsyncAPIResource):
 
           hide_duplicates: Hide duplicate entities (show only primaries)
 
-          icp_id: Filter by ICP ID
+          icp_id: Filter by ICP ID(s) - supports multiple
 
           page: Page number (1-based)
 
@@ -909,7 +925,8 @@ class AsyncEntityResource(AsyncAPIResource):
         entity_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         entity_type: Optional[EntityType] | Omit = omit,
         format: Literal["separate", "combined"] | Omit = omit,
-        icp_id: Optional[str] | Omit = omit,
+        hide_duplicates: bool | Omit = omit,
+        icp_id: Optional[SequenceNotStr[str]] | Omit = omit,
         sheet_id: Optional[str] | Omit = omit,
         status: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -954,10 +971,12 @@ class AsyncEntityResource(AsyncAPIResource):
           ?status=new&status=contacted) Valid values: new, reviewed, passed, contacted,
           null
 
-        Args: icp_id: Filter by ICP ID (REQUIRED for format=combined) sheet_id: Filter
-        by sheet ID entity_type: Filter by entity type (ignored for format=combined)
-        entity_ids: Export specific entity IDs status: Filter by status values (multiple
-        allowed) format: Export format - "separate" (default) or "combined"
+        Args: icp_id: Filter by ICP ID(s). Supports multiple values for separate format
+        (e.g., ?icp_id=abc&icp_id=def). Combined format only supports a single ICP.
+        sheet_id: Filter by sheet ID entity_type: Filter by entity type (ignored for
+        format=combined) entity_ids: Export specific entity IDs status: Filter by status
+        values (multiple allowed) hide_duplicates: Exclude duplicate entities from
+        export format: Export format - "separate" (default) or "combined"
 
         Returns: StreamingResponse with CSV content
 
@@ -971,7 +990,9 @@ class AsyncEntityResource(AsyncAPIResource):
 
           format: Export format: 'separate' (default) or 'combined' (joined parent-child rows)
 
-          icp_id: Filter by ICP ID
+          hide_duplicates: Exclude duplicate entities from export (show only primaries)
+
+          icp_id: Filter by ICP ID(s) - supports multiple
 
           sheet_id: Filter by sheet ID
 
@@ -997,6 +1018,7 @@ class AsyncEntityResource(AsyncAPIResource):
                         "entity_ids": entity_ids,
                         "entity_type": entity_type,
                         "format": format,
+                        "hide_duplicates": hide_duplicates,
                         "icp_id": icp_id,
                         "sheet_id": sheet_id,
                         "status": status,
@@ -1010,7 +1032,8 @@ class AsyncEntityResource(AsyncAPIResource):
     async def get_counts(
         self,
         *,
-        icp_id: Optional[str] | Omit = omit,
+        hide_duplicates: bool | Omit = omit,
+        icp_id: Optional[SequenceNotStr[str]] | Omit = omit,
         status: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1023,18 +1046,23 @@ class AsyncEntityResource(AsyncAPIResource):
         Get entity counts grouped by entity_type.
 
         Returns the count of entities for each entity_type (company, person, etc.)
-        across the organization. Supports optional filtering by ICP or status.
+        across the organization. Supports optional filtering by ICP(s) or status.
 
-        Additional filtering:
+        Filtering options:
 
+        - icp_id: Filter by ICP ID(s). Supports multiple values for counting across ICPs
+          (e.g., ?icp_id=abc&icp_id=def).
         - status: Filter by workflow status (supports multiple:
           ?status=new&status=reviewed) Valid values: new, reviewed, passed, contacted,
           null
+        - hide_duplicates: When true, excludes duplicate entities from counts
 
         Used by Entity Master List for accurate tab navigation counts.
 
         Args:
-          icp_id: Filter by ICP ID
+          hide_duplicates: Exclude duplicate entities from counts (show only primaries)
+
+          icp_id: Filter by ICP ID(s) - supports multiple
 
           status: Filter by status values (supports multiple: ?status=new&status=passed)
 
@@ -1055,6 +1083,7 @@ class AsyncEntityResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "hide_duplicates": hide_duplicates,
                         "icp_id": icp_id,
                         "status": status,
                     },
@@ -1070,7 +1099,7 @@ class AsyncEntityResource(AsyncAPIResource):
         q: str,
         entity_type: Optional[EntityType] | Omit = omit,
         hide_duplicates: bool | Omit = omit,
-        icp_id: Optional[str] | Omit = omit,
+        icp_id: Optional[SequenceNotStr[str]] | Omit = omit,
         page: int | Omit = omit,
         page_size: int | Omit = omit,
         sheet_id: Optional[str] | Omit = omit,
@@ -1091,7 +1120,8 @@ class AsyncEntityResource(AsyncAPIResource):
         Scope of search determined by filters:
 
         - sheet_id: Search within specific sheet
-        - icp_id: Search across ICP sheets
+        - icp_id: Search across ICP sheet(s). Supports multiple values for searching
+          across ICPs (e.g., ?icp_id=abc&icp_id=def).
         - No filters: Search org-wide
 
         Additional filtering:
@@ -1108,7 +1138,7 @@ class AsyncEntityResource(AsyncAPIResource):
 
           hide_duplicates: Hide duplicate entities (show only primaries)
 
-          icp_id: Filter by ICP ID
+          icp_id: Filter by ICP ID(s) - supports multiple
 
           page: Page number
 
