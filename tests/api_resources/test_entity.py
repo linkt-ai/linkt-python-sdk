@@ -131,7 +131,7 @@ class TestEntity:
         entity = client.entity.list(
             entity_type="company",
             hide_duplicates=True,
-            icp_id="icp_id",
+            icp_id=["string"],
             page=1,
             page_size=1,
             sheet_id="sheet_id",
@@ -264,7 +264,8 @@ class TestEntity:
             entity_ids=["string"],
             entity_type="company",
             format="separate",
-            icp_id="icp_id",
+            hide_duplicates=True,
+            icp_id=["string"],
             sheet_id="sheet_id",
             status=["string"],
         )
@@ -302,7 +303,8 @@ class TestEntity:
     @parametrize
     def test_method_get_counts_with_all_params(self, client: Linkt) -> None:
         entity = client.entity.get_counts(
-            icp_id="icp_id",
+            hide_duplicates=True,
+            icp_id=["string"],
             status=["string"],
         )
         assert_matches_type(EntityGetCountsResponse, entity, path=["response"])
@@ -344,7 +346,7 @@ class TestEntity:
             q="x",
             entity_type="company",
             hide_duplicates=True,
-            icp_id="icp_id",
+            icp_id=["string"],
             page=1,
             page_size=1,
             sheet_id="sheet_id",
@@ -492,7 +494,7 @@ class TestAsyncEntity:
         entity = await async_client.entity.list(
             entity_type="company",
             hide_duplicates=True,
-            icp_id="icp_id",
+            icp_id=["string"],
             page=1,
             page_size=1,
             sheet_id="sheet_id",
@@ -625,7 +627,8 @@ class TestAsyncEntity:
             entity_ids=["string"],
             entity_type="company",
             format="separate",
-            icp_id="icp_id",
+            hide_duplicates=True,
+            icp_id=["string"],
             sheet_id="sheet_id",
             status=["string"],
         )
@@ -663,7 +666,8 @@ class TestAsyncEntity:
     @parametrize
     async def test_method_get_counts_with_all_params(self, async_client: AsyncLinkt) -> None:
         entity = await async_client.entity.get_counts(
-            icp_id="icp_id",
+            hide_duplicates=True,
+            icp_id=["string"],
             status=["string"],
         )
         assert_matches_type(EntityGetCountsResponse, entity, path=["response"])
@@ -705,7 +709,7 @@ class TestAsyncEntity:
             q="x",
             entity_type="company",
             hide_duplicates=True,
-            icp_id="icp_id",
+            icp_id=["string"],
             page=1,
             page_size=1,
             sheet_id="sheet_id",
