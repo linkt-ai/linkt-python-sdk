@@ -21,8 +21,11 @@ class EntityExportParams(TypedDict, total=False):
     format: Literal["separate", "combined"]
     """Export format: 'separate' (default) or 'combined' (joined parent-child rows)"""
 
-    icp_id: Optional[str]
-    """Filter by ICP ID"""
+    hide_duplicates: bool
+    """Exclude duplicate entities from export (show only primaries)"""
+
+    icp_id: Optional[SequenceNotStr[str]]
+    """Filter by ICP ID(s) - supports multiple"""
 
     sheet_id: Optional[str]
     """Filter by sheet ID"""

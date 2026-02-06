@@ -21,8 +21,8 @@ class EntitySearchParams(TypedDict, total=False):
     hide_duplicates: bool
     """Hide duplicate entities (show only primaries)"""
 
-    icp_id: Optional[str]
-    """Filter by ICP ID"""
+    icp_id: Optional[SequenceNotStr[str]]
+    """Filter by ICP ID(s) - supports multiple"""
 
     page: int
     """Page number"""

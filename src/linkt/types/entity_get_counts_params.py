@@ -11,8 +11,11 @@ __all__ = ["EntityGetCountsParams"]
 
 
 class EntityGetCountsParams(TypedDict, total=False):
-    icp_id: Optional[str]
-    """Filter by ICP ID"""
+    hide_duplicates: bool
+    """Exclude duplicate entities from counts (show only primaries)"""
+
+    icp_id: Optional[SequenceNotStr[str]]
+    """Filter by ICP ID(s) - supports multiple"""
 
     status: Optional[SequenceNotStr[str]]
     """Filter by status values (supports multiple: ?status=new&status=passed)"""

@@ -56,6 +56,14 @@ from .signal import (
     SignalResourceWithStreamingResponse,
     AsyncSignalResourceWithStreamingResponse,
 )
+from .schedule import (
+    ScheduleResource,
+    AsyncScheduleResource,
+    ScheduleResourceWithRawResponse,
+    AsyncScheduleResourceWithRawResponse,
+    ScheduleResourceWithStreamingResponse,
+    AsyncScheduleResourceWithStreamingResponse,
+)
 
 __all__ = [
     "IcpResource",
@@ -94,6 +102,12 @@ __all__ = [
     "AsyncRunResourceWithRawResponse",
     "RunResourceWithStreamingResponse",
     "AsyncRunResourceWithStreamingResponse",
+    "ScheduleResource",
+    "AsyncScheduleResource",
+    "ScheduleResourceWithRawResponse",
+    "AsyncScheduleResourceWithRawResponse",
+    "ScheduleResourceWithStreamingResponse",
+    "AsyncScheduleResourceWithStreamingResponse",
     "FilesResource",
     "AsyncFilesResource",
     "FilesResourceWithRawResponse",
