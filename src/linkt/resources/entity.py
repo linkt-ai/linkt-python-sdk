@@ -198,7 +198,7 @@ class EntityResource(SyncAPIResource):
         All results include enrichment fields for UI annotations.
 
         Args:
-          entity_type: Valid entity types for sheets.
+          entity_type: Filter by entity type
 
           hide_duplicates: Hide duplicate entities (show only primaries)
 
@@ -414,7 +414,7 @@ class EntityResource(SyncAPIResource):
         Args:
           entity_ids: Specific entity IDs
 
-          entity_type: Valid entity types for sheets.
+          entity_type: Filter by entity type
 
           format: Export format: 'separate' (default) or 'combined' (joined parent-child rows)
 
@@ -562,7 +562,7 @@ class EntityResource(SyncAPIResource):
         Args:
           q: Search query
 
-          entity_type: Valid entity types for sheets.
+          entity_type: Filter by entity type
 
           hide_duplicates: Hide duplicate entities (show only primaries)
 
@@ -770,7 +770,7 @@ class AsyncEntityResource(AsyncAPIResource):
         All results include enrichment fields for UI annotations.
 
         Args:
-          entity_type: Valid entity types for sheets.
+          entity_type: Filter by entity type
 
           hide_duplicates: Hide duplicate entities (show only primaries)
 
@@ -986,7 +986,7 @@ class AsyncEntityResource(AsyncAPIResource):
         Args:
           entity_ids: Specific entity IDs
 
-          entity_type: Valid entity types for sheets.
+          entity_type: Filter by entity type
 
           format: Export format: 'separate' (default) or 'combined' (joined parent-child rows)
 
@@ -1134,7 +1134,7 @@ class AsyncEntityResource(AsyncAPIResource):
         Args:
           q: Search query
 
-          entity_type: Valid entity types for sheets.
+          entity_type: Filter by entity type
 
           hide_duplicates: Hide duplicate entities (show only primaries)
 

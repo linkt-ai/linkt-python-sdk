@@ -25,11 +25,7 @@ class ScheduleListParams(TypedDict, total=False):
     """Field to sort by (e.g., 'created_at')"""
 
     status: Optional[Literal["active", "paused", "disabled"]]
-    """Schedule status values.
-
-    ACTIVE: Schedule is eligible for execution PAUSED: Temporarily suspended but can
-    be resumed DISABLED: Permanently disabled (requires manual intervention)
-    """
+    """Filter by status"""
 
     task_id: Optional[str]
     """Filter by task"""
