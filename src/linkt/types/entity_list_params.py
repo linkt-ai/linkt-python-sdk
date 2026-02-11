@@ -13,7 +13,7 @@ __all__ = ["EntityListParams"]
 
 class EntityListParams(TypedDict, total=False):
     entity_type: Optional[EntityType]
-    """Valid entity types for sheets."""
+    """Filter by entity type"""
 
     hide_duplicates: bool
     """Hide duplicate entities (show only primaries)"""
