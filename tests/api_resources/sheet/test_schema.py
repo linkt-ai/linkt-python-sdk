@@ -21,7 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSchema:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_add_fields(self, client: Linkt) -> None:
         schema = client.sheet.schema.add_fields(
@@ -35,7 +35,7 @@ class TestSchema:
         )
         assert schema is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_add_fields(self, client: Linkt) -> None:
         response = client.sheet.schema.with_raw_response.add_fields(
@@ -53,7 +53,7 @@ class TestSchema:
         schema = response.parse()
         assert schema is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_add_fields(self, client: Linkt) -> None:
         with client.sheet.schema.with_streaming_response.add_fields(
@@ -73,7 +73,7 @@ class TestSchema:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_add_fields(self, client: Linkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sheet_id` but received ''"):
@@ -87,7 +87,7 @@ class TestSchema:
                 ],
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete_fields(self, client: Linkt) -> None:
         schema = client.sheet.schema.delete_fields(
@@ -96,7 +96,7 @@ class TestSchema:
         )
         assert schema is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete_fields(self, client: Linkt) -> None:
         response = client.sheet.schema.with_raw_response.delete_fields(
@@ -109,7 +109,7 @@ class TestSchema:
         schema = response.parse()
         assert schema is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete_fields(self, client: Linkt) -> None:
         with client.sheet.schema.with_streaming_response.delete_fields(
@@ -124,7 +124,7 @@ class TestSchema:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete_fields(self, client: Linkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sheet_id` but received ''"):
@@ -133,7 +133,7 @@ class TestSchema:
                 fields=["string"],
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get(self, client: Linkt) -> None:
         schema = client.sheet.schema.get(
@@ -141,7 +141,7 @@ class TestSchema:
         )
         assert_matches_type(SchemaGetResponse, schema, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get(self, client: Linkt) -> None:
         response = client.sheet.schema.with_raw_response.get(
@@ -153,7 +153,7 @@ class TestSchema:
         schema = response.parse()
         assert_matches_type(SchemaGetResponse, schema, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get(self, client: Linkt) -> None:
         with client.sheet.schema.with_streaming_response.get(
@@ -167,7 +167,7 @@ class TestSchema:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_get(self, client: Linkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sheet_id` but received ''"):
@@ -175,13 +175,13 @@ class TestSchema:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_default(self, client: Linkt) -> None:
         schema = client.sheet.schema.get_default()
         assert_matches_type(SchemaGetDefaultResponse, schema, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_default(self, client: Linkt) -> None:
         response = client.sheet.schema.with_raw_response.get_default()
@@ -191,7 +191,7 @@ class TestSchema:
         schema = response.parse()
         assert_matches_type(SchemaGetDefaultResponse, schema, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_default(self, client: Linkt) -> None:
         with client.sheet.schema.with_streaming_response.get_default() as response:
@@ -203,13 +203,13 @@ class TestSchema:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_field_definitions(self, client: Linkt) -> None:
         schema = client.sheet.schema.get_field_definitions()
         assert_matches_type(SchemaGetFieldDefinitionsResponse, schema, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_field_definitions(self, client: Linkt) -> None:
         response = client.sheet.schema.with_raw_response.get_field_definitions()
@@ -219,7 +219,7 @@ class TestSchema:
         schema = response.parse()
         assert_matches_type(SchemaGetFieldDefinitionsResponse, schema, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_field_definitions(self, client: Linkt) -> None:
         with client.sheet.schema.with_streaming_response.get_field_definitions() as response:
@@ -237,7 +237,7 @@ class TestAsyncSchema:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_add_fields(self, async_client: AsyncLinkt) -> None:
         schema = await async_client.sheet.schema.add_fields(
@@ -251,7 +251,7 @@ class TestAsyncSchema:
         )
         assert schema is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_add_fields(self, async_client: AsyncLinkt) -> None:
         response = await async_client.sheet.schema.with_raw_response.add_fields(
@@ -269,7 +269,7 @@ class TestAsyncSchema:
         schema = await response.parse()
         assert schema is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_add_fields(self, async_client: AsyncLinkt) -> None:
         async with async_client.sheet.schema.with_streaming_response.add_fields(
@@ -289,7 +289,7 @@ class TestAsyncSchema:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_add_fields(self, async_client: AsyncLinkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sheet_id` but received ''"):
@@ -303,7 +303,7 @@ class TestAsyncSchema:
                 ],
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete_fields(self, async_client: AsyncLinkt) -> None:
         schema = await async_client.sheet.schema.delete_fields(
@@ -312,7 +312,7 @@ class TestAsyncSchema:
         )
         assert schema is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete_fields(self, async_client: AsyncLinkt) -> None:
         response = await async_client.sheet.schema.with_raw_response.delete_fields(
@@ -325,7 +325,7 @@ class TestAsyncSchema:
         schema = await response.parse()
         assert schema is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete_fields(self, async_client: AsyncLinkt) -> None:
         async with async_client.sheet.schema.with_streaming_response.delete_fields(
@@ -340,7 +340,7 @@ class TestAsyncSchema:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete_fields(self, async_client: AsyncLinkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sheet_id` but received ''"):
@@ -349,7 +349,7 @@ class TestAsyncSchema:
                 fields=["string"],
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get(self, async_client: AsyncLinkt) -> None:
         schema = await async_client.sheet.schema.get(
@@ -357,7 +357,7 @@ class TestAsyncSchema:
         )
         assert_matches_type(SchemaGetResponse, schema, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncLinkt) -> None:
         response = await async_client.sheet.schema.with_raw_response.get(
@@ -369,7 +369,7 @@ class TestAsyncSchema:
         schema = await response.parse()
         assert_matches_type(SchemaGetResponse, schema, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncLinkt) -> None:
         async with async_client.sheet.schema.with_streaming_response.get(
@@ -383,7 +383,7 @@ class TestAsyncSchema:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncLinkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sheet_id` but received ''"):
@@ -391,13 +391,13 @@ class TestAsyncSchema:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_default(self, async_client: AsyncLinkt) -> None:
         schema = await async_client.sheet.schema.get_default()
         assert_matches_type(SchemaGetDefaultResponse, schema, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_default(self, async_client: AsyncLinkt) -> None:
         response = await async_client.sheet.schema.with_raw_response.get_default()
@@ -407,7 +407,7 @@ class TestAsyncSchema:
         schema = await response.parse()
         assert_matches_type(SchemaGetDefaultResponse, schema, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_default(self, async_client: AsyncLinkt) -> None:
         async with async_client.sheet.schema.with_streaming_response.get_default() as response:
@@ -419,13 +419,13 @@ class TestAsyncSchema:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_field_definitions(self, async_client: AsyncLinkt) -> None:
         schema = await async_client.sheet.schema.get_field_definitions()
         assert_matches_type(SchemaGetFieldDefinitionsResponse, schema, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_field_definitions(self, async_client: AsyncLinkt) -> None:
         response = await async_client.sheet.schema.with_raw_response.get_field_definitions()
@@ -435,7 +435,7 @@ class TestAsyncSchema:
         schema = await response.parse()
         assert_matches_type(SchemaGetFieldDefinitionsResponse, schema, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_field_definitions(self, async_client: AsyncLinkt) -> None:
         async with async_client.sheet.schema.with_streaming_response.get_field_definitions() as response:

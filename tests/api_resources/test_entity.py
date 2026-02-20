@@ -23,7 +23,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestEntity:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Linkt) -> None:
         entity = client.entity.retrieve(
@@ -31,7 +31,7 @@ class TestEntity:
         )
         assert_matches_type(EntityResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Linkt) -> None:
         response = client.entity.with_raw_response.retrieve(
@@ -43,7 +43,7 @@ class TestEntity:
         entity = response.parse()
         assert_matches_type(EntityResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Linkt) -> None:
         with client.entity.with_streaming_response.retrieve(
@@ -57,7 +57,7 @@ class TestEntity:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Linkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entity_id` but received ''"):
@@ -65,7 +65,7 @@ class TestEntity:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update(self, client: Linkt) -> None:
         entity = client.entity.update(
@@ -73,7 +73,7 @@ class TestEntity:
         )
         assert_matches_type(EntityResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Linkt) -> None:
         entity = client.entity.update(
@@ -85,7 +85,7 @@ class TestEntity:
         )
         assert_matches_type(EntityResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Linkt) -> None:
         response = client.entity.with_raw_response.update(
@@ -97,7 +97,7 @@ class TestEntity:
         entity = response.parse()
         assert_matches_type(EntityResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Linkt) -> None:
         with client.entity.with_streaming_response.update(
@@ -111,7 +111,7 @@ class TestEntity:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Linkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entity_id` but received ''"):
@@ -119,13 +119,13 @@ class TestEntity:
                 entity_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Linkt) -> None:
         entity = client.entity.list()
         assert_matches_type(EntityListResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Linkt) -> None:
         entity = client.entity.list(
@@ -139,7 +139,7 @@ class TestEntity:
         )
         assert_matches_type(EntityListResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Linkt) -> None:
         response = client.entity.with_raw_response.list()
@@ -149,7 +149,7 @@ class TestEntity:
         entity = response.parse()
         assert_matches_type(EntityListResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Linkt) -> None:
         with client.entity.with_streaming_response.list() as response:
@@ -161,7 +161,7 @@ class TestEntity:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Linkt) -> None:
         entity = client.entity.delete(
@@ -169,7 +169,7 @@ class TestEntity:
         )
         assert entity is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Linkt) -> None:
         response = client.entity.with_raw_response.delete(
@@ -181,7 +181,7 @@ class TestEntity:
         entity = response.parse()
         assert entity is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Linkt) -> None:
         with client.entity.with_streaming_response.delete(
@@ -195,7 +195,7 @@ class TestEntity:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Linkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entity_id` but received ''"):
@@ -203,7 +203,7 @@ class TestEntity:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_bulk_update_status(self, client: Linkt) -> None:
         entity = client.entity.bulk_update_status(
@@ -212,7 +212,7 @@ class TestEntity:
         )
         assert_matches_type(EntityBulkUpdateStatusResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_bulk_update_status_with_all_params(self, client: Linkt) -> None:
         entity = client.entity.bulk_update_status(
@@ -223,7 +223,7 @@ class TestEntity:
         )
         assert_matches_type(EntityBulkUpdateStatusResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_bulk_update_status(self, client: Linkt) -> None:
         response = client.entity.with_raw_response.bulk_update_status(
@@ -236,7 +236,7 @@ class TestEntity:
         entity = response.parse()
         assert_matches_type(EntityBulkUpdateStatusResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_bulk_update_status(self, client: Linkt) -> None:
         with client.entity.with_streaming_response.bulk_update_status(
@@ -251,13 +251,13 @@ class TestEntity:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_export(self, client: Linkt) -> None:
         entity = client.entity.export()
         assert_matches_type(object, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_export_with_all_params(self, client: Linkt) -> None:
         entity = client.entity.export(
@@ -271,7 +271,7 @@ class TestEntity:
         )
         assert_matches_type(object, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_export(self, client: Linkt) -> None:
         response = client.entity.with_raw_response.export()
@@ -281,7 +281,7 @@ class TestEntity:
         entity = response.parse()
         assert_matches_type(object, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_export(self, client: Linkt) -> None:
         with client.entity.with_streaming_response.export() as response:
@@ -293,13 +293,13 @@ class TestEntity:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_counts(self, client: Linkt) -> None:
         entity = client.entity.get_counts()
         assert_matches_type(EntityGetCountsResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_counts_with_all_params(self, client: Linkt) -> None:
         entity = client.entity.get_counts(
@@ -309,7 +309,7 @@ class TestEntity:
         )
         assert_matches_type(EntityGetCountsResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_counts(self, client: Linkt) -> None:
         response = client.entity.with_raw_response.get_counts()
@@ -319,7 +319,7 @@ class TestEntity:
         entity = response.parse()
         assert_matches_type(EntityGetCountsResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_counts(self, client: Linkt) -> None:
         with client.entity.with_streaming_response.get_counts() as response:
@@ -331,7 +331,7 @@ class TestEntity:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_search(self, client: Linkt) -> None:
         entity = client.entity.search(
@@ -339,7 +339,7 @@ class TestEntity:
         )
         assert_matches_type(EntitySearchResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_search_with_all_params(self, client: Linkt) -> None:
         entity = client.entity.search(
@@ -354,7 +354,7 @@ class TestEntity:
         )
         assert_matches_type(EntitySearchResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_search(self, client: Linkt) -> None:
         response = client.entity.with_raw_response.search(
@@ -366,7 +366,7 @@ class TestEntity:
         entity = response.parse()
         assert_matches_type(EntitySearchResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_search(self, client: Linkt) -> None:
         with client.entity.with_streaming_response.search(
@@ -386,7 +386,7 @@ class TestAsyncEntity:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncLinkt) -> None:
         entity = await async_client.entity.retrieve(
@@ -394,7 +394,7 @@ class TestAsyncEntity:
         )
         assert_matches_type(EntityResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncLinkt) -> None:
         response = await async_client.entity.with_raw_response.retrieve(
@@ -406,7 +406,7 @@ class TestAsyncEntity:
         entity = await response.parse()
         assert_matches_type(EntityResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncLinkt) -> None:
         async with async_client.entity.with_streaming_response.retrieve(
@@ -420,7 +420,7 @@ class TestAsyncEntity:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncLinkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entity_id` but received ''"):
@@ -428,7 +428,7 @@ class TestAsyncEntity:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncLinkt) -> None:
         entity = await async_client.entity.update(
@@ -436,7 +436,7 @@ class TestAsyncEntity:
         )
         assert_matches_type(EntityResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncLinkt) -> None:
         entity = await async_client.entity.update(
@@ -448,7 +448,7 @@ class TestAsyncEntity:
         )
         assert_matches_type(EntityResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncLinkt) -> None:
         response = await async_client.entity.with_raw_response.update(
@@ -460,7 +460,7 @@ class TestAsyncEntity:
         entity = await response.parse()
         assert_matches_type(EntityResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncLinkt) -> None:
         async with async_client.entity.with_streaming_response.update(
@@ -474,7 +474,7 @@ class TestAsyncEntity:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncLinkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entity_id` but received ''"):
@@ -482,13 +482,13 @@ class TestAsyncEntity:
                 entity_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncLinkt) -> None:
         entity = await async_client.entity.list()
         assert_matches_type(EntityListResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncLinkt) -> None:
         entity = await async_client.entity.list(
@@ -502,7 +502,7 @@ class TestAsyncEntity:
         )
         assert_matches_type(EntityListResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncLinkt) -> None:
         response = await async_client.entity.with_raw_response.list()
@@ -512,7 +512,7 @@ class TestAsyncEntity:
         entity = await response.parse()
         assert_matches_type(EntityListResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncLinkt) -> None:
         async with async_client.entity.with_streaming_response.list() as response:
@@ -524,7 +524,7 @@ class TestAsyncEntity:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncLinkt) -> None:
         entity = await async_client.entity.delete(
@@ -532,7 +532,7 @@ class TestAsyncEntity:
         )
         assert entity is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncLinkt) -> None:
         response = await async_client.entity.with_raw_response.delete(
@@ -544,7 +544,7 @@ class TestAsyncEntity:
         entity = await response.parse()
         assert entity is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncLinkt) -> None:
         async with async_client.entity.with_streaming_response.delete(
@@ -558,7 +558,7 @@ class TestAsyncEntity:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncLinkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entity_id` but received ''"):
@@ -566,7 +566,7 @@ class TestAsyncEntity:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_bulk_update_status(self, async_client: AsyncLinkt) -> None:
         entity = await async_client.entity.bulk_update_status(
@@ -575,7 +575,7 @@ class TestAsyncEntity:
         )
         assert_matches_type(EntityBulkUpdateStatusResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_bulk_update_status_with_all_params(self, async_client: AsyncLinkt) -> None:
         entity = await async_client.entity.bulk_update_status(
@@ -586,7 +586,7 @@ class TestAsyncEntity:
         )
         assert_matches_type(EntityBulkUpdateStatusResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_bulk_update_status(self, async_client: AsyncLinkt) -> None:
         response = await async_client.entity.with_raw_response.bulk_update_status(
@@ -599,7 +599,7 @@ class TestAsyncEntity:
         entity = await response.parse()
         assert_matches_type(EntityBulkUpdateStatusResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_bulk_update_status(self, async_client: AsyncLinkt) -> None:
         async with async_client.entity.with_streaming_response.bulk_update_status(
@@ -614,13 +614,13 @@ class TestAsyncEntity:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_export(self, async_client: AsyncLinkt) -> None:
         entity = await async_client.entity.export()
         assert_matches_type(object, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_export_with_all_params(self, async_client: AsyncLinkt) -> None:
         entity = await async_client.entity.export(
@@ -634,7 +634,7 @@ class TestAsyncEntity:
         )
         assert_matches_type(object, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_export(self, async_client: AsyncLinkt) -> None:
         response = await async_client.entity.with_raw_response.export()
@@ -644,7 +644,7 @@ class TestAsyncEntity:
         entity = await response.parse()
         assert_matches_type(object, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_export(self, async_client: AsyncLinkt) -> None:
         async with async_client.entity.with_streaming_response.export() as response:
@@ -656,13 +656,13 @@ class TestAsyncEntity:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_counts(self, async_client: AsyncLinkt) -> None:
         entity = await async_client.entity.get_counts()
         assert_matches_type(EntityGetCountsResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_counts_with_all_params(self, async_client: AsyncLinkt) -> None:
         entity = await async_client.entity.get_counts(
@@ -672,7 +672,7 @@ class TestAsyncEntity:
         )
         assert_matches_type(EntityGetCountsResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_counts(self, async_client: AsyncLinkt) -> None:
         response = await async_client.entity.with_raw_response.get_counts()
@@ -682,7 +682,7 @@ class TestAsyncEntity:
         entity = await response.parse()
         assert_matches_type(EntityGetCountsResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_counts(self, async_client: AsyncLinkt) -> None:
         async with async_client.entity.with_streaming_response.get_counts() as response:
@@ -694,7 +694,7 @@ class TestAsyncEntity:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_search(self, async_client: AsyncLinkt) -> None:
         entity = await async_client.entity.search(
@@ -702,7 +702,7 @@ class TestAsyncEntity:
         )
         assert_matches_type(EntitySearchResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_search_with_all_params(self, async_client: AsyncLinkt) -> None:
         entity = await async_client.entity.search(
@@ -717,7 +717,7 @@ class TestAsyncEntity:
         )
         assert_matches_type(EntitySearchResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_search(self, async_client: AsyncLinkt) -> None:
         response = await async_client.entity.with_raw_response.search(
@@ -729,7 +729,7 @@ class TestAsyncEntity:
         entity = await response.parse()
         assert_matches_type(EntitySearchResponse, entity, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_search(self, async_client: AsyncLinkt) -> None:
         async with async_client.entity.with_streaming_response.search(
