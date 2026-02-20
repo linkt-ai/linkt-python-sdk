@@ -18,7 +18,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSheet:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Linkt) -> None:
         sheet = client.sheet.create(
@@ -29,7 +29,7 @@ class TestSheet:
         )
         assert_matches_type(Sheet, sheet, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Linkt) -> None:
         response = client.sheet.with_raw_response.create(
@@ -44,7 +44,7 @@ class TestSheet:
         sheet = response.parse()
         assert_matches_type(Sheet, sheet, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Linkt) -> None:
         with client.sheet.with_streaming_response.create(
@@ -61,7 +61,7 @@ class TestSheet:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Linkt) -> None:
         sheet = client.sheet.retrieve(
@@ -69,7 +69,7 @@ class TestSheet:
         )
         assert_matches_type(Sheet, sheet, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Linkt) -> None:
         response = client.sheet.with_raw_response.retrieve(
@@ -81,7 +81,7 @@ class TestSheet:
         sheet = response.parse()
         assert_matches_type(Sheet, sheet, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Linkt) -> None:
         with client.sheet.with_streaming_response.retrieve(
@@ -95,7 +95,7 @@ class TestSheet:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Linkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sheet_id` but received ''"):
@@ -103,7 +103,7 @@ class TestSheet:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update(self, client: Linkt) -> None:
         sheet = client.sheet.update(
@@ -111,7 +111,7 @@ class TestSheet:
         )
         assert sheet is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Linkt) -> None:
         sheet = client.sheet.update(
@@ -122,7 +122,7 @@ class TestSheet:
         )
         assert sheet is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Linkt) -> None:
         response = client.sheet.with_raw_response.update(
@@ -134,7 +134,7 @@ class TestSheet:
         sheet = response.parse()
         assert sheet is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Linkt) -> None:
         with client.sheet.with_streaming_response.update(
@@ -148,7 +148,7 @@ class TestSheet:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Linkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sheet_id` but received ''"):
@@ -156,13 +156,13 @@ class TestSheet:
                 sheet_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Linkt) -> None:
         sheet = client.sheet.list()
         assert_matches_type(SheetListResponse, sheet, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Linkt) -> None:
         sheet = client.sheet.list(
@@ -175,7 +175,7 @@ class TestSheet:
         )
         assert_matches_type(SheetListResponse, sheet, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Linkt) -> None:
         response = client.sheet.with_raw_response.list()
@@ -185,7 +185,7 @@ class TestSheet:
         sheet = response.parse()
         assert_matches_type(SheetListResponse, sheet, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Linkt) -> None:
         with client.sheet.with_streaming_response.list() as response:
@@ -197,7 +197,7 @@ class TestSheet:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Linkt) -> None:
         sheet = client.sheet.delete(
@@ -205,7 +205,7 @@ class TestSheet:
         )
         assert sheet is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Linkt) -> None:
         response = client.sheet.with_raw_response.delete(
@@ -217,7 +217,7 @@ class TestSheet:
         sheet = response.parse()
         assert sheet is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Linkt) -> None:
         with client.sheet.with_streaming_response.delete(
@@ -231,7 +231,7 @@ class TestSheet:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Linkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sheet_id` but received ''"):
@@ -245,7 +245,7 @@ class TestAsyncSheet:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncLinkt) -> None:
         sheet = await async_client.sheet.create(
@@ -256,7 +256,7 @@ class TestAsyncSheet:
         )
         assert_matches_type(Sheet, sheet, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncLinkt) -> None:
         response = await async_client.sheet.with_raw_response.create(
@@ -271,7 +271,7 @@ class TestAsyncSheet:
         sheet = await response.parse()
         assert_matches_type(Sheet, sheet, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncLinkt) -> None:
         async with async_client.sheet.with_streaming_response.create(
@@ -288,7 +288,7 @@ class TestAsyncSheet:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncLinkt) -> None:
         sheet = await async_client.sheet.retrieve(
@@ -296,7 +296,7 @@ class TestAsyncSheet:
         )
         assert_matches_type(Sheet, sheet, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncLinkt) -> None:
         response = await async_client.sheet.with_raw_response.retrieve(
@@ -308,7 +308,7 @@ class TestAsyncSheet:
         sheet = await response.parse()
         assert_matches_type(Sheet, sheet, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncLinkt) -> None:
         async with async_client.sheet.with_streaming_response.retrieve(
@@ -322,7 +322,7 @@ class TestAsyncSheet:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncLinkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sheet_id` but received ''"):
@@ -330,7 +330,7 @@ class TestAsyncSheet:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncLinkt) -> None:
         sheet = await async_client.sheet.update(
@@ -338,7 +338,7 @@ class TestAsyncSheet:
         )
         assert sheet is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncLinkt) -> None:
         sheet = await async_client.sheet.update(
@@ -349,7 +349,7 @@ class TestAsyncSheet:
         )
         assert sheet is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncLinkt) -> None:
         response = await async_client.sheet.with_raw_response.update(
@@ -361,7 +361,7 @@ class TestAsyncSheet:
         sheet = await response.parse()
         assert sheet is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncLinkt) -> None:
         async with async_client.sheet.with_streaming_response.update(
@@ -375,7 +375,7 @@ class TestAsyncSheet:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncLinkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sheet_id` but received ''"):
@@ -383,13 +383,13 @@ class TestAsyncSheet:
                 sheet_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncLinkt) -> None:
         sheet = await async_client.sheet.list()
         assert_matches_type(SheetListResponse, sheet, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncLinkt) -> None:
         sheet = await async_client.sheet.list(
@@ -402,7 +402,7 @@ class TestAsyncSheet:
         )
         assert_matches_type(SheetListResponse, sheet, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncLinkt) -> None:
         response = await async_client.sheet.with_raw_response.list()
@@ -412,7 +412,7 @@ class TestAsyncSheet:
         sheet = await response.parse()
         assert_matches_type(SheetListResponse, sheet, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncLinkt) -> None:
         async with async_client.sheet.with_streaming_response.list() as response:
@@ -424,7 +424,7 @@ class TestAsyncSheet:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncLinkt) -> None:
         sheet = await async_client.sheet.delete(
@@ -432,7 +432,7 @@ class TestAsyncSheet:
         )
         assert sheet is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncLinkt) -> None:
         response = await async_client.sheet.with_raw_response.delete(
@@ -444,7 +444,7 @@ class TestAsyncSheet:
         sheet = await response.parse()
         assert sheet is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncLinkt) -> None:
         async with async_client.sheet.with_streaming_response.delete(
@@ -458,7 +458,7 @@ class TestAsyncSheet:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncLinkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sheet_id` but received ''"):
