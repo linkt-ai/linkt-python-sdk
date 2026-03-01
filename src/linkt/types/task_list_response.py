@@ -1,8 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
-from typing_extensions import Annotated, TypeAlias
+from typing_extensions import Literal, Annotated, TypeAlias
 
 from .._utils import PropertyInfo
 from .._models import BaseModel
@@ -14,12 +14,51 @@ from .signal_topic_config_response import SignalTopicConfigResponse
 from .ingest_prompt_config_response import IngestPromptConfigResponse
 from .profile_prompt_config_response import ProfilePromptConfigResponse
 
-__all__ = ["TaskListResponse", "Task", "TaskTaskConfig"]
+__all__ = ["TaskListResponse", "Task", "TaskTaskConfig", "TaskTaskConfigOnDemandIngestTaskConfigResponse"]
+
+
+class TaskTaskConfigOnDemandIngestTaskConfigResponse(BaseModel):
+    """On-demand ingest task configuration in API responses.
+
+    Response model for on-demand ingest task configs that excludes backend-managed
+    fields from the API surface.
+
+    Attributes:
+        type: Config type discriminator (always "ingest-ondemand").
+        file_id: ID of the CSV file.
+        primary_column: Column containing entity names.
+        csv_entity_type: Entity type in CSV.
+        ignored_fields: Existing sheet fields allowed to be nullable.
+        new_custom_fields: New enrichment fields added to sheet schema.
+        webhook_url: Webhook URL for completion notification.
+    """
+
+    csv_entity_type: str
+    """Entity type in CSV"""
+
+    file_id: str
+    """ID of the CSV file"""
+
+    primary_column: str
+    """Column containing entity names"""
+
+    ignored_fields: Optional[List[str]] = None
+    """Existing sheet fields allowed to be nullable"""
+
+    new_custom_fields: Optional[List[Dict[str, str]]] = None
+    """New enrichment fields added to sheet schema"""
+
+    type: Optional[Literal["ingest-ondemand"]] = None
+
+    webhook_url: Optional[str] = None
+    """Webhook URL for completion notification"""
+
 
 TaskTaskConfig: TypeAlias = Annotated[
     Union[
         SearchTaskConfigResponse,
         IngestTaskConfigResponse,
+        TaskTaskConfigOnDemandIngestTaskConfigResponse,
         IngestPromptConfigResponse,
         ProfilePromptConfigResponse,
         SignalTopicConfigResponse,
