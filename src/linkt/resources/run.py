@@ -29,6 +29,11 @@ __all__ = ["RunResource", "AsyncRunResource"]
 
 
 class RunResource(SyncAPIResource):
+    """**Runs** represent individual workflow executions.
+
+    When you execute a task, it creates a run that progresses through states: SCHEDULED -> PENDING -> RUNNING -> COMPLETED (or FAILED/CANCELED). Monitor run status, view processing queues, and cancel running workflows through these endpoints.
+    """
+
     @cached_property
     def with_raw_response(self) -> RunResourceWithRawResponse:
         """
@@ -366,6 +371,11 @@ class RunResource(SyncAPIResource):
 
 
 class AsyncRunResource(AsyncAPIResource):
+    """**Runs** represent individual workflow executions.
+
+    When you execute a task, it creates a run that progresses through states: SCHEDULED -> PENDING -> RUNNING -> COMPLETED (or FAILED/CANCELED). Monitor run status, view processing queues, and cancel running workflows through these endpoints.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncRunResourceWithRawResponse:
         """

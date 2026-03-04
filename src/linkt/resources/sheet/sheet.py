@@ -34,8 +34,17 @@ __all__ = ["SheetResource", "AsyncSheetResource"]
 
 
 class SheetResource(SyncAPIResource):
+    """**Sheets** are collections WHERE entities (companies, people) are stored.
+
+    Each sheet must reference an ICP that defines targeting criteria, and holds entities of a single type (company or person). Sheets support custom schemas, CSV export, and comprehensive entity filtering. Use sheets to organize and manage your research results.
+    """
+
     @cached_property
     def schema(self) -> SchemaResource:
+        """**Sheet Schemas** define the structure of entity data within sheets.
+
+        Each entity type (company, person) has a default schema with standard fields. Use these endpoints to view default schemas, add custom fields to capture additional data points, or remove custom fields you no longer need.
+        """
         return SchemaResource(self._client)
 
     @cached_property
@@ -284,8 +293,17 @@ class SheetResource(SyncAPIResource):
 
 
 class AsyncSheetResource(AsyncAPIResource):
+    """**Sheets** are collections WHERE entities (companies, people) are stored.
+
+    Each sheet must reference an ICP that defines targeting criteria, and holds entities of a single type (company or person). Sheets support custom schemas, CSV export, and comprehensive entity filtering. Use sheets to organize and manage your research results.
+    """
+
     @cached_property
     def schema(self) -> AsyncSchemaResource:
+        """**Sheet Schemas** define the structure of entity data within sheets.
+
+        Each entity type (company, person) has a default schema with standard fields. Use these endpoints to view default schemas, add custom fields to capture additional data points, or remove custom fields you no longer need.
+        """
         return AsyncSchemaResource(self._client)
 
     @cached_property
@@ -555,6 +573,10 @@ class SheetResourceWithRawResponse:
 
     @cached_property
     def schema(self) -> SchemaResourceWithRawResponse:
+        """**Sheet Schemas** define the structure of entity data within sheets.
+
+        Each entity type (company, person) has a default schema with standard fields. Use these endpoints to view default schemas, add custom fields to capture additional data points, or remove custom fields you no longer need.
+        """
         return SchemaResourceWithRawResponse(self._sheet.schema)
 
 
@@ -580,6 +602,10 @@ class AsyncSheetResourceWithRawResponse:
 
     @cached_property
     def schema(self) -> AsyncSchemaResourceWithRawResponse:
+        """**Sheet Schemas** define the structure of entity data within sheets.
+
+        Each entity type (company, person) has a default schema with standard fields. Use these endpoints to view default schemas, add custom fields to capture additional data points, or remove custom fields you no longer need.
+        """
         return AsyncSchemaResourceWithRawResponse(self._sheet.schema)
 
 
@@ -605,6 +631,10 @@ class SheetResourceWithStreamingResponse:
 
     @cached_property
     def schema(self) -> SchemaResourceWithStreamingResponse:
+        """**Sheet Schemas** define the structure of entity data within sheets.
+
+        Each entity type (company, person) has a default schema with standard fields. Use these endpoints to view default schemas, add custom fields to capture additional data points, or remove custom fields you no longer need.
+        """
         return SchemaResourceWithStreamingResponse(self._sheet.schema)
 
 
@@ -630,4 +660,8 @@ class AsyncSheetResourceWithStreamingResponse:
 
     @cached_property
     def schema(self) -> AsyncSchemaResourceWithStreamingResponse:
+        """**Sheet Schemas** define the structure of entity data within sheets.
+
+        Each entity type (company, person) has a default schema with standard fields. Use these endpoints to view default schemas, add custom fields to capture additional data points, or remove custom fields you no longer need.
+        """
         return AsyncSchemaResourceWithStreamingResponse(self._sheet.schema)
