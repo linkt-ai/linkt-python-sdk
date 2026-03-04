@@ -25,6 +25,10 @@ __all__ = ["SignalResource", "AsyncSignalResource"]
 
 
 class SignalResource(SyncAPIResource):
+    """
+    **Signals** are time-based events detected by AI agents that affect your entities. Examples include funding rounds, leadership changes, hiring events, and product launches. Signals are **read-only** - they are created automatically by research workflows and represent an immutable audit trail of what happened and when.
+    """
+
     @cached_property
     def with_raw_response(self) -> SignalResourceWithRawResponse:
         """
@@ -157,6 +161,10 @@ class SignalResource(SyncAPIResource):
 
 
 class AsyncSignalResource(AsyncAPIResource):
+    """
+    **Signals** are time-based events detected by AI agents that affect your entities. Examples include funding rounds, leadership changes, hiring events, and product launches. Signals are **read-only** - they are created automatically by research workflows and represent an immutable audit trail of what happened and when.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncSignalResourceWithRawResponse:
         """

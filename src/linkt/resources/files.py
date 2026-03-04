@@ -26,6 +26,11 @@ __all__ = ["FilesResource", "AsyncFilesResource"]
 
 
 class FilesResource(SyncAPIResource):
+    """**Files** are uploaded data sources for your research workflows.
+
+    Upload CSV or XLSX files containing entities (companies, people) or monitoring targets. Files are processed and stored securely, then can be referenced when creating signal monitoring or ingest tasks. XLSX files are automatically converted to CSV format.
+    """
+
     @cached_property
     def with_raw_response(self) -> FilesResourceWithRawResponse:
         """
@@ -177,6 +182,11 @@ class FilesResource(SyncAPIResource):
 
 
 class AsyncFilesResource(AsyncAPIResource):
+    """**Files** are uploaded data sources for your research workflows.
+
+    Upload CSV or XLSX files containing entities (companies, people) or monitoring targets. Files are processed and stored securely, then can be referenced when creating signal monitoring or ingest tasks. XLSX files are automatically converted to CSV format.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncFilesResourceWithRawResponse:
         """

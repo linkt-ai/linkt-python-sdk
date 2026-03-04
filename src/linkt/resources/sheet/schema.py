@@ -26,6 +26,11 @@ __all__ = ["SchemaResource", "AsyncSchemaResource"]
 
 
 class SchemaResource(SyncAPIResource):
+    """**Sheet Schemas** define the structure of entity data within sheets.
+
+    Each entity type (company, person) has a default schema with standard fields. Use these endpoints to view default schemas, add custom fields to capture additional data points, or remove custom fields you no longer need.
+    """
+
     @cached_property
     def with_raw_response(self) -> SchemaResourceWithRawResponse:
         """
@@ -210,6 +215,11 @@ class SchemaResource(SyncAPIResource):
 
 
 class AsyncSchemaResource(AsyncAPIResource):
+    """**Sheet Schemas** define the structure of entity data within sheets.
+
+    Each entity type (company, person) has a default schema with standard fields. Use these endpoints to view default schemas, add custom fields to capture additional data points, or remove custom fields you no longer need.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncSchemaResourceWithRawResponse:
         """

@@ -28,6 +28,10 @@ __all__ = ["IcpResource", "AsyncIcpResource"]
 
 
 class IcpResource(SyncAPIResource):
+    """
+    **Ideal Customer Profiles (ICPs)** define WHAT entities to target using business-level descriptions and filters. ICPs are the foundation of your research workflows - they specify targeting criteria like industry, company size, job titles, and other characteristics that define your ideal customers. Create ICPs first, then link Sheets to them for entity storage.
+    """
+
     @cached_property
     def with_raw_response(self) -> IcpResourceWithRawResponse:
         """
@@ -308,6 +312,10 @@ class IcpResource(SyncAPIResource):
 
 
 class AsyncIcpResource(AsyncAPIResource):
+    """
+    **Ideal Customer Profiles (ICPs)** define WHAT entities to target using business-level descriptions and filters. ICPs are the foundation of your research workflows - they specify targeting criteria like industry, company size, job titles, and other characteristics that define your ideal customers. Create ICPs first, then link Sheets to them for entity storage.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncIcpResourceWithRawResponse:
         """
