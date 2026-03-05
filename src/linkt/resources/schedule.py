@@ -237,10 +237,7 @@ class ScheduleResource(SyncAPIResource):
 
           sort_by: Field to sort by (e.g., 'created_at')
 
-          status: Schedule status values.
-
-              ACTIVE: Schedule is eligible for execution PAUSED: Temporarily suspended but can
-              be resumed DISABLED: Permanently disabled (requires manual intervention)
+          status: Filter by status
 
           task_id: Filter by task
 
@@ -522,10 +519,7 @@ class AsyncScheduleResource(AsyncAPIResource):
 
           sort_by: Field to sort by (e.g., 'created_at')
 
-          status: Schedule status values.
-
-              ACTIVE: Schedule is eligible for execution PAUSED: Temporarily suspended but can
-              be resumed DISABLED: Permanently disabled (requires manual intervention)
+          status: Filter by status
 
           task_id: Filter by task
 

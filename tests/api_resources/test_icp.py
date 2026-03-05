@@ -21,7 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestIcp:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Linkt) -> None:
         icp = client.icp.create(
@@ -36,7 +36,7 @@ class TestIcp:
         )
         assert_matches_type(IcpResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Linkt) -> None:
         response = client.icp.with_raw_response.create(
@@ -55,7 +55,7 @@ class TestIcp:
         icp = response.parse()
         assert_matches_type(IcpResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Linkt) -> None:
         with client.icp.with_streaming_response.create(
@@ -76,7 +76,7 @@ class TestIcp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Linkt) -> None:
         icp = client.icp.retrieve(
@@ -84,7 +84,7 @@ class TestIcp:
         )
         assert_matches_type(IcpResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Linkt) -> None:
         response = client.icp.with_raw_response.retrieve(
@@ -96,7 +96,7 @@ class TestIcp:
         icp = response.parse()
         assert_matches_type(IcpResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Linkt) -> None:
         with client.icp.with_streaming_response.retrieve(
@@ -110,7 +110,7 @@ class TestIcp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Linkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `icp_id` but received ''"):
@@ -118,7 +118,7 @@ class TestIcp:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update(self, client: Linkt) -> None:
         icp = client.icp.update(
@@ -126,7 +126,7 @@ class TestIcp:
         )
         assert_matches_type(IcpResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Linkt) -> None:
         icp = client.icp.update(
@@ -145,7 +145,7 @@ class TestIcp:
         )
         assert_matches_type(IcpResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Linkt) -> None:
         response = client.icp.with_raw_response.update(
@@ -157,7 +157,7 @@ class TestIcp:
         icp = response.parse()
         assert_matches_type(IcpResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Linkt) -> None:
         with client.icp.with_streaming_response.update(
@@ -171,7 +171,7 @@ class TestIcp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Linkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `icp_id` but received ''"):
@@ -179,13 +179,13 @@ class TestIcp:
                 icp_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Linkt) -> None:
         icp = client.icp.list()
         assert_matches_type(IcpListResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Linkt) -> None:
         icp = client.icp.list(
@@ -197,7 +197,7 @@ class TestIcp:
         )
         assert_matches_type(IcpListResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Linkt) -> None:
         response = client.icp.with_raw_response.list()
@@ -207,7 +207,7 @@ class TestIcp:
         icp = response.parse()
         assert_matches_type(IcpListResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Linkt) -> None:
         with client.icp.with_streaming_response.list() as response:
@@ -219,7 +219,7 @@ class TestIcp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Linkt) -> None:
         icp = client.icp.delete(
@@ -227,7 +227,7 @@ class TestIcp:
         )
         assert icp is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Linkt) -> None:
         response = client.icp.with_raw_response.delete(
@@ -239,7 +239,7 @@ class TestIcp:
         icp = response.parse()
         assert icp is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Linkt) -> None:
         with client.icp.with_streaming_response.delete(
@@ -253,7 +253,7 @@ class TestIcp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Linkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `icp_id` but received ''"):
@@ -261,7 +261,7 @@ class TestIcp:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_active_runs(self, client: Linkt) -> None:
         icp = client.icp.get_active_runs(
@@ -269,7 +269,7 @@ class TestIcp:
         )
         assert_matches_type(IcpGetActiveRunsResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_active_runs(self, client: Linkt) -> None:
         response = client.icp.with_raw_response.get_active_runs(
@@ -281,7 +281,7 @@ class TestIcp:
         icp = response.parse()
         assert_matches_type(IcpGetActiveRunsResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_active_runs(self, client: Linkt) -> None:
         with client.icp.with_streaming_response.get_active_runs(
@@ -295,7 +295,7 @@ class TestIcp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_get_active_runs(self, client: Linkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `icp_id` but received ''"):
@@ -309,7 +309,7 @@ class TestAsyncIcp:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncLinkt) -> None:
         icp = await async_client.icp.create(
@@ -324,7 +324,7 @@ class TestAsyncIcp:
         )
         assert_matches_type(IcpResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncLinkt) -> None:
         response = await async_client.icp.with_raw_response.create(
@@ -343,7 +343,7 @@ class TestAsyncIcp:
         icp = await response.parse()
         assert_matches_type(IcpResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncLinkt) -> None:
         async with async_client.icp.with_streaming_response.create(
@@ -364,7 +364,7 @@ class TestAsyncIcp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncLinkt) -> None:
         icp = await async_client.icp.retrieve(
@@ -372,7 +372,7 @@ class TestAsyncIcp:
         )
         assert_matches_type(IcpResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncLinkt) -> None:
         response = await async_client.icp.with_raw_response.retrieve(
@@ -384,7 +384,7 @@ class TestAsyncIcp:
         icp = await response.parse()
         assert_matches_type(IcpResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncLinkt) -> None:
         async with async_client.icp.with_streaming_response.retrieve(
@@ -398,7 +398,7 @@ class TestAsyncIcp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncLinkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `icp_id` but received ''"):
@@ -406,7 +406,7 @@ class TestAsyncIcp:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncLinkt) -> None:
         icp = await async_client.icp.update(
@@ -414,7 +414,7 @@ class TestAsyncIcp:
         )
         assert_matches_type(IcpResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncLinkt) -> None:
         icp = await async_client.icp.update(
@@ -433,7 +433,7 @@ class TestAsyncIcp:
         )
         assert_matches_type(IcpResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncLinkt) -> None:
         response = await async_client.icp.with_raw_response.update(
@@ -445,7 +445,7 @@ class TestAsyncIcp:
         icp = await response.parse()
         assert_matches_type(IcpResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncLinkt) -> None:
         async with async_client.icp.with_streaming_response.update(
@@ -459,7 +459,7 @@ class TestAsyncIcp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncLinkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `icp_id` but received ''"):
@@ -467,13 +467,13 @@ class TestAsyncIcp:
                 icp_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncLinkt) -> None:
         icp = await async_client.icp.list()
         assert_matches_type(IcpListResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncLinkt) -> None:
         icp = await async_client.icp.list(
@@ -485,7 +485,7 @@ class TestAsyncIcp:
         )
         assert_matches_type(IcpListResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncLinkt) -> None:
         response = await async_client.icp.with_raw_response.list()
@@ -495,7 +495,7 @@ class TestAsyncIcp:
         icp = await response.parse()
         assert_matches_type(IcpListResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncLinkt) -> None:
         async with async_client.icp.with_streaming_response.list() as response:
@@ -507,7 +507,7 @@ class TestAsyncIcp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncLinkt) -> None:
         icp = await async_client.icp.delete(
@@ -515,7 +515,7 @@ class TestAsyncIcp:
         )
         assert icp is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncLinkt) -> None:
         response = await async_client.icp.with_raw_response.delete(
@@ -527,7 +527,7 @@ class TestAsyncIcp:
         icp = await response.parse()
         assert icp is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncLinkt) -> None:
         async with async_client.icp.with_streaming_response.delete(
@@ -541,7 +541,7 @@ class TestAsyncIcp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncLinkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `icp_id` but received ''"):
@@ -549,7 +549,7 @@ class TestAsyncIcp:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_active_runs(self, async_client: AsyncLinkt) -> None:
         icp = await async_client.icp.get_active_runs(
@@ -557,7 +557,7 @@ class TestAsyncIcp:
         )
         assert_matches_type(IcpGetActiveRunsResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_active_runs(self, async_client: AsyncLinkt) -> None:
         response = await async_client.icp.with_raw_response.get_active_runs(
@@ -569,7 +569,7 @@ class TestAsyncIcp:
         icp = await response.parse()
         assert_matches_type(IcpGetActiveRunsResponse, icp, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_active_runs(self, async_client: AsyncLinkt) -> None:
         async with async_client.icp.with_streaming_response.get_active_runs(
@@ -583,7 +583,7 @@ class TestAsyncIcp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_get_active_runs(self, async_client: AsyncLinkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `icp_id` but received ''"):

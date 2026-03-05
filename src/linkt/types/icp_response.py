@@ -5,7 +5,7 @@ from datetime import datetime
 
 from .._models import BaseModel
 
-__all__ = ["IcpResponse", "EntityTarget"]
+__all__ = ["IcpResponse", "EntityTarget", "EntityStructure"]
 
 
 class EntityTarget(BaseModel):
@@ -40,6 +40,23 @@ class EntityTarget(BaseModel):
     """For non-root entities, desired count per parent"""
 
 
+class EntityStructure(BaseModel):
+    """Response model for v2 entity structure entry.
+
+    Lightweight structure that defines entity types and their hierarchy
+    without the business description (which lives on sheets in v2).
+    """
+
+    entity_type: str
+    """Entity type (company, person, etc.)"""
+
+    root: bool
+    """If this is the root entity type"""
+
+    desired_count: Optional[int] = None
+    """For non-root entities, desired count per parent"""
+
+
 class IcpResponse(BaseModel):
     """Response model for ICP."""
 
@@ -54,3 +71,9 @@ class IcpResponse(BaseModel):
     name: str
 
     updated_at: datetime
+
+    entity_structure: Optional[List[EntityStructure]] = None
+    """v2 entity structure (lightweight, no descriptions)"""
+
+    schema_version: Optional[int] = None
+    """ICP schema version (1 or 2)"""

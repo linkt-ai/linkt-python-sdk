@@ -140,12 +140,19 @@ class Linkt(SyncAPIClient):
 
     @cached_property
     def icp(self) -> IcpResource:
+        """
+        **Ideal Customer Profiles (ICPs)** define WHAT entities to target using business-level descriptions and filters. ICPs are the foundation of your research workflows - they specify targeting criteria like industry, company size, job titles, and other characteristics that define your ideal customers. Create ICPs first, then link Sheets to them for entity storage.
+        """
         from .resources.icp import IcpResource
 
         return IcpResource(self)
 
     @cached_property
     def sheet(self) -> SheetResource:
+        """**Sheets** are collections WHERE entities (companies, people) are stored.
+
+        Each sheet must reference an ICP that defines targeting criteria, and holds entities of a single type (company or person). Sheets support custom schemas, CSV export, and comprehensive entity filtering. Use sheets to organize and manage your research results.
+        """
         from .resources.sheet import SheetResource
 
         return SheetResource(self)
@@ -158,18 +165,29 @@ class Linkt(SyncAPIClient):
 
     @cached_property
     def task(self) -> TaskResource:
+        """**Tasks** are reusable workflow templates that define HOW research is executed.
+
+        Tasks reference Prefect flow deployments and can be configured with prompts and parameters. Create a task once, then execute it multiple times to generate runs. Each execution creates a new run that can be monitored independently.
+        """
         from .resources.task import TaskResource
 
         return TaskResource(self)
 
     @cached_property
     def signal(self) -> SignalResource:
+        """
+        **Signals** are time-based events detected by AI agents that affect your entities. Examples include funding rounds, leadership changes, hiring events, and product launches. Signals are **read-only** - they are created automatically by research workflows and represent an immutable audit trail of what happened and when.
+        """
         from .resources.signal import SignalResource
 
         return SignalResource(self)
 
     @cached_property
     def run(self) -> RunResource:
+        """**Runs** represent individual workflow executions.
+
+        When you execute a task, it creates a run that progresses through states: SCHEDULED -> PENDING -> RUNNING -> COMPLETED (or FAILED/CANCELED). Monitor run status, view processing queues, and cancel running workflows through these endpoints.
+        """
         from .resources.run import RunResource
 
         return RunResource(self)
@@ -182,6 +200,10 @@ class Linkt(SyncAPIClient):
 
     @cached_property
     def files(self) -> FilesResource:
+        """**Files** are uploaded data sources for your research workflows.
+
+        Upload CSV or XLSX files containing entities (companies, people) or monitoring targets. Files are processed and stored securely, then can be referenced when creating signal monitoring or ingest tasks. XLSX files are automatically converted to CSV format.
+        """
         from .resources.files import FilesResource
 
         return FilesResource(self)
@@ -382,12 +404,19 @@ class AsyncLinkt(AsyncAPIClient):
 
     @cached_property
     def icp(self) -> AsyncIcpResource:
+        """
+        **Ideal Customer Profiles (ICPs)** define WHAT entities to target using business-level descriptions and filters. ICPs are the foundation of your research workflows - they specify targeting criteria like industry, company size, job titles, and other characteristics that define your ideal customers. Create ICPs first, then link Sheets to them for entity storage.
+        """
         from .resources.icp import AsyncIcpResource
 
         return AsyncIcpResource(self)
 
     @cached_property
     def sheet(self) -> AsyncSheetResource:
+        """**Sheets** are collections WHERE entities (companies, people) are stored.
+
+        Each sheet must reference an ICP that defines targeting criteria, and holds entities of a single type (company or person). Sheets support custom schemas, CSV export, and comprehensive entity filtering. Use sheets to organize and manage your research results.
+        """
         from .resources.sheet import AsyncSheetResource
 
         return AsyncSheetResource(self)
@@ -400,18 +429,29 @@ class AsyncLinkt(AsyncAPIClient):
 
     @cached_property
     def task(self) -> AsyncTaskResource:
+        """**Tasks** are reusable workflow templates that define HOW research is executed.
+
+        Tasks reference Prefect flow deployments and can be configured with prompts and parameters. Create a task once, then execute it multiple times to generate runs. Each execution creates a new run that can be monitored independently.
+        """
         from .resources.task import AsyncTaskResource
 
         return AsyncTaskResource(self)
 
     @cached_property
     def signal(self) -> AsyncSignalResource:
+        """
+        **Signals** are time-based events detected by AI agents that affect your entities. Examples include funding rounds, leadership changes, hiring events, and product launches. Signals are **read-only** - they are created automatically by research workflows and represent an immutable audit trail of what happened and when.
+        """
         from .resources.signal import AsyncSignalResource
 
         return AsyncSignalResource(self)
 
     @cached_property
     def run(self) -> AsyncRunResource:
+        """**Runs** represent individual workflow executions.
+
+        When you execute a task, it creates a run that progresses through states: SCHEDULED -> PENDING -> RUNNING -> COMPLETED (or FAILED/CANCELED). Monitor run status, view processing queues, and cancel running workflows through these endpoints.
+        """
         from .resources.run import AsyncRunResource
 
         return AsyncRunResource(self)
@@ -424,6 +464,10 @@ class AsyncLinkt(AsyncAPIClient):
 
     @cached_property
     def files(self) -> AsyncFilesResource:
+        """**Files** are uploaded data sources for your research workflows.
+
+        Upload CSV or XLSX files containing entities (companies, people) or monitoring targets. Files are processed and stored securely, then can be referenced when creating signal monitoring or ingest tasks. XLSX files are automatically converted to CSV format.
+        """
         from .resources.files import AsyncFilesResource
 
         return AsyncFilesResource(self)
@@ -551,12 +595,19 @@ class LinktWithRawResponse:
 
     @cached_property
     def icp(self) -> icp.IcpResourceWithRawResponse:
+        """
+        **Ideal Customer Profiles (ICPs)** define WHAT entities to target using business-level descriptions and filters. ICPs are the foundation of your research workflows - they specify targeting criteria like industry, company size, job titles, and other characteristics that define your ideal customers. Create ICPs first, then link Sheets to them for entity storage.
+        """
         from .resources.icp import IcpResourceWithRawResponse
 
         return IcpResourceWithRawResponse(self._client.icp)
 
     @cached_property
     def sheet(self) -> sheet.SheetResourceWithRawResponse:
+        """**Sheets** are collections WHERE entities (companies, people) are stored.
+
+        Each sheet must reference an ICP that defines targeting criteria, and holds entities of a single type (company or person). Sheets support custom schemas, CSV export, and comprehensive entity filtering. Use sheets to organize and manage your research results.
+        """
         from .resources.sheet import SheetResourceWithRawResponse
 
         return SheetResourceWithRawResponse(self._client.sheet)
@@ -569,18 +620,29 @@ class LinktWithRawResponse:
 
     @cached_property
     def task(self) -> task.TaskResourceWithRawResponse:
+        """**Tasks** are reusable workflow templates that define HOW research is executed.
+
+        Tasks reference Prefect flow deployments and can be configured with prompts and parameters. Create a task once, then execute it multiple times to generate runs. Each execution creates a new run that can be monitored independently.
+        """
         from .resources.task import TaskResourceWithRawResponse
 
         return TaskResourceWithRawResponse(self._client.task)
 
     @cached_property
     def signal(self) -> signal.SignalResourceWithRawResponse:
+        """
+        **Signals** are time-based events detected by AI agents that affect your entities. Examples include funding rounds, leadership changes, hiring events, and product launches. Signals are **read-only** - they are created automatically by research workflows and represent an immutable audit trail of what happened and when.
+        """
         from .resources.signal import SignalResourceWithRawResponse
 
         return SignalResourceWithRawResponse(self._client.signal)
 
     @cached_property
     def run(self) -> run.RunResourceWithRawResponse:
+        """**Runs** represent individual workflow executions.
+
+        When you execute a task, it creates a run that progresses through states: SCHEDULED -> PENDING -> RUNNING -> COMPLETED (or FAILED/CANCELED). Monitor run status, view processing queues, and cancel running workflows through these endpoints.
+        """
         from .resources.run import RunResourceWithRawResponse
 
         return RunResourceWithRawResponse(self._client.run)
@@ -593,6 +655,10 @@ class LinktWithRawResponse:
 
     @cached_property
     def files(self) -> files.FilesResourceWithRawResponse:
+        """**Files** are uploaded data sources for your research workflows.
+
+        Upload CSV or XLSX files containing entities (companies, people) or monitoring targets. Files are processed and stored securely, then can be referenced when creating signal monitoring or ingest tasks. XLSX files are automatically converted to CSV format.
+        """
         from .resources.files import FilesResourceWithRawResponse
 
         return FilesResourceWithRawResponse(self._client.files)
@@ -606,12 +672,19 @@ class AsyncLinktWithRawResponse:
 
     @cached_property
     def icp(self) -> icp.AsyncIcpResourceWithRawResponse:
+        """
+        **Ideal Customer Profiles (ICPs)** define WHAT entities to target using business-level descriptions and filters. ICPs are the foundation of your research workflows - they specify targeting criteria like industry, company size, job titles, and other characteristics that define your ideal customers. Create ICPs first, then link Sheets to them for entity storage.
+        """
         from .resources.icp import AsyncIcpResourceWithRawResponse
 
         return AsyncIcpResourceWithRawResponse(self._client.icp)
 
     @cached_property
     def sheet(self) -> sheet.AsyncSheetResourceWithRawResponse:
+        """**Sheets** are collections WHERE entities (companies, people) are stored.
+
+        Each sheet must reference an ICP that defines targeting criteria, and holds entities of a single type (company or person). Sheets support custom schemas, CSV export, and comprehensive entity filtering. Use sheets to organize and manage your research results.
+        """
         from .resources.sheet import AsyncSheetResourceWithRawResponse
 
         return AsyncSheetResourceWithRawResponse(self._client.sheet)
@@ -624,18 +697,29 @@ class AsyncLinktWithRawResponse:
 
     @cached_property
     def task(self) -> task.AsyncTaskResourceWithRawResponse:
+        """**Tasks** are reusable workflow templates that define HOW research is executed.
+
+        Tasks reference Prefect flow deployments and can be configured with prompts and parameters. Create a task once, then execute it multiple times to generate runs. Each execution creates a new run that can be monitored independently.
+        """
         from .resources.task import AsyncTaskResourceWithRawResponse
 
         return AsyncTaskResourceWithRawResponse(self._client.task)
 
     @cached_property
     def signal(self) -> signal.AsyncSignalResourceWithRawResponse:
+        """
+        **Signals** are time-based events detected by AI agents that affect your entities. Examples include funding rounds, leadership changes, hiring events, and product launches. Signals are **read-only** - they are created automatically by research workflows and represent an immutable audit trail of what happened and when.
+        """
         from .resources.signal import AsyncSignalResourceWithRawResponse
 
         return AsyncSignalResourceWithRawResponse(self._client.signal)
 
     @cached_property
     def run(self) -> run.AsyncRunResourceWithRawResponse:
+        """**Runs** represent individual workflow executions.
+
+        When you execute a task, it creates a run that progresses through states: SCHEDULED -> PENDING -> RUNNING -> COMPLETED (or FAILED/CANCELED). Monitor run status, view processing queues, and cancel running workflows through these endpoints.
+        """
         from .resources.run import AsyncRunResourceWithRawResponse
 
         return AsyncRunResourceWithRawResponse(self._client.run)
@@ -648,6 +732,10 @@ class AsyncLinktWithRawResponse:
 
     @cached_property
     def files(self) -> files.AsyncFilesResourceWithRawResponse:
+        """**Files** are uploaded data sources for your research workflows.
+
+        Upload CSV or XLSX files containing entities (companies, people) or monitoring targets. Files are processed and stored securely, then can be referenced when creating signal monitoring or ingest tasks. XLSX files are automatically converted to CSV format.
+        """
         from .resources.files import AsyncFilesResourceWithRawResponse
 
         return AsyncFilesResourceWithRawResponse(self._client.files)
@@ -661,12 +749,19 @@ class LinktWithStreamedResponse:
 
     @cached_property
     def icp(self) -> icp.IcpResourceWithStreamingResponse:
+        """
+        **Ideal Customer Profiles (ICPs)** define WHAT entities to target using business-level descriptions and filters. ICPs are the foundation of your research workflows - they specify targeting criteria like industry, company size, job titles, and other characteristics that define your ideal customers. Create ICPs first, then link Sheets to them for entity storage.
+        """
         from .resources.icp import IcpResourceWithStreamingResponse
 
         return IcpResourceWithStreamingResponse(self._client.icp)
 
     @cached_property
     def sheet(self) -> sheet.SheetResourceWithStreamingResponse:
+        """**Sheets** are collections WHERE entities (companies, people) are stored.
+
+        Each sheet must reference an ICP that defines targeting criteria, and holds entities of a single type (company or person). Sheets support custom schemas, CSV export, and comprehensive entity filtering. Use sheets to organize and manage your research results.
+        """
         from .resources.sheet import SheetResourceWithStreamingResponse
 
         return SheetResourceWithStreamingResponse(self._client.sheet)
@@ -679,18 +774,29 @@ class LinktWithStreamedResponse:
 
     @cached_property
     def task(self) -> task.TaskResourceWithStreamingResponse:
+        """**Tasks** are reusable workflow templates that define HOW research is executed.
+
+        Tasks reference Prefect flow deployments and can be configured with prompts and parameters. Create a task once, then execute it multiple times to generate runs. Each execution creates a new run that can be monitored independently.
+        """
         from .resources.task import TaskResourceWithStreamingResponse
 
         return TaskResourceWithStreamingResponse(self._client.task)
 
     @cached_property
     def signal(self) -> signal.SignalResourceWithStreamingResponse:
+        """
+        **Signals** are time-based events detected by AI agents that affect your entities. Examples include funding rounds, leadership changes, hiring events, and product launches. Signals are **read-only** - they are created automatically by research workflows and represent an immutable audit trail of what happened and when.
+        """
         from .resources.signal import SignalResourceWithStreamingResponse
 
         return SignalResourceWithStreamingResponse(self._client.signal)
 
     @cached_property
     def run(self) -> run.RunResourceWithStreamingResponse:
+        """**Runs** represent individual workflow executions.
+
+        When you execute a task, it creates a run that progresses through states: SCHEDULED -> PENDING -> RUNNING -> COMPLETED (or FAILED/CANCELED). Monitor run status, view processing queues, and cancel running workflows through these endpoints.
+        """
         from .resources.run import RunResourceWithStreamingResponse
 
         return RunResourceWithStreamingResponse(self._client.run)
@@ -703,6 +809,10 @@ class LinktWithStreamedResponse:
 
     @cached_property
     def files(self) -> files.FilesResourceWithStreamingResponse:
+        """**Files** are uploaded data sources for your research workflows.
+
+        Upload CSV or XLSX files containing entities (companies, people) or monitoring targets. Files are processed and stored securely, then can be referenced when creating signal monitoring or ingest tasks. XLSX files are automatically converted to CSV format.
+        """
         from .resources.files import FilesResourceWithStreamingResponse
 
         return FilesResourceWithStreamingResponse(self._client.files)
@@ -716,12 +826,19 @@ class AsyncLinktWithStreamedResponse:
 
     @cached_property
     def icp(self) -> icp.AsyncIcpResourceWithStreamingResponse:
+        """
+        **Ideal Customer Profiles (ICPs)** define WHAT entities to target using business-level descriptions and filters. ICPs are the foundation of your research workflows - they specify targeting criteria like industry, company size, job titles, and other characteristics that define your ideal customers. Create ICPs first, then link Sheets to them for entity storage.
+        """
         from .resources.icp import AsyncIcpResourceWithStreamingResponse
 
         return AsyncIcpResourceWithStreamingResponse(self._client.icp)
 
     @cached_property
     def sheet(self) -> sheet.AsyncSheetResourceWithStreamingResponse:
+        """**Sheets** are collections WHERE entities (companies, people) are stored.
+
+        Each sheet must reference an ICP that defines targeting criteria, and holds entities of a single type (company or person). Sheets support custom schemas, CSV export, and comprehensive entity filtering. Use sheets to organize and manage your research results.
+        """
         from .resources.sheet import AsyncSheetResourceWithStreamingResponse
 
         return AsyncSheetResourceWithStreamingResponse(self._client.sheet)
@@ -734,18 +851,29 @@ class AsyncLinktWithStreamedResponse:
 
     @cached_property
     def task(self) -> task.AsyncTaskResourceWithStreamingResponse:
+        """**Tasks** are reusable workflow templates that define HOW research is executed.
+
+        Tasks reference Prefect flow deployments and can be configured with prompts and parameters. Create a task once, then execute it multiple times to generate runs. Each execution creates a new run that can be monitored independently.
+        """
         from .resources.task import AsyncTaskResourceWithStreamingResponse
 
         return AsyncTaskResourceWithStreamingResponse(self._client.task)
 
     @cached_property
     def signal(self) -> signal.AsyncSignalResourceWithStreamingResponse:
+        """
+        **Signals** are time-based events detected by AI agents that affect your entities. Examples include funding rounds, leadership changes, hiring events, and product launches. Signals are **read-only** - they are created automatically by research workflows and represent an immutable audit trail of what happened and when.
+        """
         from .resources.signal import AsyncSignalResourceWithStreamingResponse
 
         return AsyncSignalResourceWithStreamingResponse(self._client.signal)
 
     @cached_property
     def run(self) -> run.AsyncRunResourceWithStreamingResponse:
+        """**Runs** represent individual workflow executions.
+
+        When you execute a task, it creates a run that progresses through states: SCHEDULED -> PENDING -> RUNNING -> COMPLETED (or FAILED/CANCELED). Monitor run status, view processing queues, and cancel running workflows through these endpoints.
+        """
         from .resources.run import AsyncRunResourceWithStreamingResponse
 
         return AsyncRunResourceWithStreamingResponse(self._client.run)
@@ -758,6 +886,10 @@ class AsyncLinktWithStreamedResponse:
 
     @cached_property
     def files(self) -> files.AsyncFilesResourceWithStreamingResponse:
+        """**Files** are uploaded data sources for your research workflows.
+
+        Upload CSV or XLSX files containing entities (companies, people) or monitoring targets. Files are processed and stored securely, then can be referenced when creating signal monitoring or ingest tasks. XLSX files are automatically converted to CSV format.
+        """
         from .resources.files import AsyncFilesResourceWithStreamingResponse
 
         return AsyncFilesResourceWithStreamingResponse(self._client.files)

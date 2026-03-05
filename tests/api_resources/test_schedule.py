@@ -20,7 +20,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSchedule:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Linkt) -> None:
         schedule = client.schedule.create(
@@ -31,7 +31,7 @@ class TestSchedule:
         )
         assert_matches_type(ScheduleResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Linkt) -> None:
         schedule = client.schedule.create(
@@ -44,7 +44,7 @@ class TestSchedule:
         )
         assert_matches_type(ScheduleResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Linkt) -> None:
         response = client.schedule.with_raw_response.create(
@@ -59,7 +59,7 @@ class TestSchedule:
         schedule = response.parse()
         assert_matches_type(ScheduleResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Linkt) -> None:
         with client.schedule.with_streaming_response.create(
@@ -76,7 +76,7 @@ class TestSchedule:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Linkt) -> None:
         schedule = client.schedule.retrieve(
@@ -84,7 +84,7 @@ class TestSchedule:
         )
         assert_matches_type(ScheduleResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Linkt) -> None:
         response = client.schedule.with_raw_response.retrieve(
@@ -96,7 +96,7 @@ class TestSchedule:
         schedule = response.parse()
         assert_matches_type(ScheduleResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Linkt) -> None:
         with client.schedule.with_streaming_response.retrieve(
@@ -110,7 +110,7 @@ class TestSchedule:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Linkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `schedule_id` but received ''"):
@@ -118,7 +118,7 @@ class TestSchedule:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update(self, client: Linkt) -> None:
         schedule = client.schedule.update(
@@ -126,7 +126,7 @@ class TestSchedule:
         )
         assert_matches_type(ScheduleResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Linkt) -> None:
         schedule = client.schedule.update(
@@ -139,7 +139,7 @@ class TestSchedule:
         )
         assert_matches_type(ScheduleResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Linkt) -> None:
         response = client.schedule.with_raw_response.update(
@@ -151,7 +151,7 @@ class TestSchedule:
         schedule = response.parse()
         assert_matches_type(ScheduleResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Linkt) -> None:
         with client.schedule.with_streaming_response.update(
@@ -165,7 +165,7 @@ class TestSchedule:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Linkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `schedule_id` but received ''"):
@@ -173,13 +173,13 @@ class TestSchedule:
                 schedule_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Linkt) -> None:
         schedule = client.schedule.list()
         assert_matches_type(ScheduleListResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Linkt) -> None:
         schedule = client.schedule.list(
@@ -193,7 +193,7 @@ class TestSchedule:
         )
         assert_matches_type(ScheduleListResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Linkt) -> None:
         response = client.schedule.with_raw_response.list()
@@ -203,7 +203,7 @@ class TestSchedule:
         schedule = response.parse()
         assert_matches_type(ScheduleListResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Linkt) -> None:
         with client.schedule.with_streaming_response.list() as response:
@@ -215,7 +215,7 @@ class TestSchedule:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Linkt) -> None:
         schedule = client.schedule.delete(
@@ -223,7 +223,7 @@ class TestSchedule:
         )
         assert schedule is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Linkt) -> None:
         response = client.schedule.with_raw_response.delete(
@@ -235,7 +235,7 @@ class TestSchedule:
         schedule = response.parse()
         assert schedule is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Linkt) -> None:
         with client.schedule.with_streaming_response.delete(
@@ -249,7 +249,7 @@ class TestSchedule:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Linkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `schedule_id` but received ''"):
@@ -263,7 +263,7 @@ class TestAsyncSchedule:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncLinkt) -> None:
         schedule = await async_client.schedule.create(
@@ -274,7 +274,7 @@ class TestAsyncSchedule:
         )
         assert_matches_type(ScheduleResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncLinkt) -> None:
         schedule = await async_client.schedule.create(
@@ -287,7 +287,7 @@ class TestAsyncSchedule:
         )
         assert_matches_type(ScheduleResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncLinkt) -> None:
         response = await async_client.schedule.with_raw_response.create(
@@ -302,7 +302,7 @@ class TestAsyncSchedule:
         schedule = await response.parse()
         assert_matches_type(ScheduleResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncLinkt) -> None:
         async with async_client.schedule.with_streaming_response.create(
@@ -319,7 +319,7 @@ class TestAsyncSchedule:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncLinkt) -> None:
         schedule = await async_client.schedule.retrieve(
@@ -327,7 +327,7 @@ class TestAsyncSchedule:
         )
         assert_matches_type(ScheduleResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncLinkt) -> None:
         response = await async_client.schedule.with_raw_response.retrieve(
@@ -339,7 +339,7 @@ class TestAsyncSchedule:
         schedule = await response.parse()
         assert_matches_type(ScheduleResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncLinkt) -> None:
         async with async_client.schedule.with_streaming_response.retrieve(
@@ -353,7 +353,7 @@ class TestAsyncSchedule:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncLinkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `schedule_id` but received ''"):
@@ -361,7 +361,7 @@ class TestAsyncSchedule:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncLinkt) -> None:
         schedule = await async_client.schedule.update(
@@ -369,7 +369,7 @@ class TestAsyncSchedule:
         )
         assert_matches_type(ScheduleResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncLinkt) -> None:
         schedule = await async_client.schedule.update(
@@ -382,7 +382,7 @@ class TestAsyncSchedule:
         )
         assert_matches_type(ScheduleResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncLinkt) -> None:
         response = await async_client.schedule.with_raw_response.update(
@@ -394,7 +394,7 @@ class TestAsyncSchedule:
         schedule = await response.parse()
         assert_matches_type(ScheduleResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncLinkt) -> None:
         async with async_client.schedule.with_streaming_response.update(
@@ -408,7 +408,7 @@ class TestAsyncSchedule:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncLinkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `schedule_id` but received ''"):
@@ -416,13 +416,13 @@ class TestAsyncSchedule:
                 schedule_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncLinkt) -> None:
         schedule = await async_client.schedule.list()
         assert_matches_type(ScheduleListResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncLinkt) -> None:
         schedule = await async_client.schedule.list(
@@ -436,7 +436,7 @@ class TestAsyncSchedule:
         )
         assert_matches_type(ScheduleListResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncLinkt) -> None:
         response = await async_client.schedule.with_raw_response.list()
@@ -446,7 +446,7 @@ class TestAsyncSchedule:
         schedule = await response.parse()
         assert_matches_type(ScheduleListResponse, schedule, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncLinkt) -> None:
         async with async_client.schedule.with_streaming_response.list() as response:
@@ -458,7 +458,7 @@ class TestAsyncSchedule:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncLinkt) -> None:
         schedule = await async_client.schedule.delete(
@@ -466,7 +466,7 @@ class TestAsyncSchedule:
         )
         assert schedule is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncLinkt) -> None:
         response = await async_client.schedule.with_raw_response.delete(
@@ -478,7 +478,7 @@ class TestAsyncSchedule:
         schedule = await response.parse()
         assert schedule is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncLinkt) -> None:
         async with async_client.schedule.with_streaming_response.delete(
@@ -492,7 +492,7 @@ class TestAsyncSchedule:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncLinkt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `schedule_id` but received ''"):

@@ -16,7 +16,7 @@ class EntityExportParams(TypedDict, total=False):
     """Specific entity IDs"""
 
     entity_type: Optional[EntityType]
-    """Valid entity types for sheets."""
+    """Filter by entity type"""
 
     format: Literal["separate", "combined"]
     """Export format: 'separate' (default) or 'combined' (joined parent-child rows)"""
