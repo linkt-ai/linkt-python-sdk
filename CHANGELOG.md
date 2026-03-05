@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.7.0 (2026-03-05)
+
+Full Changelog: [v0.6.0...v0.7.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.6.0...v0.7.0)
+
+### Features
+
+* **api:** api update ([cfb7e36](https://github.com/linkt-ai/linkt-python-sdk/commit/cfb7e36b7e79c6dcd0a933462aa1180e507f80ad))
+* **api:** api update ([56ce393](https://github.com/linkt-ai/linkt-python-sdk/commit/56ce3936f27ae4e6f5a071e819d1e4b7491054d8))
+* **api:** api update ([65678d4](https://github.com/linkt-ai/linkt-python-sdk/commit/65678d45540cdec59d7d3cca77da1acab33b9674))
+* **api:** api update ([a9ee53e](https://github.com/linkt-ai/linkt-python-sdk/commit/a9ee53e93224d5f793a6005d704aee4c4df59963))
+* **api:** api update ([833dea4](https://github.com/linkt-ai/linkt-python-sdk/commit/833dea4a8b7a2d5fb7849a53560c88c2223ab52a))
+* **api:** api update ([cb3eaa7](https://github.com/linkt-ai/linkt-python-sdk/commit/cb3eaa7ab3afecaefe2a588c1d6ba40c1b981edd))
+
+
+### Chores
+
+* **api:** minor updates ([63a3cbe](https://github.com/linkt-ai/linkt-python-sdk/commit/63a3cbe48ebf52ec02b810ea8a86b5c655c8a8be))
+* **ci:** bump uv version ([00ba9dd](https://github.com/linkt-ai/linkt-python-sdk/commit/00ba9dd09e60c560c73e96cdc63c677a82b4c099))
+* format all `api.md` files ([a511a92](https://github.com/linkt-ai/linkt-python-sdk/commit/a511a92ae5a08f0ca9428ee65588cad324ca1f4c))
+* **internal:** add request options to SSE classes ([20c90cb](https://github.com/linkt-ai/linkt-python-sdk/commit/20c90cb6970c1d8189f7a8b320fbd1eb2d25df3e))
+* **internal:** bump dependencies ([4d821cf](https://github.com/linkt-ai/linkt-python-sdk/commit/4d821cffadc156abd82a8d4dabe35d5ed8f96410))
+* **internal:** codegen related update ([026d119](https://github.com/linkt-ai/linkt-python-sdk/commit/026d119742e7f640113fbfb4da03ce94c56f7f58))
+* **internal:** fix lint error on Python 3.14 ([dfb23aa](https://github.com/linkt-ai/linkt-python-sdk/commit/dfb23aa8f1544e0248f4129e0e8396f2c26b35bb))
+* **internal:** make `test_proxy_environment_variables` more resilient ([5174ea1](https://github.com/linkt-ai/linkt-python-sdk/commit/5174ea10feb9852bdc1390cf41ff70562bb43e24))
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([feb1e12](https://github.com/linkt-ai/linkt-python-sdk/commit/feb1e12a0b9b49665367d0bb2b8af78b62e38e20))
+* **internal:** remove mock server code ([2a0dc39](https://github.com/linkt-ai/linkt-python-sdk/commit/2a0dc39733f4e47ba1494d3c22cd3db2dd1a93b4))
+* update mock server docs ([fb761bd](https://github.com/linkt-ai/linkt-python-sdk/commit/fb761bdec53e0ba486fafe6d10cfa3a039099a66))
+
 ## 0.6.0 (2026-02-05)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.5.0...v0.6.0)
