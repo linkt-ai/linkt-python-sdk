@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.8.0 (2026-03-08)
+
+Full Changelog: [v0.7.0...v0.8.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.7.0...v0.8.0)
+
+### Features
+
+* **api:** api update ([d8f1aef](https://github.com/linkt-ai/linkt-python-sdk/commit/d8f1aefb117cdb1af4d396f9593272ccc0e98944))
+* **api:** api update ([2bce784](https://github.com/linkt-ai/linkt-python-sdk/commit/2bce784d58a8876f245e4c333774eb0c91a37f5e))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([a3596d9](https://github.com/linkt-ai/linkt-python-sdk/commit/a3596d93f7b8175f16f1d49a6cb80c335b11ce9e))
+
 ## 0.7.0 (2026-03-05)
 
 Full Changelog: [v0.6.0...v0.7.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.6.0...v0.7.0)
