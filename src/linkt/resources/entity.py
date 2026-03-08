@@ -168,6 +168,7 @@ class EntityResource(SyncAPIResource):
         self,
         *,
         entity_type: Optional[EntityType] | Omit = omit,
+        fields: Optional[str] | Omit = omit,
         hide_duplicates: bool | Omit = omit,
         icp_id: Optional[SequenceNotStr[str]] | Omit = omit,
         page: int | Omit = omit,
@@ -200,6 +201,9 @@ class EntityResource(SyncAPIResource):
         Args:
           entity_type: Filter by entity type
 
+          fields: Comma-separated list of data fields to include (e.g., 'name,company,title').
+              Returns all fields if omitted.
+
           hide_duplicates: Hide duplicate entities (show only primaries)
 
           icp_id: Filter by ICP ID(s) - supports multiple
@@ -230,6 +234,7 @@ class EntityResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "entity_type": entity_type,
+                        "fields": fields,
                         "hide_duplicates": hide_duplicates,
                         "icp_id": icp_id,
                         "page": page,
@@ -740,6 +745,7 @@ class AsyncEntityResource(AsyncAPIResource):
         self,
         *,
         entity_type: Optional[EntityType] | Omit = omit,
+        fields: Optional[str] | Omit = omit,
         hide_duplicates: bool | Omit = omit,
         icp_id: Optional[SequenceNotStr[str]] | Omit = omit,
         page: int | Omit = omit,
@@ -772,6 +778,9 @@ class AsyncEntityResource(AsyncAPIResource):
         Args:
           entity_type: Filter by entity type
 
+          fields: Comma-separated list of data fields to include (e.g., 'name,company,title').
+              Returns all fields if omitted.
+
           hide_duplicates: Hide duplicate entities (show only primaries)
 
           icp_id: Filter by ICP ID(s) - supports multiple
@@ -802,6 +811,7 @@ class AsyncEntityResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "entity_type": entity_type,
+                        "fields": fields,
                         "hide_duplicates": hide_duplicates,
                         "icp_id": icp_id,
                         "page": page,
