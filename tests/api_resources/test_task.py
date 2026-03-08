@@ -44,6 +44,7 @@ class TestTask:
             icp_id="5eb7cf5a86d9755df3a6c593",
             prompt="prompt",
             task_config={
+                "company_input": "company_input",
                 "desired_contact_count": 1,
                 "type": "search",
                 "user_feedback": "user_feedback",
@@ -145,6 +146,7 @@ class TestTask:
             name="x",
             prompt="prompt",
             task_config={
+                "company_input": "company_input",
                 "desired_contact_count": 1,
                 "type": "search",
                 "user_feedback": "user_feedback",
@@ -349,6 +351,7 @@ class TestAsyncTask:
             icp_id="5eb7cf5a86d9755df3a6c593",
             prompt="prompt",
             task_config={
+                "company_input": "company_input",
                 "desired_contact_count": 1,
                 "type": "search",
                 "user_feedback": "user_feedback",
@@ -450,6 +453,7 @@ class TestAsyncTask:
             name="x",
             prompt="prompt",
             task_config={
+                "company_input": "company_input",
                 "desired_contact_count": 1,
                 "type": "search",
                 "user_feedback": "user_feedback",
