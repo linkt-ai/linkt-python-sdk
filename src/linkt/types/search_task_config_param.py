@@ -27,6 +27,9 @@ class SearchTaskConfigParam(TypedDict, total=False):
         'v3.0'
     """
 
+    company_input: Optional[str]
+    """Known company name or URL for company lookup mode"""
+
     desired_contact_count: int
     """Number of contacts to find per company (minimum: 1)"""
 

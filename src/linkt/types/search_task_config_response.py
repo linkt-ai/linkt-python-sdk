@@ -27,6 +27,9 @@ class SearchTaskConfigResponse(BaseModel):
     user_feedback: str
     """Feedback to refine search behavior"""
 
+    company_input: Optional[str] = None
+    """Known company name or URL for company lookup mode"""
+
     type: Optional[Literal["search"]] = None
 
     webhook_url: Optional[str] = None
