@@ -15,6 +15,12 @@ class EntityListParams(TypedDict, total=False):
     entity_type: Optional[EntityType]
     """Filter by entity type"""
 
+    fields: Optional[str]
+    """Comma-separated list of data fields to include (e.g., 'name,company,title').
+
+    Returns all fields if omitted.
+    """
+
     hide_duplicates: bool
     """Hide duplicate entities (show only primaries)"""
 
