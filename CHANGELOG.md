@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.8.1 (2026-03-20)
+
+Full Changelog: [v0.8.0...v0.8.1](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.8.0...v0.8.1)
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([8396aea](https://github.com/linkt-ai/linkt-python-sdk/commit/8396aea4a4d089295d404b7a1f82963476cf6c93))
+* **pydantic:** do not pass `by_alias` unless set ([7064add](https://github.com/linkt-ai/linkt-python-sdk/commit/7064addba06aba678aeb777fab3be02338bdee0d))
+* sanitize endpoint path params ([53ea547](https://github.com/linkt-ai/linkt-python-sdk/commit/53ea54762aad99ed038b545ecc07834092d673ff))
+
+
+### Chores
+
+* **internal:** tweak CI branches ([3d2e11f](https://github.com/linkt-ai/linkt-python-sdk/commit/3d2e11f552949c5c932eaa30a28d19cdc287c0e9))
+
 ## 0.8.0 (2026-03-08)
 
 Full Changelog: [v0.7.0...v0.8.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.7.0...v0.8.0)
