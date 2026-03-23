@@ -16,7 +16,7 @@ from .schema import (
 )
 from ...types import EntityType, sheet_list_params, sheet_create_params, sheet_update_params
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -142,7 +142,7 @@ class SheetResource(SyncAPIResource):
         if not sheet_id:
             raise ValueError(f"Expected a non-empty value for `sheet_id` but received {sheet_id!r}")
         return self._get(
-            f"/v1/sheet/{sheet_id}",
+            path_template("/v1/sheet/{sheet_id}", sheet_id=sheet_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -182,7 +182,7 @@ class SheetResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `sheet_id` but received {sheet_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
-            f"/v1/sheet/{sheet_id}",
+            path_template("/v1/sheet/{sheet_id}", sheet_id=sheet_id),
             body=maybe_transform(
                 {
                     "description": description,
@@ -284,7 +284,7 @@ class SheetResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `sheet_id` but received {sheet_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v1/sheet/{sheet_id}",
+            path_template("/v1/sheet/{sheet_id}", sheet_id=sheet_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -401,7 +401,7 @@ class AsyncSheetResource(AsyncAPIResource):
         if not sheet_id:
             raise ValueError(f"Expected a non-empty value for `sheet_id` but received {sheet_id!r}")
         return await self._get(
-            f"/v1/sheet/{sheet_id}",
+            path_template("/v1/sheet/{sheet_id}", sheet_id=sheet_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -441,7 +441,7 @@ class AsyncSheetResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `sheet_id` but received {sheet_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
-            f"/v1/sheet/{sheet_id}",
+            path_template("/v1/sheet/{sheet_id}", sheet_id=sheet_id),
             body=await async_maybe_transform(
                 {
                     "description": description,
@@ -543,7 +543,7 @@ class AsyncSheetResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `sheet_id` but received {sheet_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v1/sheet/{sheet_id}",
+            path_template("/v1/sheet/{sheet_id}", sheet_id=sheet_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

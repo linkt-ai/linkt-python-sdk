@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ..._types import Body, Query, Headers, NoneType, NotGiven, SequenceNotStr, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -81,7 +81,7 @@ class SchemaResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `sheet_id` but received {sheet_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
-            f"/v1/sheet/schema/{sheet_id}",
+            path_template("/v1/sheet/schema/{sheet_id}", sheet_id=sheet_id),
             body=maybe_transform({"fields": fields}, schema_add_fields_params.SchemaAddFieldsParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -120,7 +120,7 @@ class SchemaResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `sheet_id` but received {sheet_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v1/sheet/schema/{sheet_id}",
+            path_template("/v1/sheet/schema/{sheet_id}", sheet_id=sheet_id),
             body=maybe_transform({"fields": fields}, schema_delete_fields_params.SchemaDeleteFieldsParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -157,7 +157,7 @@ class SchemaResource(SyncAPIResource):
         if not sheet_id:
             raise ValueError(f"Expected a non-empty value for `sheet_id` but received {sheet_id!r}")
         return self._get(
-            f"/v1/sheet/schema/{sheet_id}",
+            path_template("/v1/sheet/schema/{sheet_id}", sheet_id=sheet_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -270,7 +270,7 @@ class AsyncSchemaResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `sheet_id` but received {sheet_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
-            f"/v1/sheet/schema/{sheet_id}",
+            path_template("/v1/sheet/schema/{sheet_id}", sheet_id=sheet_id),
             body=await async_maybe_transform({"fields": fields}, schema_add_fields_params.SchemaAddFieldsParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -309,7 +309,7 @@ class AsyncSchemaResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `sheet_id` but received {sheet_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v1/sheet/schema/{sheet_id}",
+            path_template("/v1/sheet/schema/{sheet_id}", sheet_id=sheet_id),
             body=await async_maybe_transform({"fields": fields}, schema_delete_fields_params.SchemaDeleteFieldsParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -346,7 +346,7 @@ class AsyncSchemaResource(AsyncAPIResource):
         if not sheet_id:
             raise ValueError(f"Expected a non-empty value for `sheet_id` but received {sheet_id!r}")
         return await self._get(
-            f"/v1/sheet/schema/{sheet_id}",
+            path_template("/v1/sheet/schema/{sheet_id}", sheet_id=sheet_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
