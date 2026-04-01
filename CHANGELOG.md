@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.9.0 (2026-04-01)
+
+Full Changelog: [v0.8.1...v0.9.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.8.1...v0.9.0)
+
+### Features
+
+* **internal:** implement indices array format for query and form serialization ([8f1bc15](https://github.com/linkt-ai/linkt-python-sdk/commit/8f1bc155afda31ea02c5245836f8b6578202ba7e))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([27d3f59](https://github.com/linkt-ai/linkt-python-sdk/commit/27d3f59b6fc7699216b74d8ba6596f3ac18a5f13))
+* **internal:** update gitignore ([22b6fae](https://github.com/linkt-ai/linkt-python-sdk/commit/22b6faebdd77a146bbcc098a9c7cfc29f5efda66))
+
 ## 0.8.1 (2026-03-20)
 
 Full Changelog: [v0.8.0...v0.8.1](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.8.0...v0.8.1)
