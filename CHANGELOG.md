@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.10.0 (2026-04-14)
+
+Full Changelog: [v0.9.0...v0.10.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.9.0...v0.10.0)
+
+### Features
+
+* **api:** api update ([e386e9a](https://github.com/linkt-ai/linkt-python-sdk/commit/e386e9a69c09f39e45da40ebb5bf970f2221f095))
+
+
+### Bug Fixes
+
+* **client:** preserve hardcoded query params when merging with user params ([e2e956c](https://github.com/linkt-ai/linkt-python-sdk/commit/e2e956c881eaf4be7b2d8bd42833a27e1da1f77b))
+* ensure file data are only sent as 1 parameter ([bf842ad](https://github.com/linkt-ai/linkt-python-sdk/commit/bf842ad2d05c8c604a45e8b8eea845c04c518c37))
+
 ## 0.9.0 (2026-04-01)
 
 Full Changelog: [v0.8.1...v0.9.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.8.1...v0.9.0)

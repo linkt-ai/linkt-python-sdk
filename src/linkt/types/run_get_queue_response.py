@@ -21,6 +21,8 @@ class RunGetQueueResponse(BaseModel):
         limit: Maximum number of entities returned
         state_counts: Optional breakdown of entities by state
         include_history: Whether response includes historical data
+        queue_data_available: Whether queue data is still available in Redis
+        queue_data_message: Optional message about queue data availability
     """
 
     entities: List[Dict[str, object]]
@@ -34,5 +36,9 @@ class RunGetQueueResponse(BaseModel):
     total: int
 
     include_history: Optional[bool] = None
+
+    queue_data_available: Optional[bool] = None
+
+    queue_data_message: Optional[str] = None
 
     state_counts: Optional[Dict[str, int]] = None
