@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.11.0 (2026-04-30)
+
+Full Changelog: [v0.10.0...v0.11.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.10.0...v0.11.0)
+
+### Features
+
+* support setting headers via env ([b37d612](https://github.com/linkt-ai/linkt-python-sdk/commit/b37d61229d235fa453e7f960d70f5d41d324f565))
+
+
+### Bug Fixes
+
+* use correct field name format for multipart file arrays ([6ca9fb9](https://github.com/linkt-ai/linkt-python-sdk/commit/6ca9fb9f3448765854b82c71815ed0929ec72ffb))
+
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([9f3490f](https://github.com/linkt-ai/linkt-python-sdk/commit/9f3490ff373baa01a0b9616809d716c6fd2e2e6b))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([a6df833](https://github.com/linkt-ai/linkt-python-sdk/commit/a6df833f8d059242b91db934864375319c70d36c))
+
 ## 0.10.0 (2026-04-14)
 
 Full Changelog: [v0.9.0...v0.10.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.9.0...v0.10.0)
