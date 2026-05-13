@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.12.0 (2026-05-13)
+
+Full Changelog: [v0.11.0...v0.12.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.11.0...v0.12.0)
+
+### Features
+
+* **internal/types:** support eagerly validating pydantic iterators ([8c75eb5](https://github.com/linkt-ai/linkt-python-sdk/commit/8c75eb568bedd08bcce6c80c79ccfedfc8d0d108))
+
+
+### Bug Fixes
+
+* **client:** add missing f-string prefix in file type error message ([ead3282](https://github.com/linkt-ai/linkt-python-sdk/commit/ead3282f13ec7555fd23e117ad8062894518868d))
+
+
+### Chores
+
+* **internal:** reformat pyproject.toml ([a47a3f0](https://github.com/linkt-ai/linkt-python-sdk/commit/a47a3f0b2b22b49f97451d983a1c4aa25f0e9c24))
+
 ## 0.11.0 (2026-04-30)
 
 Full Changelog: [v0.10.0...v0.11.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.10.0...v0.11.0)
