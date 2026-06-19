@@ -86,6 +86,8 @@ class SignalResource(SyncAPIResource):
         *,
         days: int | Omit = omit,
         entity_id: Optional[str] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
+        external_source: str | Omit = omit,
         icp_id: Optional[str] | Omit = omit,
         order: Optional[int] | Omit = omit,
         page: int | Omit = omit,
@@ -112,6 +114,12 @@ class SignalResource(SyncAPIResource):
           days: Number of days to look back
 
           entity_id: Filter by entity
+
+          external_id: Filter by an external record identifier (e.g. a Salesforce Account Id). Resolves
+              to the org's entities carrying this external_id across all ICPs and returns the
+              union of their signals.
+
+          external_source: External system that owns external_id (default: 'salesforce').
 
           icp_id: Filter by ICP
 
@@ -144,6 +152,8 @@ class SignalResource(SyncAPIResource):
                     {
                         "days": days,
                         "entity_id": entity_id,
+                        "external_id": external_id,
+                        "external_source": external_source,
                         "icp_id": icp_id,
                         "order": order,
                         "page": page,
@@ -222,6 +232,8 @@ class AsyncSignalResource(AsyncAPIResource):
         *,
         days: int | Omit = omit,
         entity_id: Optional[str] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
+        external_source: str | Omit = omit,
         icp_id: Optional[str] | Omit = omit,
         order: Optional[int] | Omit = omit,
         page: int | Omit = omit,
@@ -248,6 +260,12 @@ class AsyncSignalResource(AsyncAPIResource):
           days: Number of days to look back
 
           entity_id: Filter by entity
+
+          external_id: Filter by an external record identifier (e.g. a Salesforce Account Id). Resolves
+              to the org's entities carrying this external_id across all ICPs and returns the
+              union of their signals.
+
+          external_source: External system that owns external_id (default: 'salesforce').
 
           icp_id: Filter by ICP
 
@@ -280,6 +298,8 @@ class AsyncSignalResource(AsyncAPIResource):
                     {
                         "days": days,
                         "entity_id": entity_id,
+                        "external_id": external_id,
+                        "external_source": external_source,
                         "icp_id": icp_id,
                         "order": order,
                         "page": page,

@@ -71,6 +71,8 @@ class TestSignal:
         signal = client.signal.list(
             days=1,
             entity_id="entity_id",
+            external_id="external_id",
+            external_source="external_source",
             icp_id="icp_id",
             order=0,
             page=1,
@@ -164,6 +166,8 @@ class TestAsyncSignal:
         signal = await async_client.signal.list(
             days=1,
             entity_id="entity_id",
+            external_id="external_id",
+            external_source="external_source",
             icp_id="icp_id",
             order=0,
             page=1,

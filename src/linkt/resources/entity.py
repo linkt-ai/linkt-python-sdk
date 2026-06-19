@@ -168,6 +168,8 @@ class EntityResource(SyncAPIResource):
         self,
         *,
         entity_type: Optional[EntityType] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
+        external_source: str | Omit = omit,
         fields: Optional[str] | Omit = omit,
         hide_duplicates: bool | Omit = omit,
         icp_id: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -200,6 +202,11 @@ class EntityResource(SyncAPIResource):
 
         Args:
           entity_type: Filter by entity type
+
+          external_id: Filter by an external record identifier (e.g. a Salesforce Account Id). Resolves
+              to the org's entities carrying this external_id across all ICPs.
+
+          external_source: External system that owns external_id (default: 'salesforce').
 
           fields: Comma-separated list of data fields to include (e.g., 'name,company,title').
               Returns all fields if omitted.
@@ -234,6 +241,8 @@ class EntityResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "entity_type": entity_type,
+                        "external_id": external_id,
+                        "external_source": external_source,
                         "fields": fields,
                         "hide_duplicates": hide_duplicates,
                         "icp_id": icp_id,
@@ -745,6 +754,8 @@ class AsyncEntityResource(AsyncAPIResource):
         self,
         *,
         entity_type: Optional[EntityType] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
+        external_source: str | Omit = omit,
         fields: Optional[str] | Omit = omit,
         hide_duplicates: bool | Omit = omit,
         icp_id: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -777,6 +788,11 @@ class AsyncEntityResource(AsyncAPIResource):
 
         Args:
           entity_type: Filter by entity type
+
+          external_id: Filter by an external record identifier (e.g. a Salesforce Account Id). Resolves
+              to the org's entities carrying this external_id across all ICPs.
+
+          external_source: External system that owns external_id (default: 'salesforce').
 
           fields: Comma-separated list of data fields to include (e.g., 'name,company,title').
               Returns all fields if omitted.
@@ -811,6 +827,8 @@ class AsyncEntityResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "entity_type": entity_type,
+                        "external_id": external_id,
+                        "external_source": external_source,
                         "fields": fields,
                         "hide_duplicates": hide_duplicates,
                         "icp_id": icp_id,
