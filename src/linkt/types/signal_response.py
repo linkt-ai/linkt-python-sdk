@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 
 from .._models import BaseModel
@@ -28,3 +28,7 @@ class SignalResponse(BaseModel):
     strength: Optional[str] = None
 
     summary: str
+
+    metadata: Optional[Dict[str, object]] = None
+
+    signal_display_name: Optional[str] = None
