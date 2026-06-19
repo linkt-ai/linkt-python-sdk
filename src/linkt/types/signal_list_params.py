@@ -15,6 +15,16 @@ class SignalListParams(TypedDict, total=False):
     entity_id: Optional[str]
     """Filter by entity"""
 
+    external_id: Optional[str]
+    """Filter by an external record identifier (e.g.
+
+    a Salesforce Account Id). Resolves to the org's entities carrying this
+    external_id across all ICPs and returns the union of their signals.
+    """
+
+    external_source: str
+    """External system that owns external_id (default: 'salesforce')."""
+
     icp_id: Optional[str]
     """Filter by ICP"""
 

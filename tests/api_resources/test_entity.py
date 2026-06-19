@@ -130,6 +130,8 @@ class TestEntity:
     def test_method_list_with_all_params(self, client: Linkt) -> None:
         entity = client.entity.list(
             entity_type="company",
+            external_id="external_id",
+            external_source="external_source",
             fields="fields",
             hide_duplicates=True,
             icp_id=["string"],
@@ -494,6 +496,8 @@ class TestAsyncEntity:
     async def test_method_list_with_all_params(self, async_client: AsyncLinkt) -> None:
         entity = await async_client.entity.list(
             entity_type="company",
+            external_id="external_id",
+            external_source="external_source",
             fields="fields",
             hide_duplicates=True,
             icp_id=["string"],

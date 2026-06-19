@@ -15,6 +15,16 @@ class EntityListParams(TypedDict, total=False):
     entity_type: Optional[EntityType]
     """Filter by entity type"""
 
+    external_id: Optional[str]
+    """Filter by an external record identifier (e.g.
+
+    a Salesforce Account Id). Resolves to the org's entities carrying this
+    external_id across all ICPs.
+    """
+
+    external_source: str
+    """External system that owns external_id (default: 'salesforce')."""
+
     fields: Optional[str]
     """Comma-separated list of data fields to include (e.g., 'name,company,title').
 
