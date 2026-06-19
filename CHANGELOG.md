@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.13.0 (2026-06-19)
+
+Full Changelog: [v0.12.0...v0.13.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.12.0...v0.13.0)
+
+### Features
+
+* **api:** api update ([3dd7dd4](https://github.com/linkt-ai/linkt-python-sdk/commit/3dd7dd4bae232200e08f8cfcf9e8892d0f1ecba6))
+
 ## 0.12.0 (2026-05-13)
 
 Full Changelog: [v0.11.0...v0.12.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.11.0...v0.12.0)
