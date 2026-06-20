@@ -104,6 +104,12 @@ class EntityResponse(BaseModel):
     EntityResponse.
     """
 
+    external_id: Optional[str] = None
+    """External system identifier (e.g. a Salesforce Account Id)"""
+
+    external_source: Optional[str] = None
+    """External system that owns external_id (e.g. 'salesforce')"""
+
     parent_id: Optional[str] = None
     """Parent entity ID (for hierarchical entities)"""
 
