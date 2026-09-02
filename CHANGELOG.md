@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.15.0 (2026-09-02)
+
+Full Changelog: [v0.14.0...v0.15.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.14.0...v0.15.0)
+
+### Features
+
+* **api:** api update ([9a06a5e](https://github.com/linkt-ai/linkt-python-sdk/commit/9a06a5ed0b8a7e508aacdeeeacbb3166d9807d0e))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([7bfb93d](https://github.com/linkt-ai/linkt-python-sdk/commit/7bfb93d603ddc72dd82aaa0ded8cf929e0023db9))
+
+
+### Bug Fixes
+
+* **internal:** resolve build failures ([4ed4968](https://github.com/linkt-ai/linkt-python-sdk/commit/4ed49682f44a80b776c3cfdf2df6a5c0294bc7ac))
+
+
+### Documentation
+
+* add AGENTS.md, the agent instruction contract ([9da44df](https://github.com/linkt-ai/linkt-python-sdk/commit/9da44df7bf770a043e4df40ae6f9337c20c6af2d))
+
 ## 0.14.0 (2026-06-19)
 
 Full Changelog: [v0.13.0...v0.14.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.13.0...v0.14.0)
