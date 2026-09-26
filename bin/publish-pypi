@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-
-set -eux
-rm -rf dist
-mkdir -p dist
-uv build
-uv publish --token=$PYPI_TOKEN
+set -euo pipefail
+printf '%s\n' 'SDK publication is disabled. Use direct HTTP or MCP for new integrations.' >&2
+exit 1
