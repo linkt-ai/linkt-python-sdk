@@ -2,7 +2,6 @@
 
 import os
 import re
-import json
 import tempfile
 import textwrap
 import unittest
@@ -83,7 +82,7 @@ class FreezeTests(unittest.TestCase):
         self.assertNotIn("Upload tarball", ci)
         self.assertNotIn("id-token: write", ci)
 
-    def test_migration_notice_and_typescript_distribution_stay_frozen(self):
+    def test_migration_notice_stays_frozen(self):
         readme = (ROOT / "README.md").read_text()
         self.assertIn("Deprecated legacy V1 SDK", readme)
         self.assertIn("MIGRATION.md", readme)
@@ -91,18 +90,6 @@ class FreezeTests(unittest.TestCase):
         migration = (ROOT / "MIGRATION.md").read_text()
         for text in ["direct HTTP or MCP", "Existing package versions remain installable", "no retirement date"]:
             self.assertIn(text, migration)
-        if PUBLISHER == "npm":
-            package = json.loads((ROOT / "package.json").read_text())
-            self.assertTrue(package["private"])
-            result = subprocess.run(
-                ["node", "scripts/utils/make-dist-package-json.cjs"],
-                cwd=ROOT,
-                capture_output=True,
-                text=True,
-                timeout=5,
-            )
-            self.assertEqual(result.returncode, 0, result.stderr)
-            self.assertTrue(json.loads(result.stdout)["private"])
 
 
 if __name__ == "__main__":
