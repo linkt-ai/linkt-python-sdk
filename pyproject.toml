@@ -1,7 +1,7 @@
 [project]
 name = "linkt-sdk"
 version = "0.14.0"
-description = "The official Python library for the linkt API"
+description = "Deprecated legacy V1 SDK. Use direct HTTP or MCP for new integrations."
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
