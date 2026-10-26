@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.15.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.14.0...v0.15.0) (2026-10-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **security:** Python 3.10 or later is required.
+
+### Bug Fixes
+
+* **ci:** use uv 0.12.17 for the supported Python versions ([a83c985](https://github.com/linkt-ai/linkt-python-sdk/commit/a83c9857217fd1638408547b503ada236c1aee25))
+* **security:** require Python 3.10, certifi 2026.10.19, and aiohttp 3.14.4 or later ([ee94453](https://github.com/linkt-ai/linkt-python-sdk/commit/ee944537a92219d28898e491341b67c9dfcaa92a))
+
 ## 0.14.0 (2026-06-19)
 
 Full Changelog: [v0.13.0...v0.14.0](https://github.com/linkt-ai/linkt-python-sdk/compare/v0.13.0...v0.14.0)
