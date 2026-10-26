@@ -34,7 +34,7 @@ the changelog are generated, and the changelog is written by release-please.
 
 ## Shape
 
-Published to PyPI as `linkt-sdk`. Python 3.9 or later. Synchronous and
+Published to PyPI as `linkt-sdk`. Python 3.10 or later. Synchronous and
 asynchronous clients, both on `httpx`, with type definitions for every request
 parameter and response field.
 
