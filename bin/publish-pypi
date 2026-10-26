@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-set -eux
+set -eu
 rm -rf dist
 mkdir -p dist
 uv build
-uv publish --token=$PYPI_TOKEN
+UV_PUBLISH_TOKEN="$PYPI_TOKEN" uv publish
