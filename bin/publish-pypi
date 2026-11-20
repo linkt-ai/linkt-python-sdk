@@ -4,4 +4,10 @@ set -eu
 rm -rf dist
 mkdir -p dist
 uv build
-UV_PUBLISH_TOKEN="$PYPI_TOKEN" uv publish
+if [ "${GITHUB_ACTIONS:-}" = "true" ]; then
+  # ADM-121: PyPI trusted publishing over GitHub OIDC. No token secret.
+  uv publish --trusted-publishing always
+else
+  # A manual release reads the upload token from UV_PUBLISH_TOKEN.
+  uv publish
+fi

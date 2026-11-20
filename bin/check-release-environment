@@ -1,9 +1,19 @@
 #!/usr/bin/env bash
 
+# ADM-121: PyPI trusted publishing replaces the PYPI_TOKEN secret. This
+# check confirms that the publish workflow still requests a GitHub OIDC token
+# in the pypi environment.
+
 errors=()
 
-if [ -z "${PYPI_TOKEN}" ]; then
-  errors+=("The PYPI_TOKEN secret has not been set. Please set it in either this repository's secrets or your organization secrets.")
+workflow=".github/workflows/publish-pypi.yml"
+
+if ! grep -qE '^\s+id-token: write$' "$workflow"; then
+  errors+=("$workflow must grant id-token: write for PyPI trusted publishing.")
+fi
+
+if ! grep -qE '^\s+environment: pypi$' "$workflow"; then
+  errors+=("$workflow must run in the pypi environment that the PyPI trusted publisher names.")
 fi
 
 lenErrors=${#errors[@]}
