@@ -1,23 +1,27 @@
 name: oidc-trigger-check
 
-# ADM-121, ADR-0010. This repository gets CI credentials from the linkt
-# broker over GitHub OIDC. No workflow here may grant id-token write on
-# pull_request_target, workflow_run, issue_comment, issues, discussion, or
-# discussion_comment. This job fails when one does.
+# ADM-121, ADR-0010. publish-pypi gets a PyPI credential over GitHub OIDC.
+# No workflow here may grant id-token write on pull_request_target,
+# workflow_run, issue_comment, issues, discussion, or discussion_comment.
+# This job fails when one does.
 
 on:
   pull_request:
+    branches: [main]
   push:
+    branches: [main]
 
 permissions:
   contents: read
 
 jobs:
   adr-0010:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
-      - uses: linkt-ai/admin-infra/.github/actions/oidc-trigger-check@0c0d7b72178a4eaed08966fdcf4a1b714092f8c8 # admin-infra main
+      # Public repository: run the local copy of the admin-infra check.
+      - name: Check the ADR-0010 trigger rule
+        run: bash .github/scripts/check-oidc-triggers.sh .github/workflows
